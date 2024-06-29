@@ -115,14 +115,14 @@ b {
 
 .container {
   display: grid;
-  width: 96%;
+  width: 100%;
   margin: 0 auto;
   gap: 1.8rem;
-  grid-template-columns: auto  12rem;
+  grid-template-columns: auto 12rem;
 }
-.header_nav{
+.header_nav {
   display: flex;
-    justify-content: space-between;
+  justify-content: space-between;
 }
 aside {
   height: 100vh;

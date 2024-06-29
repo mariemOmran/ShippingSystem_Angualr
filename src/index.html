@@ -1,60 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>ShippingSystemAngualr</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link
+  <head>
+    <meta charset="utf-8" />
+    <title>ShippingSystemAngualr</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.2" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
       rel="stylesheet"
     />
-</head>
-<body>
-  <app-root></app-root>
-  <script>
-     document.addEventListener('DOMContentLoaded', () => {
-      const sideMenu = document.querySelector('aside');
-const menuBtn = document.getElementById('menu-btn');
-const closeBtn = document.getElementById('close-btn');
+  </head>
+  <body>
+    <app-root></app-root>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const sideMenu = document.querySelector("aside");
+        const menuBtn = document.getElementById("menu-btn");
+        const closeBtn = document.getElementById("close-btn");
 
-console.log(sideMenu);
-console.log('yes');
-console.log(menuBtn);
-console.log(closeBtn);
-const darkMode = document.querySelector('.dark-mode');
+        console.log(sideMenu);
+        console.log("yes");
+        console.log(menuBtn);
+        console.log(closeBtn);
+        const darkMode = document.querySelector(".dark-mode");
 
-menuBtn.addEventListener('click', () => {
-    sideMenu.style.display = 'block';
-});
+        menuBtn.addEventListener("click", () => {
+          sideMenu.style.display = "block";
+        });
 
-closeBtn.addEventListener('click', () => {
-    sideMenu.style.display = 'none';
-});
+        closeBtn.addEventListener("click", () => {
+          sideMenu.style.display = "none";
+        });
 
-darkMode.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode-variables');
-    darkMode.querySelector('span:nth-child(1)').classList.toggle('active');
-    darkMode.querySelector('span:nth-child(2)').classList.toggle('active');
-})
+        darkMode.addEventListener("click", () => {
+          document.body.classList.toggle("dark-mode-variables");
+          darkMode
+            .querySelector("span:nth-child(1)")
+            .classList.toggle("active");
+          darkMode
+            .querySelector("span:nth-child(2)")
+            .classList.toggle("active");
+        });
 
-
-// Orders.forEach(order => {
-//     const tr = document.createElement('tr');
-//     const trContent = `
-//         <td>${order.productName}</td>
-//         <td>${order.productNumber}</td>
-//         <td>${order.paymentStatus}</td>
-//         <td class="${order.status === 'Declined' ? 'danger' : order.status === 'Pending' ? 'warning' : 'primary'}">${order.status}</td>
-//         <td class="primary">Details</td>
-//     `;
-//     tr.innerHTML = trContent;
-//     document.querySelector('table tbody').appendChild(tr);
-// });
-    });
-  </script>
- 
-</body>
-
+        // Orders.forEach(order => {
+        //     const tr = document.createElement('tr');
+        //     const trContent = `
+        //         <td>${order.productName}</td>
+        //         <td>${order.productNumber}</td>
+        //         <td>${order.paymentStatus}</td>
+        //         <td class="${order.status === 'Declined' ? 'danger' : order.status === 'Pending' ? 'warning' : 'primary'}">${order.status}</td>
+        //         <td class="primary">Details</td>
+        //     `;
+        //     tr.innerHTML = trContent;
+        //     document.querySelector('table tbody').appendChild(tr);
+        // });
+      });
+    </script>
+  </body>
 </html>
