@@ -1,0 +1,48 @@
+<div class="row g-3 mt-5 pt-0 p-5 text-end bg-body-tertiary">
+  <div class="bg-white p-3 rounded">
+    <h3 class="font-weight-bold">المناديب</h3>
+    <h4>
+      <span><a [routerLink]="['/AddDeliveryAccount']" routerLinkActive="active">اضافه مندوب </a></span>
+     <span> > </span>
+      <span><a [routerLink]="['/DeliveryAccounts']" routerLinkActive="active"> المناديب  </a></span>
+      <span> < </span>
+      <span><i class="bi bi-house-door-fill"></i></span>
+    </h4>
+  </div>
+
+  <div class="bg-white p-3 rounded">
+    <!-- can add search input here using pipe -->
+    <!--  can add pagination  -->
+
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-header">
+          <th scope="col">نسبه الخصم</th>
+          <!-- <th scope="col">IS Deleted</th> -->
+          <th scope="col">الحاله</th>
+          <th scope="col">الفرع</th>
+          <th scope="col">رقم الهاتف</th>
+          <th scope="col">البريد  الالكتروني</th>
+          <th scope="col">الاسم</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of deliveryAccounts">
+          <td>{{ account.discountType }}</td>
+          <!-- <td>{{ account.isDeleted }}</td> -->
+          <td>
+            <p-inputSwitch [(ngModel)]="account.status"></p-inputSwitch>
+
+          </td>
+          <td>{{ account.branch }}</td>
+          <td>{{ account.phone }}</td>
+          <td>{{ account.email }}</td>
+          <td>{{ account.userName }}</td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</div>
