@@ -1,0 +1,23 @@
+/* Example custom styles for RTL direction */
+.form-group {
+    text-align: right; /* Align text to the right */
+  }
+  
+  .form-control {
+    direction: rtl; /* Set direction to right-to-left */
+  }
+  .custom-form {
+    direction: rtl; /* Set direction to RTL */
+  }
+  select{
+    background-position: left .75rem center;
+    padding: .375rem .75rem .375rem  2.25rem;
+  }
+  .custom-border {
+    border: 1px solid rgb(173, 169, 169) !important;
+  }
+  thead tr th{
+    background-color: #E9EAF5;
+  }
+ 
+  
