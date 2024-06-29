@@ -1,3 +1,4 @@
+import { EmployeesComponent } from './../Components/employees/employees.component';
 import { Routes } from '@angular/router';
 import { LayoutComponent } from '../Components/layout/layout.component';
 import { MainDashboardComponent } from '../Components/main-dashboard/main-dashboard.component';
@@ -7,6 +8,7 @@ export const routes: Routes = [
 
     {path:'',component:LayoutComponent,children:[
         {path:'',component:MainDashboardComponent},
-        {path:'addorder',component:OrderFormComponent}
+        {path:'addorder',component:OrderFormComponent},
+        {path:'employee',component:EmployeesComponent},
     ]}
 ];
