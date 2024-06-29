@@ -1,17 +1,15 @@
 <div class="container">
-    <div>
+  <div>
     <!-- Main Content -->
-       <app-navbar></app-navbar>
-        <router-outlet></router-outlet>
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
     <!-- End of Main Content -->
-
- 
-    </div>
+  </div>
   <!-- Sidebar Section -->
+
   <aside>
     <div class="toggle">
       <div class="logo">
-        
         <img src="assets/images/logo.png" />
         <h2>Asmr<span class="danger">Prog</span></h2>
       </div>
@@ -21,19 +19,24 @@
     </div>
 
     <div class="sidebar">
-      <a href="#">
+      <a
+        href="#"
+        [routerLink]="['/']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <span class="material-icons-sharp"> dashboard </span>
         <h3>Dashboard</h3>
       </a>
       <a href="#">
         <span class="material-icons-sharp"> person_outline </span>
-        <h3>Users</h3>
+        <h3>Employees</h3>
+      </a>
+      <a href="#" [routerLink]="['/addorder']" routerLinkActive="active">
+        <span class="material-icons-sharp"> receipt_long </span>
+        <h3>Add Order</h3>
       </a>
       <a href="#">
-        <span class="material-icons-sharp"> receipt_long </span>
-        <h3>History</h3>
-      </a>
-      <a href="#" class="active">
         <span class="material-icons-sharp"> insights </span>
         <h3>Analytics</h3>
       </a>
@@ -66,5 +69,3 @@
   </aside>
   <!-- End of Sidebar Section -->
 </div>
-
-    
