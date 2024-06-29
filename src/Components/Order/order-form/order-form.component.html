@@ -1,0 +1,171 @@
+<form class="row g-3 mt-5 pt-0 p-5 text-end custom-form " [formGroup]="orderForm" (ngSubmit)="AddNewOrder">
+  <h2 class="mb-5">إضافة طلب </h2>
+  <!-- not add in model order type of delivery -->
+  <div class="mb-3 mt-2 col-auto">
+    <label for="exampleFormControlInput1" class="form-label">النوع</label>
+  <select class=" form-select" aria-label="Default select example">
+    <option selected>اختار اوبشن</option>
+    <option value="1">التسليم في الفرع</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+  </div>
+  <div class="mb-3 mt-2 col-auto">
+    <label for="exampleFormControlInput1" formControlName="clientName" class="form-label">اسم العميل </label>
+    <input type="text" class="form-control"   formcontrolName="clientName" id="exampleFormControlInput1" placeholder="الاسم">
+    <div class="danger" [hidden]="ClientName?.valid || ClientName?.untouched">
+    <small [hidden]="ClientName?.errors?.['required']">Client Name is Requierd</small>
+    </div>
+  </div>
+  <div class="mb-3 mt-2 col-auto">
+    <label for="exampleFormControlInput1"  class="form-label">رقم الهاتف</label>
+    <input type="text" class="form-control"  formControlName="phoneOne" id="exampleFormControlInput1" >
+    <div class="danger" [hidden]="PhoneOne?.valid || PhoneOne?.untouched">
+      <small [hidden]="PhoneOne?.errors?.['required']">Phone One  is Requierd</small>
+      </div>
+  </div>
+  <div class="mb-3 mt-2 col-auto">
+    <label for="exampleFormControlInput1" class="form-label">رقم الهاتف 2</label>
+    <input type="text" class="form-control"  formControlName="phoneTwo" id="exampleFormControlInput1" >
+  </div>
+  <div class="mb-3 mt-2 col-auto">
+    <label for="exampleFormControlInput1"  formControlName="email" class="form-label">البريد الالكتروني</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" >
+    <div class="danger" [hidden]="Email?.valid || Email?.untouched">
+      <small [hidden]="Email?.errors?.['required']">Email  is Requierd</small>
+      </div>
+  </div>
+  <!-- not display government ?? we should get it from db -->
+  <div class="mb-3 mt-2 col-auto">
+    <label for="exampleFormControlInput1" class="form-label">المحافظة</label>
+  <select class=" form-select" aria-label="Default select example">
+    <option selected>Open this select menu</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+  </div>
+  <!-- not display city ?? we should get it from db -->
+  <div class="mb-3 mt-2 col-auto">
+    <label for="exampleFormControlInput1" class="form-label">المدينة</label>
+  <select class=" form-select" aria-label="Default select example">
+    <option selected>Open this select menu</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+  </div>
+  <div class="row">
+    <div class="mb-3 mt-2 col-auto">
+      <label for="exampleFormControlInput1" class="form-label">القرية والشارع</label>
+      <input type="email"  class="form-control" formControlName="streetAndVillage" id="exampleFormControlInput1" placeholder="القرية والشارع">
+    </div>
+    <div class="mb-3 mt-2 col-auto">
+      <label for="switch1">التوصيل لقرية ؟</label>
+      <p-inputSwitch inputId="switch1" formControlName="ifVillage" class="d-block mt-3"/>
+    </div>
+    <!-- we want get the type of shipping from db  -->
+    <div class="mb-3 mt-2 col-auto">
+      <label for="exampleFormControlInput1" class="form-label">نوع الشحن </label>
+    <select class=" form-select" aria-label="Default select example">
+      <option selected>اختر نوع الشحن </option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+    </div>
+    <!-- we want get the type of payment from db  -->
+    <div class="mb-3 col-auto">
+      <label for="exampleFormControlInput1" class="form-label">نوع الدفع</label>
+      <select class=" form-select" aria-label="Default select example">
+        <option selected>اختر نوع الدفع</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+  </div>
+  <!-- we want get the branches from db  -->
+  <div class="mb-3 col-2">
+    <label for="exampleFormControlInput1" class="form-label">الفرع</label>
+    <select class=" form-select" aria-label="Default select example">
+      <option selected>القاهرة</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+  <!-- table  -->
+   <!-- we want to serach on it on chatGBT to add dynamic product  -->
+  <div class="container mt-3 text-end">
+    <div class="row">
+      <div class="col-md-2 d-flex align-items-start justify-content-end">
+        <button type="button" class="btn btn-secondary" (click)="addRow()">إضافة منتج</button>
+      </div>
+      <div class="col-md-10">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">حذف</th>
+              <th scope="col">الوزن(كجم)</th>
+              <th scope="col">الكمية</th>
+              <th scope="col">اسم المنتج</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prod of newProdut">
+              <th scope="row"><button type="button" class="btn btn-danger" (click)="deleteRow(prod.id)">حذف</button></th>
+              <td><input type="text" pInputText class="custom-border"/></td>
+              <td><input type="text" pInputText class="custom-border"/></td>
+              <td><input type="text" pInputText class="custom-border" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+    </div>
+  </div>
+  <!-- data of marchent  -->
+  <div class="row mt-5">
+  <div class="mb-3  col-auto">
+    <label for="exampleFormControlInput1" class="form-label">تكلفة الطلب</label>
+    <input type="number" class="form-control" formControlName="totalPrice" id="exampleFormControlInput1" placeholder="تكلفة الطلب">
+    <div class="danger" [hidden]="TotalPrice?.valid || TotalPrice?.untouched">
+      <small [hidden]="TotalPrice?.errors?.['required']">Total Price  is Requierd</small>
+    </div>
+  </div>
+  <div class="mb-3 col-auto">
+    <label for="exampleFormControlInput1" class="form-label">إجمالي الوزن(كجم)</label>
+    <input type="number" class="form-control"  formControlName="totalWeight" id="exampleFormControlInput1" placeholder="إجمالي الوزن(كجم)">
+    <div class="danger" [hidden]="TotalWeight?.valid || TotalWeight?.untouched">
+      <small [hidden]="TotalWeight?.errors?.['required']">Total Weight  is Requierd</small>
+    </div>
+  </div>
+  <!-- text box -->
+  <div class="mb-3 col-auto">
+    <label for="exampleFormControlInput1" class="form-label">ملاحظات</label>
+    <div class="form-floating">
+      <textarea class="form-control" formControlName="notes" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+    </div>
+    
+  </div>
+  <!-- get this data from db  -->
+  <div class="row border border-secondary-subtle rounded">
+      <p>بيانات التاجر</p>
+      <div class="mb-3 col-auto">
+        <label for="exampleFormControlInput1" class="form-label">رقم الهاتف </label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="01025726246">
+      </div>
+      <div class="mb-3 col-auto">
+        <label for="exampleFormControlInput1" class="form-label">العنوان</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="حدائق الاهرام">
+      </div>
+  </div>
+  <div class="col-md-1 d-flex align-items-start mt-5">
+    <button [disabled]="orderForm.invalid" type="submit" class="btn btn-primary" >حفظ</button>
+  </div>
+</div>
+</form>
+
+
+
