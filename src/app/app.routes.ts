@@ -6,6 +6,7 @@ import { OrderFormComponent } from '../Components/Order/order-form/order-form.co
 import { DeliveryAccountsComponent } from '../Components/DeliveryAccounts/delivery-accounts/delivery-accounts.component';
 import { MerchantAccountsComponent } from '../Components/MercgentAccount/merchant-accounts/merchant-accounts.component';
 import { AddDeliveryAcountComponent } from '../Components/DeliveryAccounts/add-delivery-acount/add-delivery-acount.component';
+import { AddMerchantAccountComponent } from '../Components/MercgentAccount/add-merchant-account/add-merchant-account.component';
 
 export const routes: Routes = [
 
@@ -17,7 +18,8 @@ export const routes: Routes = [
 
         {path:'DeliveryAccounts',component:DeliveryAccountsComponent },
         {path:'MerchantAccounts',component:MerchantAccountsComponent},
-        {path:'AddDeliveryAccount' ,component:AddDeliveryAcountComponent}
+        {path:'AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
+        {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent}
 
     ]}
 ];
