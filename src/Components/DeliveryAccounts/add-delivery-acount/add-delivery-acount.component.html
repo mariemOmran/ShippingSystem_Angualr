@@ -1,0 +1,121 @@
+<div class="row g-3 mt-5 pt-0 p-5 text-end bg-body-tertiary">
+    <div class="bg-white p-3 rounded">
+        <h3 class="font-weight-bold">المناديب</h3>
+        <h4>
+            <span><a [routerLink]="['/AddDeliveryAccount']" routerLinkActive="active">اضافه مندوب </a></span>
+            <span> > </span>
+            <span><a [routerLink]="['/DeliveryAccounts']" routerLinkActive="active"> المناديب </a></span>
+            <span><i class="bi bi-house-door-fill"></i></span>
+        </h4>
+    </div>
+
+    <div class="bg-white p-3 rounded">
+        <h3 class="font-weight-bold">اضافه مندوب</h3>
+        
+        <form class="row text-end g-3 mt-5 pt-0">
+
+            <!-------------------- First Column ---------------------->
+            <div class="col-lg-4 col-md-6 mb-3 mt-2">
+                <label for="password" class="form-label">كلمه المرور</label>
+                <input type="password" class="form-control" id="password" placeholder="كلمه المرور" required>
+                <div class="danger">
+                    <small>Password is required</small>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-3 mt-2">
+                <label for="email" class="form-label">البريد الالكتروني</label>
+                <input type="email" class="form-control" id="email" placeholder="البريد الالكتروني" required>
+                <div class="danger">
+                    <small>Email is required</small>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-3 mt-2">
+                <label for="name" class="form-label">الاسم</label>
+                <input type="text" class="form-control" id="name" placeholder="الاسم" required>
+                <div class="danger">
+                    <small>Name is required</small>
+                </div>
+            </div>
+
+            <!------------------ Second Column ------------------>
+            <div class="col-lg-4 col-md-6 mb-3 mt-2">
+                <label for="password2" class="form-label">العنوان</label>
+                <input type="text" class="form-control" id="password2" placeholder="العنوان" required>
+                <div class="danger">
+                    <small>Address is required</small>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-3 mt-2">
+                <label for="phone" class="form-label">رقم الهاتف</label>
+                <input type="tel" class="form-control" id="phone" placeholder="رقم الهاتف" required>
+                <div class="danger">
+                    <small>Phone is required</small>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-3 mt-2">
+                <label for="branch" class="form-label">الفرع</label>
+                <input type="text" class="form-control" id="branch" placeholder="الفرع" required>
+                <div class="danger">
+                    <small>Branch is required</small>
+                </div>
+            </div>
+
+            <!------------------ Third Column ------------------>
+            <div class="col-lg-4 col-md-6 mb-3 mt-2">
+                <label for="city" class="form-label">المدينة</label>
+                <select class="form-select" id="city" aria-label="المدينة">
+                    <option selected>اختر المدينة</option>
+                    <option value="1">مدينة 1</option>
+                    <option value="2">مدينة 2</option>
+                    <option value="3">مدينة 3</option>
+                </select>
+                <div class="danger">
+                    <small>City is required</small>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-3 mt-2">
+                <label for="government" class="form-label">المحافظة</label>
+                <select class="form-select" id="government" aria-label="المحافظة">
+                    <option selected>اختر المحافظة</option>
+                    <option value="1">محافظة 1</option>
+                    <option value="2">محافظة 2</option>
+                    <option value="3">محافظة 3</option>
+                </select>
+                <div class="danger">
+                    <small>Government is required</small>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-3 mt-2">
+                <label for="merchantName" class="form-label">اسم المتجر</label>
+                <input type="text" class="form-control" id="merchantName" placeholder="اسم المتجر" required>
+                <div class="danger">
+                    <small>Merchant Name is required</small>
+                </div>
+            </div>
+
+            <!------------------ Fourth Column ------------------>
+            <div class="col-lg-6 col-md-6 mb-3 mt-2">
+                <label for="rejectOrderPercentage" class="form-label">نسبة تحمل التاجر لقيمة شحن الطلبات المرفوضة</label>
+                <input type="number" class="form-control" id="rejectOrderPercentage" placeholder="نسبة تحمل التاجر" required>
+                <div class="danger">
+                    <small>Percentage is required</small>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 mb-3 mt-2">
+                <label for="pickupCost" class="form-label">تكلفة  Pickup الخاصة</label>
+                <input type="number" class="form-control" id="pickupCost" placeholder="تكلفة  Pickup" required>
+                <div class="danger">
+                    <small>Pickup Cost is required</small>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
