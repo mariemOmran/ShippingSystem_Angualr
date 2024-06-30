@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
-
 :root {
   --color-primary: #6c9bcf;
   --color-danger: #ff0060;
@@ -115,14 +114,14 @@ b {
 
 .container {
   display: grid;
-  width: 96%;
+  width: 100%;
   margin: 0 auto;
   gap: 1.8rem;
-  grid-template-columns: auto  12rem;
+  grid-template-columns: auto 12rem;
 }
-.header_nav{
+.header_nav {
   display: flex;
-    justify-content: space-between;
+  justify-content: space-between;
 }
 aside {
   height: 100vh;
