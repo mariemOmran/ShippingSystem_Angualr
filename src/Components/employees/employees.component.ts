@@ -1,24 +1,11 @@
-import { EmployeeService } from './../../Services/employee.service';
+import { Table } from 'primeng/table';
+import { EmployeeService } from '../../AbdallahServices/employee.service';
+import { TableSharedModule } from '../../shared/TableShared.module';
 import { Component, ViewChild } from '@angular/core';
-import { PanelModule } from 'primeng/panel';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
-import { Table, TableModule } from 'primeng/table';
- 
-import { TagModule } from 'primeng/tag';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
-import { HttpClientModule } from '@angular/common/http';
-import { InputTextModule } from 'primeng/inputtext';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { DropdownModule } from 'primeng/dropdown';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { InputSwitchModule } from 'primeng/inputswitch';
 @Component({
   selector: 'app-employees',
   standalone: true,
-  imports: [InputSwitchModule,CommonModule,FormsModule,PanelModule,CardModule,ButtonModule ,TableModule, TagModule, IconFieldModule, InputTextModule, InputIconModule, MultiSelectModule, DropdownModule, HttpClientModule, CommonModule],
+  imports: [TableSharedModule],
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.css'
 })
@@ -45,6 +32,7 @@ export class EmployeesComponent {
 
   clear(table: Table) {
       table.clear();
+      this.searchValue="";
   }
 
   onInput(event: Event) {
