@@ -1,1 +1,79 @@
-<h1>Display Merchant Accounts Here</h1>
+<div class="row g-3 mt-5 pt-0 p-5 text-end bg-body-tertiary">
+    <div class="bg-white p-3 rounded">
+      <h3 class="font-weight-bold"> التجار </h3>
+      <h4>
+        <span><a [routerLink]="['/AddMerchantAccount']" routerLinkActive="active">اضافه  تاجر </a></span>
+        <span> > </span>
+        <span><a [routerLink]="['/MerchantAccounts']" routerLinkActive="active"> التجار </a></span>
+        <span> < </span>
+        <span><i class="bi bi-house-door-fill"></i></span>
+      </h4>
+    </div>
+  
+    <div class="bg-white p-3 rounded">
+      <div class="d-flex justify-content-between mb-3">
+        <!-- <p-inputText [(ngModel)]="searchValue" placeholder="ابحث هنا..." class="w-auto"></p-inputText> -->
+       <input  type="text" value="ابحث"/>
+        <!-- <span class="p-input-icon-left ml-auto">
+          <i class="bi bi-search"></i>
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="searchValue"
+            
+          />
+        </span> -->
+        <!-- <button type="button" class="w-25 rounded btn-info p-2" (click)="loadDeliveryAccounts()">
+          <i class="bi bi-search"></i> بحث
+        </button> -->
+      </div>
+  
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-header">
+            <th scope="col">الاجراءات</th>
+
+            <th scope="col">نسبه الخصم</th>
+            <th scope="col">الحاله</th>
+            <th scope="col">الفرع</th>
+            <th scope="col">رقم الهاتف</th>
+            <th scope="col">البريد الالكتروني</th>
+            <th scope="col">الاسم</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let account of deliveryAccounts | slice:first:first + rows"> -->
+        <tr>
+            <td>
+                <!-- <i class="bi bi-pencil-square" (click)="editAccount(account)"></i> -->
+                <!-- <i class="bi bi-trash" (click)="deleteAccount(account)"></i> -->
+                <i class="bi bi-pencil-square success m-2" ></i> 
+                <i class="bi bi-trash danger m-2"></i> 
+              </td>
+    
+            <td>pinding data</td>
+            <!-- <td>
+              <p-inputSwitch [(ngModel)]="account.status" (onChange)="onSwitchChange($event)"></p-inputSwitch>
+            </td> -->
+            <td>pinding data</td>
+            <td>pinding data</td>
+            <td>pinding data</td>
+            <td>pinding data</td>
+            <td>pinding data</td>
+            <!-- <td>{{ account.userName }}</td> -->
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- <p-paginator
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+        [first]="first"
+        (onPageChange)="onPageChange($event)"
+        [rowsPerPageOptions]="[10, 25, 50]"
+      ></p-paginator> -->
+
+
+    </div>
+  </div>
+  
