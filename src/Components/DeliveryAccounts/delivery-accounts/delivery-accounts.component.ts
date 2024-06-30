@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeliveryService } from '../../../Service/delivery.service';
+import { DeliveryService } from '../../../Services/delivery.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { InputSwitchModule } from 'primeng/inputswitch';
