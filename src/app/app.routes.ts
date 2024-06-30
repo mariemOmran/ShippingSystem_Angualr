@@ -9,19 +9,15 @@ import { AddDeliveryAcountComponent } from '../Components/DeliveryAccounts/add-d
 import { AddMerchantAccountComponent } from '../Components/MercgentAccount/add-merchant-account/add-merchant-account.component';
 import { OrderCountComponent } from '../Components/Order/order-count/order-count.component';
 
-import { RolesComponent } from '../Components/roles/roles.component';
-import { PermissionsComponent } from '../Components/roles/permissions/permissions.component';
-
 export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
       { path: '', component: MainDashboardComponent },
-      { path: 'employee', component: EmployeesComponent },
       { path: 'addorder', component: OrderFormComponent },
-      { path: 'role', component: RolesComponent },
-      { path: 'role/permissions/:id', component: PermissionsComponent },
+
+      { path: 'employee', component: EmployeesComponent },
 
       { path: 'DeliveryAccounts', component: DeliveryAccountsComponent },
       { path: 'MerchantAccounts', component: MerchantAccountsComponent },
