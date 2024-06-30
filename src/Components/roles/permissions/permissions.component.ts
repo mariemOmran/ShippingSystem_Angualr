@@ -53,7 +53,11 @@ export class PermissionsComponent implements OnInit {
   }
 
   saveChanges() {
-    this.roleService.UpdateRolePermissions(this.RoleID, this.Permissions)
+    if(this.Permissions.length<=0){
+      this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحفظ' });
+
+    }else{
+      this.roleService.UpdateRolePermissions(this.RoleID, this.Permissions)
       .subscribe({
         next: (data) => {console.log('Updated role permissions:', data)
           this.messageService.add({ severity: 'info', summary: 'تم الحفظ', detail: 'تم حفظ التغيرات ' });
@@ -62,6 +66,8 @@ export class PermissionsComponent implements OnInit {
           this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحفظ' });
         }
       });
+    }
+
   }
 
  

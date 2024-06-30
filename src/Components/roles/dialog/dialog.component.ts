@@ -11,7 +11,7 @@ declare var bootstrap: any;
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css'
 })
-export class DialogComponent implements OnInit , OnChanges {
+export class DialogComponent implements OnInit  {
   @Input() id = 0;
   Title:string='';
   @Output() roleAdded: EventEmitter<void> = new EventEmitter<void>();
@@ -22,20 +22,7 @@ export class DialogComponent implements OnInit , OnChanges {
   constructor(private roleService: RolesService, public router:Router,private messageService: MessageService) {
   
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    if(this.id!=0){
-      this.Title='Edit Role';
-      this.id=0;
-    //   this.roleService.GetByID(this.id).subscribe({
-    //     next:(data)=> {this.roleName=data.roleName; this.id=0;},
-    //     error:(error)=>console.log(error)
-    //   });
-
-     }else{
-      this.Title='Add Role';
-      
-     }
-  }
+  
 
   
   ngOnInit() {
@@ -57,13 +44,14 @@ export class DialogComponent implements OnInit , OnChanges {
           console.log(err);
           this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحفظ' });
           
-        }
+        },     complete:()=>{this.id=0,this.roleName=""}
       });
     } else {
       this.roleService.UpdateRole(this.id, this.roleName).subscribe({
+        
         next: (data) => {
           console.log('Role Updated:', data);
-          this.id==0;
+        
           this.roleAdded.emit();
           this.messageService.add({ severity: 'warn', summary: 'تم الحفظ', detail: 'تم تعديل الصلاحية ' });
 
@@ -74,7 +62,8 @@ export class DialogComponent implements OnInit , OnChanges {
           this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحفظ' });
 
           console.log(err);
-        }
+        },
+        complete:()=>{this.id=0,this.roleName=""}
       });
     }
   }
@@ -83,7 +72,8 @@ export class DialogComponent implements OnInit , OnChanges {
   closeModal() {
     const modalElement = this.exampleModal.nativeElement;
     const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
-    this.roleName="";
+   
+    console.log(this.id)
     modal.hide();
   }
 }
