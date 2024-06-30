@@ -1,19 +1,18 @@
-
 import { Table } from 'primeng/table';
- 
+
 import { TableSharedModule } from '../../shared/TableShared.module';
 import { Component, ViewChild } from '@angular/core';
-import { RolesService } from '../../AbdallahServices/roles.service';
- 
+import { RolesService } from '../../Services/roles.service';
+
 import { DialogComponent } from './dialog/dialog.component';
 import { RouterLink } from '@angular/router';
- 
+
 @Component({
   selector: 'app-roles',
   standalone: true,
-  imports: [TableSharedModule,DialogComponent,RouterLink ],
+  imports: [TableSharedModule, DialogComponent, RouterLink],
   templateUrl: './roles.component.html',
-  styleUrl: './roles.component.css'
+  styleUrl: './roles.component.css',
 })
 export class RolesComponent {
   Roles: any = [];
@@ -27,14 +26,12 @@ export class RolesComponent {
   ngOnInit() {
     this.GetAll();
   }
-  changeIdVal(id:number){
-    
-    this.DialogId=id;
-    
+  changeIdVal(id: number) {
+    this.DialogId = id;
   }
   clear(table: Table) {
     table.clear();
-    this.searchValue = "";
+    this.searchValue = '';
   }
 
   onInput(event: Event) {
@@ -47,10 +44,9 @@ export class RolesComponent {
   GetAll() {
     this.roleService.GetAllRoles().subscribe({
       next: (data) => {
-        
         this.Roles = data;
       },
-      error: (err) => console.log(err)
+      error: (err) => console.log(err),
     });
   }
 
@@ -59,22 +55,17 @@ export class RolesComponent {
       next: (data: any) => {
         this.Roles = this.Roles.filter((i: any) => i.id !== data.roleId);
       },
-      error: (err) => console.log(err)
+      error: (err) => console.log(err),
     });
   }
 
   // Event handler for roleAdded event emitted by DialogComponent
- async onRoleAdded() {
-   
-  this.roleService.GetAllRoles().subscribe({
-    next: (data) => {
-      
-      this.Roles = data;
-    },
-    error: (err) => console.log(err)
-  });
+  async onRoleAdded() {
+    this.roleService.GetAllRoles().subscribe({
+      next: (data) => {
+        this.Roles = data;
+      },
+      error: (err) => console.log(err),
+    });
   }
-
-
- 
 }
