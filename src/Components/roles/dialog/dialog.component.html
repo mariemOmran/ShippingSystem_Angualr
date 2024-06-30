@@ -10,7 +10,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">
-          {{ id == 0 ? "Add Role " : "Edit Role" }}
+          {{ Title }}
         </h1>
         <button
           type="button"
@@ -41,9 +41,12 @@
         </button>
 
         <button type="button" class="btn btn-primary" (click)="RoleControl()">
-          {{ id == 0 ? "Add Role " : "Edit Role" }}
+          {{ Title }}
         </button>
       </div>
     </div>
   </div>
+</div>
+<div class="card flex justify-content-center">
+  <p-toast />
 </div>

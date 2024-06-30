@@ -7,22 +7,26 @@ import { RolesService } from '../../AbdallahServices/roles.service';
  
 import { DialogComponent } from './dialog/dialog.component';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/api';
  
 @Component({
   selector: 'app-roles',
   standalone: true,
-  imports: [TableSharedModule,DialogComponent,RouterLink ],
+  imports: [TableSharedModule,DialogComponent,RouterLink,CommonModule ],
   templateUrl: './roles.component.html',
   styleUrl: './roles.component.css'
 })
 export class RolesComponent {
   Roles: any = [];
   DialogId = 0;
-  loading = false;
+  loading = true;
   @ViewChild('dt2') dt2!: Table;
   searchValue: string | undefined;
 
-  constructor(public roleService: RolesService) {}
+  constructor(public roleService: RolesService,private messageService: MessageService) {}
 
   ngOnInit() {
     this.GetAll();
@@ -49,6 +53,7 @@ export class RolesComponent {
       next: (data) => {
         
         this.Roles = data;
+        this.loading=false;
       },
       error: (err) => console.log(err)
     });
@@ -58,6 +63,8 @@ export class RolesComponent {
     this.roleService.DeleteRole(id).subscribe({
       next: (data: any) => {
         this.Roles = this.Roles.filter((i: any) => i.id !== data.roleId);
+        this.messageService.add({ severity: 'error', summary: 'تم الحذف', detail: 'تم حذف الصلاحية ' });
+
       },
       error: (err) => console.log(err)
     });
