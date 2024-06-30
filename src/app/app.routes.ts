@@ -7,19 +7,23 @@ import { DeliveryAccountsComponent } from '../Components/DeliveryAccounts/delive
 import { MerchantAccountsComponent } from '../Components/MercgentAccount/merchant-accounts/merchant-accounts.component';
 import { AddDeliveryAcountComponent } from '../Components/DeliveryAccounts/add-delivery-acount/add-delivery-acount.component';
 import { AddMerchantAccountComponent } from '../Components/MercgentAccount/add-merchant-account/add-merchant-account.component';
+import { OrderCountComponent } from '../Components/Order/order-count/order-count.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: '', component: MainDashboardComponent },
+      { path: 'addorder', component: OrderFormComponent },
 
-    {path:'',component:LayoutComponent,children:[
-        {path:'',component:MainDashboardComponent},
-        {path:'addorder',component:OrderFormComponent},
+      { path: 'employee', component: EmployeesComponent },
 
-        {path:'employee',component:EmployeesComponent},
-
-        {path:'DeliveryAccounts',component:DeliveryAccountsComponent },
-        {path:'MerchantAccounts',component:MerchantAccountsComponent},
-        {path:'AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
-        {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent}
-
-    ]}
+      { path: 'DeliveryAccounts', component: DeliveryAccountsComponent },
+      { path: 'MerchantAccounts', component: MerchantAccountsComponent },
+      { path: 'AddDeliveryAccount', component: AddDeliveryAcountComponent },
+      { path: 'AddMerchantAccount', component: AddMerchantAccountComponent },
+      { path: 'OrderCountLol', component: OrderCountComponent },
+    ],
+  },
 ];
