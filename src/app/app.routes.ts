@@ -28,8 +28,8 @@ export const routes: Routes = [
         {path:'MerchantAccounts',component:MerchantAccountsComponent},
         {path:'AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
         {path:'Branches' ,component:BranchesComponent},
-        {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent}
-        { path: 'UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent },
+        {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent},
+        { path: 'UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent }
   
 
     ]}
