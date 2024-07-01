@@ -72,13 +72,19 @@
         </div>
   
         <!-- Branch -->
+
         <div class="col-lg-4 col-md-6 mb-3 mt-2">
           <label for="branch" class="form-label">الفرع</label>
-          <input type="text" class="form-control text-end" id="branch" formControlName="branch" placeholder="الفرع">
+          <select class="form-select text-end" id="branch" formControlName="branch" aria-label="الفرع">
+            <option selected disabled>اختر الفرع</option>
+            <option *ngFor="let branch of branches" [value]="branch.id">{{ branch.name }}</option>
+          </select>
           <div *ngIf="deliveryForm.get('branch')!.invalid && deliveryForm.get('branch')!.touched" class="text-danger">
             <small *ngIf="deliveryForm.get('branch')!.hasError('required')">الفرع مطلوب</small>
           </div>
         </div>
+        
+
   
         <!-- Address -->
         <div class="col-lg-4 col-md-6 mb-3 mt-2">

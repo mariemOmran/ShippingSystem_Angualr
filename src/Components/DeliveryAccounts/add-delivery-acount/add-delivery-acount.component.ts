@@ -16,6 +16,8 @@ export class AddDeliveryAcountComponent {
  
   successMessage: string | null = null;
 
+  branches: any[] = [];
+
   constructor(
     private fb: FormBuilder,
     private deliveryService: DeliveryService,
@@ -33,6 +35,15 @@ export class AddDeliveryAcountComponent {
       company_Percantage: ['', Validators.required]
     });
   }
+
+
+
+  ngOnInit() {
+    this.deliveryService.getBranches().subscribe((data: any[]) => {
+      this.branches = data;
+    });
+  }
+
 
   onSubmit() {
     if (this.deliveryForm.valid) {
