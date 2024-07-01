@@ -11,6 +11,7 @@ import { RolesComponent } from '../Components/roles/roles.component';
 import { PermissionsComponent } from '../Components/roles/permissions/permissions.component';
 
 import { AddMerchantAccountComponent } from '../Components/MercgentAccount/add-merchant-account/add-merchant-account.component';
+import { UpdateDeliveryAccountComponent } from '../Components/DeliveryAccounts/updatedeliveryaccount/updatedeliveryaccount.component';
 import { BranchesComponent } from '../Components/branches/branches.component';
 
 export const routes: Routes = [
@@ -28,6 +29,8 @@ export const routes: Routes = [
         {path:'AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
         {path:'Branches' ,component:BranchesComponent},
         {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent}
+        { path: 'UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent },
+  
 
     ]}
 ];

@@ -36,5 +36,14 @@ export class DeliveryService {
   deleteDeliveryAccount(id: number): Observable<any> {
     return this._HttpClient.delete(`${this.baseUrl}/Delivery/${id}`);
   }
+
+  updateDeliveryAccount(id: number, body: any): Observable<any> {
+    return this._HttpClient.put(`${this.baseUrl}/Delivery/${id}`, body);
+  }
+
+  getDeliveryAccountById(id: number):Observable<any>{
+    return this._HttpClient.get(`${this.baseUrl}/Delivery/${id}`)
+  }
+  
 }
 
