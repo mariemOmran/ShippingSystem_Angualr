@@ -6,7 +6,6 @@
     <!-- End of Main Content -->
   </div>
   <!-- Sidebar Section -->
-
   <aside>
     <div class="toggle">
       <div class="logo">
@@ -28,38 +27,35 @@
         <span class="material-icons-sharp"> dashboard </span>
         <h3>Dashboard</h3>
       </a>
+      <a href="#" [routerLink]="['/role']" routerLinkActive="active">
+        <span class="material-icons-sharp"> person_outline </span>
+        <h3>الصلاحيات</h3>
+      </a>
       <a href="#" [routerLink]="['/employee']" routerLinkActive="active">
         <span class="material-icons-sharp"> person_outline </span>
-        <h3>Employees</h3>
+        <h3>الموظفين</h3>
       </a>
       <a href="#" [routerLink]="['/addorder']" routerLinkActive="active">
         <span class="material-icons-sharp"> receipt_long </span>
         <h3>Add Order</h3>
       </a>
 
-     
-
       <a href="#">
         <span class="material-icons-sharp"> insights </span>
         <h3>Analytics</h3>
       </a>
 
-
-
-       <!-- Link To Display Delivery Accounts  -->
-       <a  [routerLink]="['/DeliveryAccounts']" routerLinkActive="active">
-        <span class="material-icons-sharp"> person_outline </span>
-        <h3> المندوب</h3>
+      <!-- Link To Display Delivery Accounts  -->
+      <a [routerLink]="['/DeliveryAccounts']" routerLinkActive="active">
+        <span class="material-icons-sharp"> receipt_long </span>
+        <h3>المندوب</h3>
       </a>
 
-
-       <!-- Link To Display Merchant Accounts  -->
-
-       <a  [routerLink]="['/MerchantAccounts']" routerLinkActive="active">
-        <span class="material-icons-sharp"> person_outline</span>
-        <h3> التاجر</h3>
+      <!-- Link To Display Merchant Accounts  -->
+      <a [routerLink]="['/MerchantAccounts']" routerLinkActive="active">
+        <span class="material-icons-sharp"> receipt_long </span>
+        <h3>التاجر</h3>
       </a>
-
 
       <a href="#">
         <span class="material-icons-sharp"> mail_outline </span>

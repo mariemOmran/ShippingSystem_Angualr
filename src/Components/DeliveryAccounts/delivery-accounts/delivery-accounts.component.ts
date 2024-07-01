@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeliveryService } from '../../../Services/delivery.service';
+
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { InputSwitchModule } from 'primeng/inputswitch';
@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
+import { DeliveryService } from '../../../AbdallahServices/delivery.service';
 
 @Component({
   selector: 'app-delivery-accounts',
@@ -41,12 +42,12 @@ export class DeliveryAccountsComponent implements OnInit {
   loadDeliveryAccounts(): void {
     this.loading = true;
     this._DeliveryService.getDeliveryAccounts().subscribe({
-      next: (response) => {
+      next: (response:any) => {
         this.deliveryAccounts = response;
         this.totalRecords = this.deliveryAccounts.length; 
         this.loading = false;
       },
-      error: (err) => {
+      error: (err:any) => {
         console.error('Error loading delivery accounts', err);
         this.loading = false;
       }

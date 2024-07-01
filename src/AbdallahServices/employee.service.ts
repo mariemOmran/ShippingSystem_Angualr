@@ -13,4 +13,8 @@ export class EmployeeService {
   getAllEmployees(){
     return this.httpclient.get(this.apiURl);
   }
+
+  updateEmployeeStatus( id:number ){
+return this.httpclient.put(`${this.apiURl}/UpdateEmpStatus/${id}`,null);
+  }
 }

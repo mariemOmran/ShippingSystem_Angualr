@@ -6,6 +6,10 @@ import { OrderFormComponent } from '../Components/Order/order-form/order-form.co
 import { DeliveryAccountsComponent } from '../Components/DeliveryAccounts/delivery-accounts/delivery-accounts.component';
 import { MerchantAccountsComponent } from '../Components/MercgentAccount/merchant-accounts/merchant-accounts.component';
 import { AddDeliveryAcountComponent } from '../Components/DeliveryAccounts/add-delivery-acount/add-delivery-acount.component';
+
+import { RolesComponent } from '../Components/roles/roles.component';
+import { PermissionsComponent } from '../Components/roles/permissions/permissions.component';
+
 import { AddMerchantAccountComponent } from '../Components/MercgentAccount/add-merchant-account/add-merchant-account.component';
 import { UpdateDeliveryAccountComponent } from '../Components/DeliveryAccounts/updatedeliveryaccount/updatedeliveryaccount.component';
 
@@ -14,6 +18,8 @@ export const routes: Routes = [
     {path:'',component:LayoutComponent,children:[
         {path:'',component:MainDashboardComponent},
         {path:'addorder',component:OrderFormComponent},
+        {path:'role',component:RolesComponent},
+        {path:'role/permissions/:id',component:PermissionsComponent},
 
         {path:'employee',component:EmployeesComponent},
 
