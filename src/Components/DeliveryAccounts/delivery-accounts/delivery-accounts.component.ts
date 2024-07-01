@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
-import { DeliveryService } from '../../../AbdallahServices/delivery.service';
+import { DeliveryService } from '../../../Services/delivery.service';
 
 @Component({
   selector: 'app-delivery-accounts',

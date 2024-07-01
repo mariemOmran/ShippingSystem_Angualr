@@ -1,5 +1,5 @@
 import { Table } from 'primeng/table';
-import { EmployeeService } from '../../AbdallahServices/employee.service';
+import { EmployeeService } from '../../Services/employee.service';
 import { TableSharedModule } from '../../shared/TableShared.module';
 import { Component, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
