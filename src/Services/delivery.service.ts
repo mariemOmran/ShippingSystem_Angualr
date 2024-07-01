@@ -12,4 +12,9 @@ export class DeliveryService {
   getDeliveryAccounts():Observable<any>{
     return this._HttpClient.get('https://localhost:7270/api/Delivery')
   }
+
+
+  addDeliveryAccount( DeliveryData:object):Observable<any>{
+    return this._HttpClient.post('https://localhost:7270/api/Delivery',DeliveryData)
+  }
 }

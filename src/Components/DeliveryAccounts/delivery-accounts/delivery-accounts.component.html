@@ -44,7 +44,7 @@
             <i class="bi bi-trash danger m-2"></i> 
           </td>
 
-          <td>{{ account.discountType }}</td>
+          <td>{{ account.discountType }}<span>%</span></td>
           <td>
             <p-inputSwitch [(ngModel)]="account.status" (onChange)="onSwitchChange($event)"></p-inputSwitch>
           </td>
