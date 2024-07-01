@@ -7,6 +7,7 @@ import { DeliveryAccountsComponent } from '../Components/DeliveryAccounts/delive
 import { MerchantAccountsComponent } from '../Components/MercgentAccount/merchant-accounts/merchant-accounts.component';
 import { AddDeliveryAcountComponent } from '../Components/DeliveryAccounts/add-delivery-acount/add-delivery-acount.component';
 import { AddMerchantAccountComponent } from '../Components/MercgentAccount/add-merchant-account/add-merchant-account.component';
+import { UpdateDeliveryAccountComponent } from '../Components/DeliveryAccounts/updatedeliveryaccount/updatedeliveryaccount.component';
 
 export const routes: Routes = [
 
@@ -19,7 +20,9 @@ export const routes: Routes = [
         {path:'DeliveryAccounts',component:DeliveryAccountsComponent },
         {path:'MerchantAccounts',component:MerchantAccountsComponent},
         {path:'AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
-        {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent}
+        {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent},
+        { path: 'UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent },
+  
 
     ]}
 ];

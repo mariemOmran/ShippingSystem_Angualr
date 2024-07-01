@@ -34,7 +34,8 @@
       <tbody>
         <tr *ngFor="let account of deliveryAccounts | slice:first:first + rows">
           <td>
-            <i class="bi bi-pencil-square success m-2"></i>
+            <i class="bi bi-pencil-square success m-2" (click)="onEditAccount(account.id)"></i>
+
             <i class="bi bi-trash danger m-2" (click)="onDeleteAccount(account.id)"></i>
           </td>
           <td>{{ account.discountType }}<span>%</span></td>
