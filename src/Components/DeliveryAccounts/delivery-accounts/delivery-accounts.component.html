@@ -15,11 +15,7 @@
       <p-inputText [(ngModel)]="searchValue" placeholder="ابحث هنا..." class="w-auto"></p-inputText>
       <span class="p-input-icon-left ml-auto">
         <i class="bi bi-search"></i>
-        <input
-          pInputText
-          type="text"
-          [(ngModel)]="searchValue"
-        />
+        <input pInputText type="text" [(ngModel)]="searchValue" />
       </span>
     </div>
 
@@ -38,13 +34,10 @@
       <tbody>
         <tr *ngFor="let account of deliveryAccounts | slice:first:first + rows">
           <td>
-            <!-- <i class="bi bi-pencil-square" (click)="editAccount(account)"></i> -->
-            <!-- <i class="bi bi-trash" (click)="deleteAccount(account)"></i> -->
-            <i class="bi bi-pencil-square success m-2" ></i> 
-            <i class="bi bi-trash danger m-2"></i> 
+            <i class="bi bi-pencil-square success m-2"></i>
+            <i class="bi bi-trash danger m-2" (click)="onDeleteAccount(account.id)"></i>
           </td>
-
-          <td>{{ account.discountType }}</td>
+          <td>{{ account.discountType }}<span>%</span></td>
           <td>
             <p-inputSwitch [(ngModel)]="account.status" (onChange)="onSwitchChange($event)"></p-inputSwitch>
           </td>
@@ -52,7 +45,6 @@
           <td>{{ account.phone }}</td>
           <td>{{ account.email }}</td>
           <td>{{ account.userName }}</td>
-        
         </tr>
       </tbody>
     </table>
