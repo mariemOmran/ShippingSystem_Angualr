@@ -27,17 +27,22 @@ export class RolesService {
     return this.httpClient.get(`${this.apiURl}/GetRole/${id}` );
 
   }
-  UpdateRole(id: number, role: string): Observable<any> {
-     
+  UpdateRole(id: number, roleName: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.put(`${this.apiURl}/UpdateRole/${id}`, JSON.stringify(role), { headers });
+    const body = JSON.stringify(roleName);
+    console.log(id)
+    return this.httpClient.put(`https://localhost:7270/api/Role/UpdateRole/${id}`, body,{headers});
   }
-
   GetPermissions(id: number): Observable<any> {
     return this.httpClient.get(`${this.apiURl}/GetRolePermissions/${id}`);
   }
 
-
+  UpdateRolePermissions(id: number, permissions: any[]): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const body = JSON.stringify(permissions);
+    console.log(body)
+    return this.httpClient.put(`${this.apiURl}/UpdateRolePermissions/${id}`, permissions,{headers});
+  }
 
 
 

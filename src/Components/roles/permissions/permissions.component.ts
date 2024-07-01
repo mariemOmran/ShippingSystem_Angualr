@@ -3,6 +3,7 @@ import { TableSharedModule } from '../../../shared/TableShared.module';
 import { RolesService } from '../../../AbdallahServices/roles.service';
 import { Table } from 'primeng/table';
 import { ActivatedRoute, RouterLinkActive } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-permissions',
@@ -14,20 +15,21 @@ import { ActivatedRoute, RouterLinkActive } from '@angular/router';
 export class PermissionsComponent implements OnInit {
   
   Permissions:any=[];
+  TempPermissions:any=[];
   RoleID:any ;
-  loading = false;
+  loading = true;
   @ViewChild('dt2') dt2!: Table;
   searchValue: string | undefined;
   /**
    *
    */
-  constructor( private roleService:RolesService , public activeRoute:ActivatedRoute) {
+  constructor( private roleService:RolesService , public activeRoute:ActivatedRoute,private messageService: MessageService) {
     
   }
   ngOnInit(): void {
     this.RoleID =this.activeRoute.snapshot.params['id'];
     this.roleService.GetPermissions(this.RoleID).subscribe({
-      next:(data)=>{console.log(data); this.Permissions=data},
+      next:(data)=>{console.log(data); this.Permissions=data ; this.loading=false},
       error:(err)=>console.log(err)
     })
     console.log(this.RoleID)
@@ -43,7 +45,30 @@ export class PermissionsComponent implements OnInit {
       this.dt2.filterGlobal(inputElement.value, 'contains');
     }
   }
-  onSwitchChange(event: any,entityId:number) {
-    console.log('Switch state:',entityId, event.checked);
+  onSwitchChange(event: any,Id:number,permissionType:string) {
+    let permission = this.Permissions.find((perm: any) => perm.entityId === Id);
+    permission[permissionType] = event.checked;
+    // console.log('Switch state:',Id, event.checked,permissionType);
+    // console.log('Updated Permissions:', this.Permissions);
   }
+
+  saveChanges() {
+    if(this.Permissions.length<=0){
+      this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحفظ' });
+
+    }else{
+      this.roleService.UpdateRolePermissions(this.RoleID, this.Permissions)
+      .subscribe({
+        next: (data) => {console.log('Updated role permissions:', data)
+          this.messageService.add({ severity: 'info', summary: 'تم الحفظ', detail: 'تم حفظ التغيرات ' });
+        },
+        error: (err) =>{console.log('Error updating role permissions:', err);
+          this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحفظ' });
+        }
+      });
+    }
+
+  }
+
+ 
 }
