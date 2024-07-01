@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
-import { DeliveryService } from '../../../AbdallahServices/delivery.service';
+import { DeliveryService } from '../../../Services/delivery.service';
 
 @Component({
   selector: 'app-delivery-accounts',
@@ -33,7 +33,7 @@ export class DeliveryAccountsComponent implements OnInit {
   rows: number = 10;
   searchValue: string = '';
 
-  constructor(private _DeliveryService: DeliveryService) {}
+  constructor(private _DeliveryService: DeliveryService, private _Router :Router) {}
 
   ngOnInit(): void {
     this.loadDeliveryAccounts();
@@ -93,5 +93,11 @@ export class DeliveryAccountsComponent implements OnInit {
     setTimeout(() => {
       document.body.removeChild(tempMessageElement);
     }, 1000);
+  }
+
+
+
+  onEditAccount(id: number): void {
+    this._Router.navigate(['/UpdateDeliveryAccount', id]);
   }
 }

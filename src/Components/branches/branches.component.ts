@@ -1,40 +1,39 @@
-
 import { Table } from 'primeng/table';
  
 import { TableSharedModule } from '../../shared/TableShared.module';
 import { Component, ViewChild } from '@angular/core';
-import { RolesService } from '../../Services/roles.service';
- 
+import { BranchesService } from '../../Services/branches.service';
+
 import { DialogComponent } from './dialog/dialog.component';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
- 
+
 @Component({
-  selector: 'app-roles',
+  selector: 'app-branches',
   standalone: true,
   imports: [TableSharedModule,DialogComponent,RouterLink,CommonModule ],
-  templateUrl: './roles.component.html',
-  styleUrl: './roles.component.css'
+  templateUrl: './branches.component.html',
+  styleUrl: './branches.component.css'
 })
-export class RolesComponent {
-  Roles: any = [];
+export class BranchesComponent {
+
+  Branches: any = [];
   DialogId = 0;
   loading = true;
   @ViewChild('dt2') dt2!: Table;
   searchValue: string | undefined;
 
-  constructor(public roleService: RolesService,private messageService: MessageService) {}
+  constructor(public branchesService: BranchesService,private messageService: MessageService) {}
 
   ngOnInit() {
     this.GetAll();
   }
   changeIdVal(id:number){
-    
+    console.log(id);
     this.DialogId=id;
-    
   }
   clear(table: Table) {
     table.clear();
@@ -49,10 +48,10 @@ export class RolesComponent {
   }
 
   GetAll() {
-    this.roleService.GetAllRoles().subscribe({
+    this.branchesService.GetAllBranches().subscribe({
       next: (data) => {
         
-        this.Roles = data;
+        this.Branches = data;
         this.loading=false;
       },
       error: (err) => console.log(err)
@@ -60,28 +59,42 @@ export class RolesComponent {
   }
 
   Delete(id: number) {
-    this.roleService.DeleteRole(id).subscribe({
+    this.branchesService.DeleteBranch(id).subscribe({
       next: (data: any) => {
-        this.Roles = this.Roles.filter((i: any) => i.id !== data.roleId);
-        this.messageService.add({ severity: 'error', summary: 'تم الحذف', detail: 'تم حذف الصلاحية ' });
+        this.Branches = this.Branches.filter((i: any) => i.id !== id);
+        this.messageService.add({ severity: 'error', summary: 'تم الحذف', detail: 'تم حذف الفرع ' });
 
       },
       error: (err) => console.log(err)
     });
   }
 
-  // Event handler for roleAdded event emitted by DialogComponent
- async onRoleAdded() {
+ async onBranchAdded() {
    
-  this.roleService.GetAllRoles().subscribe({
+  this.branchesService.GetAllBranches().subscribe({
     next: (data) => {
       
-      this.Roles = data;
+      this.Branches = data;
     },
     error: (err) => console.log(err)
   });
   }
 
+
+
+  onSwitchChange(event: any,id:number) {
+    console.log('Switch state:', event.checked);
+    this.branchesService.ChangeStatus(id).subscribe({
+      next:(data)=>{
+        console.log(data);
+        this.messageService.add({ severity: 'info', summary: 'تم الحفظ', detail: 'تم تعديل الحالة ' });
+      },
+      error:(err)=>{console.log(err)
+        this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء التعديل' });
+
+      }
+    })
+  }
 
  
 }

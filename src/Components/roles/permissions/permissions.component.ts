@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TableSharedModule } from '../../../shared/TableShared.module';
-import { RolesService } from '../../../AbdallahServices/roles.service';
+import { RolesService } from '../../../Services/roles.service';
 import { Table } from 'primeng/table';
 import { ActivatedRoute, RouterLinkActive } from '@angular/router';
 import { MessageService } from 'primeng/api';
