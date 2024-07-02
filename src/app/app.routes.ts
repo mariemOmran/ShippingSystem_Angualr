@@ -14,6 +14,7 @@ import { AddMerchantAccountComponent } from '../Components/MercgentAccount/add-m
 import { UpdateDeliveryAccountComponent } from '../Components/DeliveryAccounts/updatedeliveryaccount/updatedeliveryaccount.component';
 import { BranchesComponent } from '../Components/branches/branches.component';
 import { GovernmentsComponent } from '../Components/governments/governments.component';
+import { EmployeeFormComponent } from '../Components/employees/employee-form/employee-form.component';
 
 export const routes: Routes = [
 
@@ -24,6 +25,7 @@ export const routes: Routes = [
         {path:'role/permissions/:id',component:PermissionsComponent},
 
         {path:'employee',component:EmployeesComponent},
+        {path:'employee/:id',component:EmployeeFormComponent},
 
         {path:'DeliveryAccounts',component:DeliveryAccountsComponent },
         {path:'MerchantAccounts',component:MerchantAccountsComponent},

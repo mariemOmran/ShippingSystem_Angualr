@@ -1,0 +1,208 @@
+<p-card class="card mt-5 mb-3 text-end">
+  <span class="fs-3 fw-bold"
+    >{{ id == 0 ? "إضافة موظف" : "تعديل بيانات الموظف" }}
+  </span>
+</p-card>
+
+<div class="row g-3 mt-5 pt-0 p-5 text-end bg-body-tertiary">
+  <div class="bg-white p-3 rounded">
+    <!-- <h3 class="font-weight-bold">اضافه موظف</h3> -->
+
+    <form
+      [formGroup]="EmployeeForm"
+      (ngSubmit)="save()"
+      class="row text-end g-3 mt-5 pt-0"
+    >
+      <!-- Password -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="password" class="form-label">كلمة المرور</label>
+        <input
+          type="password"
+          class="form-control text-end"
+          id="password"
+          formControlName="password"
+          placeholder="كلمة المرور"
+        />
+        <div
+          *ngIf="
+            EmployeeForm.get('password')!.invalid &&
+            EmployeeForm.get('password')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="EmployeeForm.get('password')!.hasError('required')"
+            >كلمة المرور مطلوبة</small
+          >
+          <small *ngIf="EmployeeForm.get('password')!.hasError('minlength')"
+            >يجب أن تتكون كلمة المرور من 8 أحرف على الأقل</small
+          >
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="email" class="form-label">البريد الإلكتروني</label>
+        <input
+          type="email"
+          class="form-control text-end"
+          id="email"
+          formControlName="email"
+          placeholder="البريد الإلكتروني"
+        />
+        <div
+          *ngIf="
+            EmployeeForm.get('email')!.invalid &&
+            EmployeeForm.get('email')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="EmployeeForm.get('email')!.hasError('required')"
+            >البريد الإلكتروني مطلوب</small
+          >
+          <small *ngIf="EmployeeForm.get('email')!.hasError('email')"
+            >صيغة البريد الإلكتروني غير صحيحة</small
+          >
+        </div>
+      </div>
+
+      <!-- Name -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="name" class="form-label">الاسم</label>
+        <input
+          type="text"
+          class="form-control text-end"
+          id="name"
+          formControlName="name"
+          placeholder="الاسم"
+        />
+        <div
+          *ngIf="
+            EmployeeForm.get('name')!.invalid &&
+            EmployeeForm.get('name')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="EmployeeForm.get('name')!.hasError('required')"
+            >الاسم مطلوب</small
+          >
+          <small *ngIf="EmployeeForm.get('name')!.hasError('minlength')"
+            >يجب أن يتكون الاسم من 3 أحرف على الأقل</small
+          >
+        </div>
+      </div>
+
+      <!-- Branch -->
+
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="branchId" class="form-label">الفرع</label>
+        <select
+          class="form-select text-end"
+          id="branchId"
+          formControlName="branchId"
+          aria-label="الفرع"
+        >
+          <option selected disabled>اختر الفرع</option>
+          <option *ngFor="let branch of branches" [value]="branch.id">
+            {{ branch.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            EmployeeForm.get('branchId')!.invalid &&
+            EmployeeForm.get('branchId')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="EmployeeForm.get('branchId')!.hasError('required')"
+            >الفرع مطلوب</small
+          >
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="address" class="form-label">العنوان</label>
+        <input
+          type="text"
+          class="form-control text-end"
+          id="address"
+          formControlName="address"
+          placeholder="العنوان"
+        />
+        <div
+          *ngIf="
+            EmployeeForm.get('address')!.invalid &&
+            EmployeeForm.get('address')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="EmployeeForm.get('address')!.hasError('required')"
+            >العنوان مطلوب</small
+          >
+        </div>
+      </div>
+      <!-- Phone -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="phone" class="form-label">رقم الهاتف</label>
+        <input
+          type="tel"
+          class="form-control text-end"
+          id="phone"
+          formControlName="phone"
+          placeholder="رقم الهاتف"
+        />
+        <div
+          *ngIf="
+            EmployeeForm.get('phone')!.invalid &&
+            EmployeeForm.get('phone')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="EmployeeForm.get('phone')!.hasError('required')"
+            >رقم الهاتف مطلوب</small
+          >
+          <small *ngIf="EmployeeForm.get('phone')!.hasError('pattern')"
+            >صيغة رقم الهاتف غير صحيحة</small
+          >
+        </div>
+      </div>
+      <!-- Role -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2"></div>
+      <div class="col-lg-4 col-md-6 mb-3 mt-2"></div>
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="roleId" class="form-label">الصلاحية</label>
+        <select
+          class="form-select text-end"
+          id="roleId"
+          formControlName="roleId"
+          aria-label="roleId"
+        >
+          <option selected disabled>اختر الصلاحية</option>
+          <option *ngFor="let Role of Roles" [value]="Role.id">
+            {{ Role.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            EmployeeForm.get('roleId')!.invalid &&
+            EmployeeForm.get('roleId')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="EmployeeForm.get('roleId')!.hasError('required')"
+            >الصلاحية مطلوبة</small
+          >
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-lg-12 mt-4">
+        <button class="btn btn-primary">حفظ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card flex justify-content-center">
+  <p-toast />
+</div>

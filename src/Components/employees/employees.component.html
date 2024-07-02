@@ -1,6 +1,6 @@
 <p-card class="card mt-5 mb-3">
   <div class="d-flex justify-content-between">
-    <button class="btn btn-primary rounded fs-5">
+    <button class="btn btn-primary rounded fs-5" [routerLink]="['/employee/0']">
       <i class="bi bi-person-plus"></i>
       إضافة موظف
     </button>
@@ -43,7 +43,7 @@
     <tr>
       <th>الإعدادات</th>
       <th>الحاله</th>
-      <th>الصلاحيات</th>
+      <th>الصلاحية/th></th>
       <th>الفرع</th>
       <th>رقم الهاتف</th>
       <th>البريد الإلكترونى</th>
@@ -53,8 +53,14 @@
   <ng-template pTemplate="body" let-emp>
     <tr>
       <td>
-        <button class="btn btn-secondary">
+        <button
+          class="btn btn-secondary mx-3"
+          [routerLink]="['/employee/', emp.id]"
+        >
           <i class="bi bi-gear-wide-connected"></i>
+        </button>
+        <button class="btn btn-danger" (click)="Delete(emp.id)">
+          <i class="bi bi-trash2"></i>
         </button>
       </td>
       <td>
