@@ -1,116 +1,117 @@
-<div class="container">
-  <div>
-    <!-- Main Content -->
-    <app-navbar></app-navbar>
-    <router-outlet></router-outlet>
-    <!-- End of Main Content -->
+<div class="container-fluid">
+  <div class="row justify-content-around g-2">
+    <div class="col-lg-9 d-flex flex-column">
+      <app-navbar></app-navbar>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-lg-2">
+      <aside>
+        <div class="toggle">
+          <div class="logo">
+            <img src="assets/logos/logo (2).png" width="150" height="150" />
+            <!-- <img src="assets/logos/logo2.png" width="150" height="150" /> -->
+            <h2>Truck<span class="danger">Track</span></h2>
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-icons-sharp"> close </span>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <a
+            href="#"
+            [routerLink]="['/']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <span class="material-icons-sharp"> dashboard </span>
+            <h3>Dashboard</h3>
+          </a>
+          <a
+            href="#"
+            [routerLink]="['/role']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+            <i class="bi bi-shield-check fs-4"></i>
+            <h3>الصلاحيات</h3>
+          </a>
+          <a
+            href="#"
+            [routerLink]="['/employee']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+            <span class="material-icons-sharp"> person_outline </span>
+            <h3>الموظفين</h3>
+          </a>
+          <a
+            href="#"
+            [routerLink]="['/Branches']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+            <i class="bi bi-bank fs-4"></i>
+            <h3>الفروع</h3>
+          </a>
+          <a
+            href="#"
+            [routerLink]="['/orders']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+            <i class="bi bi-truck fs-4"></i>
+            <h3>الطلبات</h3>
+          </a>
+
+          <!-- <a href="#">
+          <span class="material-icons-sharp"> insights </span>
+          <h3>Analytics</h3>
+        </a> -->
+
+          <!-- Link To Display Delivery Accounts  -->
+          <a
+            [routerLink]="['/DeliveryAccounts']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+            <i class="bi bi-person-walking fs-4"></i>
+            <h3>المندوب</h3>
+          </a>
+
+          <!-- Link To Display Merchant Accounts  -->
+          <a [routerLink]="['/MerchantAccounts']" routerLinkActive="active">
+            <i class="bi bi-shop fs-4"></i>
+            <h3>التاجر</h3>
+          </a>
+
+          <!-- <a href="#">
+          <span class="material-icons-sharp"> mail_outline </span>
+          <h3>Tickets</h3>
+          <span class="message-count">27</span>
+        </a>
+        <a href="#">
+          <span class="material-icons-sharp"> inventory </span>
+          <h3>Sale List</h3>
+        </a> -->
+          <a href="#" [routerLink]="['/report']" routerLinkActive="active">
+            <span class="material-icons-sharp"> report_gmailerrorred </span>
+            <h3>Reports</h3>
+          </a>
+          <a href="#">
+            <span class="material-icons-sharp"> settings </span>
+            <h3>Settings</h3>
+          </a>
+          <!-- <a href="#">
+          <span class="material-icons-sharp"> add </span>
+          <h3>New Login</h3>
+        </a> -->
+          <a href="#">
+            <span class="material-icons-sharp"> logout </span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+      </aside>
+    </div>
   </div>
-  <!-- Sidebar Section -->
-  <aside>
-    <div class="toggle">
-      <div class="logo">
-        <img src="assets/images/logo.png" />
-        <h2>Asmr<span class="danger">Prog</span></h2>
-      </div>
-      <div class="close" id="close-btn">
-        <span class="material-icons-sharp"> close </span>
-      </div>
-    </div>
-
-    <div class="sidebar">
-      <a
-        href="#"
-        [routerLink]="['/']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <span class="material-icons-sharp"> dashboard </span>
-        <h3>Dashboard</h3>
-      </a>
-      <a
-        href="#"
-        [routerLink]="['/role']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: false }"
-      >
-        <i class="bi bi-shield-check fs-4"></i>
-        <h3>الصلاحيات</h3>
-      </a>
-      <a
-        href="#"
-        [routerLink]="['/employee']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: false }"
-      >
-        <span class="material-icons-sharp"> person_outline </span>
-        <h3>الموظفين</h3>
-      </a>
-      <a
-        href="#"
-        [routerLink]="['/Branches']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: false }"
-      >
-        <i class="bi bi-bank fs-4"></i>
-        <h3>الفروع</h3>
-      </a>
-      <a
-        href="#"
-        [routerLink]="['/orders']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: false }"
-      >
-        <i class="bi bi-truck fs-4"></i>
-        <h3>الطلبات</h3>
-      </a>
-
-      <!-- <a href="#">
-        <span class="material-icons-sharp"> insights </span>
-        <h3>Analytics</h3>
-      </a> -->
-
-      <!-- Link To Display Delivery Accounts  -->
-      <a
-        [routerLink]="['/DeliveryAccounts']"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: false }"
-      >
-        <i class="bi bi-person-walking fs-4"></i>
-        <h3>المندوب</h3>
-      </a>
-
-      <!-- Link To Display Merchant Accounts  -->
-      <a [routerLink]="['/MerchantAccounts']" routerLinkActive="active">
-        <i class="bi bi-shop fs-4"></i>
-        <h3>التاجر</h3>
-      </a>
-
-      <!-- <a href="#">
-        <span class="material-icons-sharp"> mail_outline </span>
-        <h3>Tickets</h3>
-        <span class="message-count">27</span>
-      </a>
-      <a href="#">
-        <span class="material-icons-sharp"> inventory </span>
-        <h3>Sale List</h3>
-      </a> -->
-      <a href="#">
-        <span class="material-icons-sharp"> report_gmailerrorred </span>
-        <h3>Reports</h3>
-      </a>
-      <a href="#">
-        <span class="material-icons-sharp"> settings </span>
-        <h3>Settings</h3>
-      </a>
-      <!-- <a href="#">
-        <span class="material-icons-sharp"> add </span>
-        <h3>New Login</h3>
-      </a> -->
-      <a href="#">
-        <span class="material-icons-sharp"> logout </span>
-        <h3>Logout</h3>
-      </a>
-    </div>
-  </aside>
-  <!-- End of Sidebar Section -->
 </div>

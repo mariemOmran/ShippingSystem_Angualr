@@ -28,6 +28,7 @@
   --color-dark-variant: #a3bdcc;
   --color-light: rgba(0, 0, 0, 0.4);
   --box-shadow: 0 2rem 3rem var(--color-light);
+  --img-color: 1;
 }
 
 * {
@@ -123,9 +124,9 @@ b {
   display: flex;
   justify-content: space-between;
 }
-aside {
+/* aside {
   height: 100vh;
-}
+} */
 
 aside .toggle {
   display: flex;
@@ -137,11 +138,14 @@ aside .toggle {
 aside .toggle .logo {
   display: flex;
   gap: 0.5rem;
+  align-items: center;
 }
 
 aside .toggle .logo img {
-  width: 2rem;
-  height: 2rem;
+  /* width: 2rem;
+  height: 2rem; */
+  filter: invert(var(--img-color));
+  /* filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.5)); */
 }
 
 aside .toggle .close {
@@ -155,7 +159,7 @@ aside .sidebar {
   background-color: var(--color-white);
   box-shadow: var(--box-shadow);
   border-radius: 15px;
-  height: 88vh;
+  height: 75vh;
   position: relative;
   top: 1.5rem;
   transition: all 0.3s ease;
@@ -177,7 +181,8 @@ aside .sidebar a {
 }
 
 aside .sidebar a span {
-  font-size: 1.6rem;
+  font-size: 2rem;
+  font-weight: bold;
   transition: all 0.3s ease;
 }
 
@@ -605,7 +610,7 @@ main .recent-orders a {
     width: 15rem;
     z-index: 3;
     box-shadow: 1rem 3rem 4rem var(--color-light);
-    height: 100vh;
+    /* height: 100vh; */
     left: -100%;
     display: none;
     animation: showMenu 0.4s ease forwards;

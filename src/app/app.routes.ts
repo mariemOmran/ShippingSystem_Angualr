@@ -15,12 +15,14 @@ import { UpdateDeliveryAccountComponent } from '../Components/DeliveryAccounts/u
 import { BranchesComponent } from '../Components/branches/branches.component';
 import { EmployeeFormComponent } from '../Components/employees/employee-form/employee-form.component';
 import { OrdersComponent } from '../Components/Order/orders.component';
+import { ReportsComponent } from '../Components/reports/reports.component';
 
 export const routes: Routes = [
 
     {path:'',component:LayoutComponent,children:[
         {path:'',component:MainDashboardComponent},
         {path:'orders',component:OrdersComponent},
+        {path:'report',component:ReportsComponent},
         {path:'orders/addorder',component:OrderFormComponent},
         {path:'role',component:RolesComponent},
         {path:'role/permissions/:id',component:PermissionsComponent},
