@@ -15,6 +15,7 @@ import { UpdateDeliveryAccountComponent } from '../Components/DeliveryAccounts/u
 import { BranchesComponent } from '../Components/branches/branches.component';
 import { GovernmentsComponent } from '../Components/governments/governments.component';
 import { EmployeeFormComponent } from '../Components/employees/employee-form/employee-form.component';
+import { CitiesComponent } from '../Components/cities/cities.component';
 
 export const routes: Routes = [
 
@@ -32,6 +33,7 @@ export const routes: Routes = [
         {path:'AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
         {path:'Branches' ,component:BranchesComponent},
         {path:'Governments' ,component:GovernmentsComponent},
+        {path:'Cities' ,component:CitiesComponent},
         {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent},
         { path: 'UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent }
   

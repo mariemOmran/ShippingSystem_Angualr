@@ -12,10 +12,10 @@ export interface InewOrder {
     merchantID:number,
     shippingTypeID:number,
     paymentTypeID:number,
-    products:[{
-        name:string,
-        price:number,
-        wight:number,
-        quantity:number
-    }]
+    products: Array<{
+        name: string;
+        price: number;
+        weight: number;
+        quantity: number;
+      }>
 }
