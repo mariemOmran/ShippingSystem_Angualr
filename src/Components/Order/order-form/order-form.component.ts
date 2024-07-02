@@ -1,112 +1,142 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule ,FormArray, ReactiveFormsModule, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { Iorder } from '../../../Models/iorder';
+import { HttpClient } from '@angular/common/http';
+import { OrderServiceService } from '../../../Services/order-service.service';
+import { IgovernmentID } from '../../../Models/igovernment-id';
+
 @Component({
   selector: 'app-order-form',
   standalone: true,
-  imports: [InputSwitchModule,TableModule,CommonModule,InputTextModule,ReactiveFormsModule],
+  imports: [InputSwitchModule, TableModule, CommonModule, InputTextModule, ReactiveFormsModule],
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.css'
 })
 export class OrderFormComponent {
-  Check_valiage_street:any;
-  count:number=1;
-  newProdut:any[]=[]
-  orderForm:FormGroup;
+  count: number = 1;
+  newProdut: any[] = [];
+  governments?: IgovernmentID[];
+  cities: any[] = [{ id: 1, name: 'Nasr City' }, { id: 2, name: 'Heliopolis' }];
+  shippingTypes: any[] = [{ id: 1, name: 'Standard' }, { id: 2, name: 'Express' }];
+  paymentTypes: any[] = [{ id: 1, name: 'Cash' }, { id: 2, name: 'Card' }];
+  branches: any[] = [{ id: 1, name: 'Branch 1' }, { id: 2, name: 'Branch 2' }];
+  orderForm: FormGroup;
+
+  constructor(private fb: FormBuilder,private http:HttpClient,private orderService:OrderServiceService) {
+    this.orderForm = this.fb.group({
+      clientName: ['', Validators.required],
+      status: ['', Validators.required],
+      totalPrice: ['', Validators.required],
+      totalWeight: ['', Validators.required],
+      phoneOne: ['', Validators.required],
+      phoneTwo: [''],
+      email: ['', Validators.required],
+      notes: [''],
+      streetAndVillage: ['', Validators.required],
+      merchantID: ['', Validators.required],
+      shippingTypeID: ['', Validators.required],
+      paymentTypeID: ['', Validators.required],
+      branchID: ['', Validators.required],
+      products: this.fb.array([]),
+      ifVillage: ['', Validators.required],
+      deliveryPlace: ['', Validators.required],
+      governmentID: ['', Validators.required],
+      cityID: ['', Validators.required],
+      merchantPhone: [''],
+      merchantAddress: ['']
+    });
+
+
+
+
+    this.orderService.getAllGovernmentTocreateOrder().subscribe({
+      next:(data)=>{
+        console.log(data);
+        this.governments= data;
+        console.log("governments"+this.governments)
+      }
+    })
+   
+  }
+
+  
   addRow() {
-    
     this.newProdut.push({ id: ++this.count });
   }
-  deleteRow(id:number){
-    this.newProdut=  this.newProdut.filter(e=>e.id!=id);
+
+  deleteRow(id: number) {
+    this.newProdut = this.newProdut.filter(e => e.id != id);
   }
 
-  constructor(private fb:FormBuilder){
-    this.orderForm =  this.fb.group({
-    clientName:['',Validators.required],
-    status:['',Validators.required],//not mapping in html
-    totalPrice:['',Validators.required],
-    totalWeight:['',Validators.required],
-    phoneOne:['',Validators.required],
-    phoneTwo:['',],
-    email:['',Validators.required],
-    notes:[''],
-    streetAndVillage:['',Validators.required],
-    merchantID:['',Validators.required],//not mapping in html
-    shippingTypeID:['',Validators.required],//not mapping in html
-    paymentTypeID:['',Validators.required],// not mapping in html 
-    products:fb.array([]),//not map it in html 
-    ifVillage:['',Validators.required]
-    })
-  }
-
-  //get value of inputs to check if input valid or not 
-  get ClientName(){
+  get ClientName() {
     return this.orderForm.get('clientName');
   }
-  get Status(){
+  get Status() {
     return this.orderForm.get('status');
   }
-  get TotalPrice(){
+  get TotalPrice() {
     return this.orderForm.get('totalPrice');
   }
-  get TotalWeight(){
+  get TotalWeight() {
     return this.orderForm.get('totalWeight');
   }
-  get PhoneOne(){
+  get PhoneOne() {
     return this.orderForm.get('phoneOne');
   }
-  get PhoneTwo(){
+  get PhoneTwo() {
     return this.orderForm.get('phoneTwo');
   }
-  get Email(){
+  get Email() {
     return this.orderForm.get('email');
   }
-  get Notes(){
+  get Notes() {
     return this.orderForm.get('notes');
   }
-  get StreetAndVillage(){
+  get StreetAndVillage() {
     return this.orderForm.get('streetAndVillage');
   }
-  get MerchantID(){
+  get MerchantID() {
     return this.orderForm.get('merchantID');
   }
-  get ShippingTypeID(){
+  get ShippingTypeID() {
     return this.orderForm.get('shippingTypeID');
   }
-  get PaymentTypeID(){
+  get PaymentTypeID() {
     return this.orderForm.get('paymentTypeID');
   }
-  // this i am not sure
-  get Products(){
+  get Products() {
     return this.orderForm.get('products');
   }
-  get IfVillage(){
+  get IfVillage() {
     return this.orderForm.get('ifVillage');
   }
-// post data to api
-  AddNewOrder(){
-
+  get DeliveryPlace() {
+    return this.orderForm.get('deliveryPlace');
   }
-  
-//   // governments is an arrya of object contain name and id 
-//   governments:any;
-// // cities is an array of objects contain name and id based on select government
-//   cities:any;
-// // where the client will revcive order on the branch or at home
-//   deliveryPlace:any;
-//   // get type from db is an array of object contain  name and price and id
-//   ShippingType:any;
-// // is an array of branches in db 
-//   branch:any;
-//   formData: FormGroup
-//   constructor(private fb:FormBuilder){
-//     this.formData=fb.group({
+  get GovernmentID() {
+    return this.orderForm.get('governmentID');
+  }
+  get CityID() {
+    return this.orderForm.get('cityID');
+  }
+  get MerchantPhone() {
+    return this.orderForm.get('merchantPhone');
+  }
+  get MerchantAddress() {
+    return this.orderForm.get('merchantAddress');
+  }
 
-//     })
-//   }
+
+
+  AddNewOrder() {
+    // Handle form submission
+    if (this.orderForm.valid) {
+      const orderData = this.orderForm.value;
+      // Post orderData to API
+    }
+  }
 }
