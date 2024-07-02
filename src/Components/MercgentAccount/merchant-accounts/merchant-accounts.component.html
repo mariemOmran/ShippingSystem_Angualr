@@ -12,7 +12,11 @@
 
   <div class="bg-white p-3 rounded">
     <div class="d-flex justify-content-between mb-3">
-      <input type="text" value="ابحث" />
+      <p-inputText [(ngModel)]="searchValue" placeholder="ابحث هنا..." class="w-auto"></p-inputText>
+      <span class="p-input-icon-left ml-auto">
+        <i class="bi bi-search"></i>
+        <input pInputText type="text" [(ngModel)]="searchValue" />
+      </span>
     </div>
 
     <table class="table table-bordered">
@@ -27,12 +31,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let account of merchantAccounts">
+        <tr *ngFor="let account of filteredMerchantAccounts | slice:first:first + rows">
           <td>
-            <i class="bi bi-pencil-square success m-2"></i>
-            <i class="bi bi-trash danger m-2"></i>
+            <i class="bi bi-pencil-square success m-2" (click)="onEditAccount(account.id)"></i>
+            <i class="bi bi-trash danger m-2" (click)="onDeleteAccount(account.id)"></i>
           </td>
-          <td>{{ account.refund_Percentage }}</td>
+          <td>{{ account.refund_Percentage }}<span>%</span></td>
           <td>{{ account.branch }}</td>
           <td>{{ account.address }}</td>
           <td>{{ account.email }}</td>
@@ -40,5 +44,13 @@
         </tr>
       </tbody>
     </table>
+
+    <p-paginator
+      [rows]="rows"
+      [totalRecords]="totalRecords"
+      [first]="first"
+      (onPageChange)="onPageChange($event)"
+      [rowsPerPageOptions]="[10, 25, 50]"
+    ></p-paginator>
   </div>
 </div>
