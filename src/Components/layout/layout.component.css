@@ -715,3 +715,10 @@ main .recent-orders a {
     font-size: 2rem;
   }
 }
+
+
+@media screen and (min-width:769px){
+  .left-side{
+    width: 950px;
+  }
+}
