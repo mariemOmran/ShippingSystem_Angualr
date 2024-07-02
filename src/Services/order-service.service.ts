@@ -23,4 +23,12 @@ token :any = '';
   getAllCitiesBasedOnGovernments( id:number):Observable<any>{
     return this.http.get<any>(`${environment.apiUrl}/City/ByGovernment?id${id}`,{ headers:this.header })
   }
+
+  getAllOrders(){
+   return this.http.get("https://localhost:7270/api/Orders");
+  }
+
+  deleteOrder(id:number){
+    return this.http.delete(`https://localhost:7270/api/orders/${id}`);
+  }
 }

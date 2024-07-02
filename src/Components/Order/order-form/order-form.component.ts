@@ -8,11 +8,12 @@ import { Iorder } from '../../../Models/iorder';
 import { HttpClient } from '@angular/common/http';
 import { OrderServiceService } from '../../../Services/order-service.service';
 import { IgovernmentID } from '../../../Models/igovernment-id';
+import { TableSharedModule } from '../../../shared/TableShared.module';
 
 @Component({
   selector: 'app-order-form',
   standalone: true,
-  imports: [InputSwitchModule, TableModule, CommonModule, InputTextModule, ReactiveFormsModule],
+  imports: [InputSwitchModule, TableModule, CommonModule, InputTextModule, ReactiveFormsModule,TableSharedModule],
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.css'
 })

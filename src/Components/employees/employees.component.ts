@@ -72,7 +72,7 @@ export class EmployeesComponent {
     this.EmpService.deleteEmployee(id).subscribe({
       next:(data)=>console.log(data),
       error:(err)=>{console.log(err);
-        this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء التعديل' });
+        this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحذف' });
 
       },
       complete: ()=>{
