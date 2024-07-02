@@ -11,7 +11,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">
-          {{ id == 0 ? "Add Branch " : "Edit Branch" }}
+          {{ id == 0 ? "Add Government " : "Edit Government" }}
         </h1>
         <button
           type="button"
@@ -24,19 +24,16 @@
         <form>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label"
-              >Branch Name:</label
+              >Government Name:</label
             >
             <input
               type="text"
               class="form-control"
-              id="branch-name"
-              [(ngModel)]="branchObj.name"
+              id="government-name"
+              [(ngModel)]="governmentObj.name"
               name="name"
             />
             <span *ngIf="!isValid" class="text-danger">Name is Required</span>
-            <select class="form-select" [(ngModel)]="branchObj.governmentID" name="governmentID" aria-label="Default select example">
-                <option *ngFor="let gov of governments" [value]="gov.id" >{{ gov.name }}</option>
-            </select> 
           </div>
         </form>
       </div>
@@ -45,8 +42,8 @@
           Close
         </button>
 
-        <button type="button" class="btn btn-primary" (click)="branchControl()">
-          {{ id == 0 ? "Add Branch" : "Edit Branch" }}
+        <button type="button" class="btn btn-primary" (click)="governmentControl()">
+          {{ id == 0 ? "Add Government" : "Edit Government" }}
         </button>
       </div>
     </div>

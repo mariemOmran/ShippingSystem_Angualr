@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild,ElementRef, OnChanges, SimpleChanges  } from '@angular/core';
 import { TableSharedModule } from '../../../shared/TableShared.module';
-import { BranchesService } from '../../../Services/branches.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { IBranch } from '../../../Models/i-branch';
 import { GovernmentsService } from '../../../Services/governments.service';
 import { IGovernment } from '../../../Models/i-government';
 import { FormsModule } from '@angular/forms';
@@ -15,27 +13,25 @@ declare var bootstrap: any;
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css'
 })
-export class DialogComponent implements OnInit ,OnChanges {
+export class DialogComponent implements OnChanges {
   @Input() id = 0;
   Title:string='';
-  @Output() branchAdded: EventEmitter<void> = new EventEmitter<void>();
+  @Output() governmentAdded: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild('exampleModal') exampleModal!: ElementRef;
-  branchObj:IBranch={name:"",status:true,governmentID:1};
-  governments!:IGovernment[];
+  governmentObj:IGovernment={name:"",status:true,id:0};
 
   isValid:boolean=true;
 
-  constructor(private branchService: BranchesService, private governmentService:GovernmentsService, public router:Router,private messageService: MessageService) {
+  constructor(private governmentService: GovernmentsService, public router:Router,private messageService: MessageService) {
   
   }
+
   ngOnChanges(changes: SimpleChanges): void {
     if(this.id != 0){
-      this.branchService.GetByID(this.id).subscribe({
+      this.governmentService.GetByID(this.id).subscribe({
         next: (data) => {
-          this.branchObj=data;
-          console.log(this.branchObj.governmentID);
-          
+          this.governmentObj=data;          
         },
         error: (err) => {
           console.log(err);
@@ -45,24 +41,11 @@ export class DialogComponent implements OnInit ,OnChanges {
       });
     }
   }
-  
 
-  
-  ngOnInit() {
-    this.governmentService.GetAllGovernments().subscribe({
-      next: (data) => {
-        this.governments = data as IGovernment[];
-      },
-      error: (err) => {
-        console.log(err);
-        this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'لا يوجد محافظات' });
 
-      }
-    });
-  }
 
-  branchControl() {
-    if(this.branchObj.name==""){
+  governmentControl() {
+    if(this.governmentObj.name==""){
       //validation on name input
       this.isValid=false;
     }
@@ -70,11 +53,11 @@ export class DialogComponent implements OnInit ,OnChanges {
       this.isValid=true;
 
       if (this.id == 0) {
-        this.branchService.AddBranch(this.branchObj).subscribe({
+        this.governmentService.AddGovernment(this.governmentObj).subscribe({
           next: (data) => {
-            console.log('branch added:', data);
-            this.branchAdded.emit();
-            this.messageService.add({ severity: 'success', summary: 'تم الحفظ', detail: 'تم إضافة الفرع ' });
+            console.log('government added:', data);
+            this.governmentAdded.emit();
+            this.messageService.add({ severity: 'success', summary: 'تم الحفظ', detail: 'تم إضافة المحافظة ' });
   
             this.closeModal();
           },
@@ -82,16 +65,16 @@ export class DialogComponent implements OnInit ,OnChanges {
             console.log(err);
             this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحفظ' });
             
-          },     complete:()=>{this.id=0,this.branchObj.name="",this.branchObj.governmentID=1}
+          },     complete:()=>{this.id=0,this.governmentObj.name="",this.governmentObj.id=0}
         });
       } else {
-        this.branchService.UpdateBranch(this.id, this.branchObj).subscribe({
+        this.governmentService.UpdateGovernment(this.id, this.governmentObj).subscribe({
           
           next: (data) => {
-            console.log('branch Updated:', data);
+            console.log('government Updated:', data);
           
-            this.branchAdded.emit();
-            this.messageService.add({ severity: 'success', summary: 'تم الحفظ', detail: 'تم تعديل الفرع ' });
+            this.governmentAdded.emit();
+            this.messageService.add({ severity: 'success', summary: 'تم الحفظ', detail: 'تم تعديل المحافظة ' });
   
             this.closeModal();
           },
@@ -100,7 +83,7 @@ export class DialogComponent implements OnInit ,OnChanges {
   
             console.log(err);
           },
-          complete:()=>{this.id=0,this.branchObj.name="",this.branchObj.governmentID=1}
+          complete:()=>{this.id=0,this.governmentObj.name="",this.governmentObj.id=0}
         });
       }
     }
@@ -110,10 +93,10 @@ export class DialogComponent implements OnInit ,OnChanges {
   resetForm() {
     this.isValid=true;
     this.id= 0;
-    this.branchObj = {
+    this.governmentObj = {
       name: '',
       status:true,
-      governmentID: 1
+      id: 1
     };
   }
   closeModal() {

@@ -13,6 +13,7 @@ import { PermissionsComponent } from '../Components/roles/permissions/permission
 import { AddMerchantAccountComponent } from '../Components/MercgentAccount/add-merchant-account/add-merchant-account.component';
 import { UpdateDeliveryAccountComponent } from '../Components/DeliveryAccounts/updatedeliveryaccount/updatedeliveryaccount.component';
 import { BranchesComponent } from '../Components/branches/branches.component';
+import { GovernmentsComponent } from '../Components/governments/governments.component';
 
 export const routes: Routes = [
 
@@ -28,6 +29,7 @@ export const routes: Routes = [
         {path:'MerchantAccounts',component:MerchantAccountsComponent},
         {path:'AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
         {path:'Branches' ,component:BranchesComponent},
+        {path:'Governments' ,component:GovernmentsComponent},
         {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent},
         { path: 'UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent }
   
