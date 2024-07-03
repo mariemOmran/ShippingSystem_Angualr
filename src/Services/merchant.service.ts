@@ -49,5 +49,14 @@ export class MerchantService {
   addSpecialOffers(specialOffers: any[]) {
     return this._HttpClient.post('https://localhost:7270/api/SpecialOffer', specialOffers);
   }
+
+
+    // Method to fetch special offers by merchant ID
+
+
+
+    getSpecialOffersByMerchantId(merchantId: number): Observable<any> {
+      return this._HttpClient.get(`${this.baseUrl}/SpecialOffer/Merchant/${merchantId}/SpecialOffers`);
+    }
   
 }
