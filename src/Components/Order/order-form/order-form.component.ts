@@ -36,11 +36,12 @@ export interface Product {
     weight: number,
     quantity: number
 }
+import { TableSharedModule } from '../../../shared/TableShared.module';
 
 @Component({
   selector: 'app-order-form',
   standalone: true,
-  imports: [InputSwitchModule, TableModule, CommonModule, InputTextModule, ReactiveFormsModule],
+  imports: [InputSwitchModule, TableModule, CommonModule, InputTextModule, ReactiveFormsModule,TableSharedModule],
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.css'
 })

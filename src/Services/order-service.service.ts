@@ -32,4 +32,12 @@ token :any = '';
   getAllBranch( ):Observable<any>{
     return this.http.get<any>(`${environment.apiUrl}Branch`)
   }
+
+  getAllOrders(){
+   return this.http.get("https://localhost:7270/api/Orders");
+  }
+
+  deleteOrder(id:number){
+    return this.http.delete(`https://localhost:7270/api/orders/${id}`);
+  }
 }
