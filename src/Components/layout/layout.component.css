@@ -607,10 +607,12 @@ main .recent-orders a {
   aside {
     position: fixed;
     background-color: var(--color-white);
-    width: 15rem;
-    z-index: 3;
+
+    z-index: 10;
     box-shadow: 1rem 3rem 4rem var(--color-light);
     /* height: 100vh; */
+    top: 0;
+    width: 70vw;
     left: -100%;
     display: none;
     animation: showMenu 0.4s ease forwards;
@@ -624,6 +626,8 @@ main .recent-orders a {
 
   aside .logo {
     margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
   }
 
   aside .logo h2 {
@@ -704,7 +708,10 @@ main .recent-orders a {
     cursor: pointer;
     color: var(--color-dark);
     position: absolute;
+    font-size: 18px;
     left: 1rem;
+    border: none;
+    outline: none;
   }
 
   .right-section .nav button span {
