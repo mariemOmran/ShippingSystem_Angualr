@@ -127,6 +127,12 @@ b {
   /* grid-template-columns: auto  12rem; */
   grid-template-columns: auto;
 }
+
+td,
+tr,
+table {
+  text-align: center;
+}
 .header_nav {
   display: flex;
   justify-content: space-between;
@@ -708,10 +714,22 @@ main .recent-orders a {
     cursor: pointer;
     color: var(--color-dark);
     position: absolute;
+    font-size: 30px;
+    font-weight: bold;
     left: 1rem;
+    border: none;
+    outline: none;
   }
 
   .right-section .nav button span {
     font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .p-inputtext {
+    padding-left: 0;
+    width: 50%;
+    margin-left: 20%;
   }
 }
