@@ -31,4 +31,16 @@ token :any = '';
   deleteOrder(id:number){
     return this.http.delete(`https://localhost:7270/api/orders/${id}`);
   }
+
+  getExistedOrderStatuses(){
+    return this.http.get("https://localhost:7270/api/Orders/OrdersCount?merchantId=0");
+  }
+  getAllOrderStatuses(){
+    return this.http.get("https://localhost:7270/api/Orders/OrderStatuses");
+  }
+  
+  updateOrderStatus(id:number, status:string){
+ 
+    return this.http.put(`https://localhost:7270/api/Orders/UpdateStatus/${id}?status=${status}`,null);
+  }
 }

@@ -4,11 +4,13 @@ import { Table } from 'primeng/table';
 import { OrderServiceService } from '../../Services/order-service.service';
 import { RouterLink } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { DialogComponent } from './dialog/dialog.component';
+
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [TableSharedModule,RouterLink],
+  imports: [TableSharedModule,RouterLink,DialogComponent],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
 })
@@ -19,7 +21,7 @@ export class OrdersComponent implements OnInit {
   loading: boolean = true;
   @ViewChild('dt2') dt2!: Table;
   searchValue: string | undefined;
-
+  orderId:number = 0;
   constructor(private orderService:OrderServiceService,private messageService:MessageService) {
     
   }
@@ -34,7 +36,9 @@ export class OrdersComponent implements OnInit {
 
 
 
-
+  changeIdStatus(id:number){
+    this.orderId = id;
+  }
 
 
 
@@ -61,6 +65,14 @@ this.orderService.deleteOrder(id).subscribe({
         this.messageService.add({ severity: 'info', summary: 'تم الحفظ', detail: 'تم حذف الطلب ' });
   }
 })
+}
+
+updateOrders(){
+  this.orderService.getAllOrders().subscribe({
+    next:(data)=>{this.Orders=data ; console.log(data)},
+    error:(err)=>console.log(err),
+    complete: ()=>this.loading=false
+  })
 }
 
 }
