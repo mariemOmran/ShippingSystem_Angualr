@@ -69,7 +69,14 @@
         </button>
       </td>
       <td>
-        <button class="btn btn-primary">تغيير الحالة</button>
+        <button
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="changeIdStatus(order.id)"
+        >
+          تغيير الحالة
+        </button>
       </td>
 
       <td>
@@ -103,3 +110,4 @@
 <div class="card flex justify-content-center">
   <p-toast />
 </div>
+<app-dialog [id]="orderId" (statusChanged)="updateOrders()"></app-dialog>

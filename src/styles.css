@@ -239,15 +239,21 @@ aside .sidebar .message-count {
 
 main {
   margin-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 main .analyse {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 
-main .analyse > div {
+main .analyse {
+  width: 300px;
   background-color: var(--color-white);
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
@@ -257,19 +263,23 @@ main .analyse > div {
   transition: all 0.3s ease;
 }
 
-main .analyse > div:hover {
+main .analyse :hover {
   box-shadow: none;
 }
 
-main .analyse > div .status {
+main .analyse .status {
+  width: 100%;
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 }
-
-main .analyse h3 {
+main .analyse h3,
+i {
   margin-left: 0.6rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: inline-block;
 }
 
 main .analyse .progresss {
@@ -612,6 +622,9 @@ main .recent-orders a {
     width: 100%;
     grid-template-columns: 1fr;
     padding: 0 var(--padding-1);
+  }
+  main .analyse > div {
+    width: 90%;
   }
 
   aside {
