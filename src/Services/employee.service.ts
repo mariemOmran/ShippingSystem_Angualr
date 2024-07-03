@@ -12,6 +12,7 @@ export class EmployeeService {
 
   getAllEmployees(){
     return this.httpclient.get(this.apiURl);
+
   }  
   
   getEmployee(id:number){
@@ -46,4 +47,8 @@ return this.httpclient.put(`${this.apiURl}/UpdateEmpStatus/${id}`,null);
     return this.httpclient.get(`https://localhost:7270/api/Role/allRoles`);
   }
 }
+
+
+  
+
 

@@ -4,14 +4,14 @@
     <h4>
       <span
         ><a [routerLink]="['/AddMerchantAccount']" routerLinkActive="active"
-          >اضافه تاجر
-        </a></span
+          >اضافه تاجر</a
+        ></span
       >
       <span> > </span>
       <span
-        ><a [routerLink]="['/MerchantAccounts']" routerLinkActive="active">
-          التجار
-        </a></span
+        ><a [routerLink]="['/MerchantAccounts']" routerLinkActive="active"
+          >التجار</a
+        ></span
       >
       <span> < </span>
       <span><i class="bi bi-house-door-fill"></i></span>
@@ -20,65 +20,60 @@
 
   <div class="bg-white p-3 rounded">
     <div class="d-flex justify-content-between mb-3">
-      <!-- <p-inputText [(ngModel)]="searchValue" placeholder="ابحث هنا..." class="w-auto"></p-inputText> -->
-      <input type="text" value="ابحث" />
-      <!-- <span class="p-input-icon-left ml-auto">
-          <i class="bi bi-search"></i>
-          <input
-            pInputText
-            type="text"
-            [(ngModel)]="searchValue"
-            
-          />
-        </span> -->
-      <!-- <button type="button" class="w-25 rounded btn-info p-2" (click)="loadDeliveryAccounts()">
-          <i class="bi bi-search"></i> بحث
-        </button> -->
+      <p-inputText
+        [(ngModel)]="searchValue"
+        placeholder="ابحث هنا..."
+        class="w-auto"
+      ></p-inputText>
+      <span class="p-input-icon-left ml-auto">
+        <i class="bi bi-search"></i>
+        <input pInputText type="text" [(ngModel)]="searchValue" />
+      </span>
     </div>
 
     <table class="table table-bordered">
       <thead>
         <tr class="table-header">
           <th scope="col">الاجراءات</th>
-
           <th scope="col">نسبه الخصم</th>
-          <th scope="col">الحاله</th>
           <th scope="col">الفرع</th>
-          <th scope="col">رقم الهاتف</th>
+          <th scope="col">العنوان</th>
           <th scope="col">البريد الالكتروني</th>
           <th scope="col">الاسم</th>
         </tr>
       </thead>
       <tbody>
-        <!-- <tr *ngFor="let account of deliveryAccounts | slice:first:first + rows"> -->
-        <tr>
+        <tr
+          *ngFor="
+            let account of filteredMerchantAccounts
+              | slice : first : first + rows
+          "
+        >
           <td>
-            <!-- <i class="bi bi-pencil-square" (click)="editAccount(account)"></i> -->
-            <!-- <i class="bi bi-trash" (click)="deleteAccount(account)"></i> -->
-            <i class="bi bi-pencil-square success m-2"></i>
-            <i class="bi bi-trash danger m-2"></i>
+            <i
+              class="bi bi-pencil-square success m-2"
+              (click)="onEditAccount(account.id)"
+            ></i>
+            <i
+              class="bi bi-trash danger m-2"
+              (click)="onDeleteAccount(account.id)"
+            ></i>
           </td>
-
-          <td>pinding data</td>
-          <!-- <td>
-              <p-inputSwitch [(ngModel)]="account.status" (onChange)="onSwitchChange($event)"></p-inputSwitch>
-            </td> -->
-          <td>pinding data</td>
-          <td>pinding data</td>
-          <td>pinding data</td>
-          <td>pinding data</td>
-          <td>pinding data</td>
-          <!-- <td>{{ account.userName }}</td> -->
+          <td>{{ account.refund_Percentage }}<span>%</span></td>
+          <td>{{ account.branch }}</td>
+          <td>{{ account.address }}</td>
+          <td>{{ account.email }}</td>
+          <td>{{ account.name }}</td>
         </tr>
       </tbody>
     </table>
 
-    <!-- <p-paginator
-        [rows]="rows"
-        [totalRecords]="totalRecords"
-        [first]="first"
-        (onPageChange)="onPageChange($event)"
-        [rowsPerPageOptions]="[10, 25, 50]"
-      ></p-paginator> -->
+    <p-paginator
+      [rows]="rows"
+      [totalRecords]="totalRecords"
+      [first]="first"
+      (onPageChange)="onPageChange($event)"
+      [rowsPerPageOptions]="[10, 25, 50]"
+    ></p-paginator>
   </div>
 </div>
