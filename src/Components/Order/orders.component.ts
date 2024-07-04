@@ -8,6 +8,15 @@ import { DialogComponent } from './dialog/dialog.component';
 import { PdfGeneratorService } from '../../Services/pdf-generator.service';
 
 
+interface Column {
+  field: string;
+  header: string;
+  customExportHeader?: string;
+}
+interface ExportColumn {
+  title: string;
+  dataKey: string;
+}
 @Component({
   selector: 'app-orders',
   standalone: true,
@@ -15,6 +24,7 @@ import { PdfGeneratorService } from '../../Services/pdf-generator.service';
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
 })
+
 export class OrdersComponent implements OnInit {
 
 
@@ -24,7 +34,9 @@ export class OrdersComponent implements OnInit {
   @ViewChild('tableRow', { static: false }) tableRow!: ElementRef;
   searchValue: string | undefined;
   orderId:number = 0;
- 
+  cols!: Column[];
+
+  exportColumns!: ExportColumn[];
  
 
   statuses: { label: string; value: string }[] = [];
@@ -53,8 +65,13 @@ export class OrdersComponent implements OnInit {
       },
       error:(err)=>console.log(err),
     })
+    this.cols = [
+      { field: 'id', header: 'id', customExportHeader: 'Product Code' },
+      { field: 'clientName', header: 'clientName' },
+  
+  ];
 
-
+    this.exportColumns = this.cols.map((col) => ({ title: col.header, dataKey: col.field }));
 
   }
   printTableRowAsPdf() {
@@ -100,6 +117,10 @@ updateOrders(){
     error:(err)=>console.log(err),
     complete: ()=>this.loading=false
   })
+}
+
+PrintPagePDF(){
+  window.print();
 }
 
 }
