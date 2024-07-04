@@ -21,11 +21,13 @@ import { OrdersComponent } from '../Components/Order/orders.component';
 import { ReportsComponent } from '../Components/reports/reports.component';
 
 import { UpdateMerchantAccountComponent } from '../Components/MercgentAccount/update-merchant-account/update-merchant-account.component';
+import { LoginComponent } from '../Components/login/login.component';
 
 export const routes: Routes = [
-
+    
+    {path:'login',component:LoginComponent,pathMatch:'full'},
     {path:'',component:LayoutComponent,children:[
-        {path:'',component:MainDashboardComponent},
+        {path:'dashboard',component:MainDashboardComponent},
         {path:'orders',component:OrdersComponent},
         {path:'report',component:ReportsComponent},
         {path:'orders/addorder',component:OrderFormComponent},
@@ -44,10 +46,10 @@ export const routes: Routes = [
         {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent},
         {path:'MerchantAccounts/AddMerchantAccount' ,component:AddMerchantAccountComponent},
 
+        { path: 'MerchantAccounts/AddMerchantAccount' ,component:AddMerchantAccountComponent},
         { path: 'DeliveryAccounts/UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent },
         { path: 'MerchantAccounts/UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent }
-
-  
-
     ]}
+       
+
 ];
