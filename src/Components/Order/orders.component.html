@@ -16,7 +16,7 @@
   [rowsPerPageOptions]="[10, 25, 50]"
   [paginator]="true"
   [loading]="loading"
-  [globalFilterFields]="['name']"
+  [globalFilterFields]="['id', 'status']"
   [tableStyle]="{ 'min-width': '75rem' }"
 >
   <ng-template pTemplate="caption">
@@ -24,26 +24,42 @@
       <button
         label="Clear"
         (click)="clear(dt2)"
-        class="btn btn-outline-danger rounded fs-5 text-center"
+        class="btn btn-outline-danger rounded text-center"
       >
-        <i class="bi bi-arrow-repeat"></i>
+        <i class="bi bi-arrow-repeat fs-5"> حذف البحث</i>
       </button>
       <span class="p-input-icon-left ml-auto">
-        <i class="bi bi-search"></i>
         <input
           pInputText
           type="text"
           [(ngModel)]="searchValue"
           (input)="onInput($event)"
+          placeholder="البحث"
         />
       </span>
+
+      <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+          <p-dropdown
+            [(ngModel)]="statuses.values"
+            [options]="statuses"
+            (onChange)="filter($event.value)"
+            placeholder="اختر الحالة"
+            [showClear]="false"
+            class="fs-2"
+          >
+          </p-dropdown>
+        </ng-template>
+      </p-columnFilter>
     </div>
   </ng-template>
+
   <ng-template pTemplate="header">
     <tr>
       <th>طباعة</th>
       <th>الإعدادات</th>
       <th>تغيير الحالة</th>
+      <th>status</th>
       <th>تكلفة الطلب</th>
       <th>المدينه></th>
       <th>المحافظة</th>
@@ -53,9 +69,9 @@
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-order>
-    <tr>
+    <tr #tableRow>
       <td>
-        <button class="btn btn-info">
+        <button class="btn btn-info" (click)="printTableRowAsPdf()">
           <i class="bi bi-printer-fill"></i>
         </button>
       </td>
@@ -79,6 +95,9 @@
         </button>
       </td>
 
+      <td>
+        {{ order.status }}
+      </td>
       <td>
         {{ order.totalPrice }}
       </td>

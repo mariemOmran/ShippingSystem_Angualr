@@ -42,9 +42,10 @@ export const routes: Routes = [
         {path:'Governments' ,component:GovernmentsComponent},
         {path:'Cities' ,component:CitiesComponent},
         {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent},
+        {path:'MerchantAccounts/AddMerchantAccount' ,component:AddMerchantAccountComponent},
 
-        { path: 'UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent },
-        { path: 'UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent }
+        { path: 'DeliveryAccounts/UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent },
+        { path: 'MerchantAccounts/UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent }
 
   
 

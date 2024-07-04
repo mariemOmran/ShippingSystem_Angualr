@@ -50,6 +50,7 @@ export class UpdateDeliveryAccountComponent implements OnInit {
   ngOnInit(): void {
     this.loadAccountData();
     this.loadBranches(); 
+    this.deliveryForm.get('password')?.disable();
   }
 
   loadAccountData(): void {
@@ -84,9 +85,20 @@ export class UpdateDeliveryAccountComponent implements OnInit {
       }
     });
   }
+  EnablePassword(event:any){
+    console.log(event.target.checked)
+    if(event.target.checked){
+      this.deliveryForm.get('password')?.enable();
+    }else{
+      this.deliveryForm.get('password')?.disable();
+
+    }
+    
+  }
 
   onSubmit(): void {
     console.log('Form Submitted', this.deliveryForm.value); // Add this line
+    this.deliveryForm.get('password')?.enable();
     if (this.deliveryForm.valid) {
       this.deliveryService.updateDeliveryAccount(this.accountId, this.deliveryForm.value).subscribe({
         next: (response) => {
