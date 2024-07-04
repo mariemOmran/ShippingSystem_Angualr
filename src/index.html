@@ -6,7 +6,7 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-
+<link rel="stylesheet" href="'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'">  <!--for login swapper-->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
       rel="stylesheet"
@@ -14,6 +14,8 @@
   </head>
   <body>
     <app-root></app-root>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>  <!--for login swapper-->
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const sideMenu = document.querySelector("aside");
@@ -44,6 +46,45 @@
         //     .classList.toggle("active");
         // });
       });
-    </script>
+      
+      //for login swapper
+      var swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+      coverflowEffect: {
+    rotate: 30,
+  },
+      keyboard: {
+            enabled: true,
+            onlyInViewport: false,
+      },
+      perSlideOffset:10,
+      perSlideRotate:10,
+      speed: 600,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        renderBullet: function (index, className) {
+            var name;
+            var gif;
+            if(index==0){
+                name="مندوب";
+                gif="Home-Delivery.gif";
+            }
+            else if(index==1){
+                name="موظف";
+                gif="User-Dashboard.gif";
+            }
+            else{
+                name="تاجر"
+                gif="Merchant-tenant-trusted.gif";
+            }
+    return '<button type="button" class="btns-switch btn-container ' + className + '"><img class="gif-login" src="./gif/'+gif+'" alt="Awesome GIF">'+name +'</button>';
+        },
+      },
+    });
+
+
+   </script>
   </body>
 </html>
