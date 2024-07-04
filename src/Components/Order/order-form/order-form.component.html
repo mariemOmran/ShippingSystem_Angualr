@@ -1,6 +1,5 @@
-
 <p-card class="card mt-5 mb-3 text-end">
-  <span class="fs-3 fw-bold"> إضافة طلب</span>
+  <span class="fs-3 fw-bold">إضافة طلب</span>
 </p-card>
 <form
   class="row g-3 mt-5 pt-0 p-5 text-end custom-form"
@@ -8,13 +7,14 @@
   (ngSubmit)="AddNewOrder()"
 >
 
-  <!--Start type Delivery -->
+  <!-- Start type Delivery -->
   <div class="mb-3 mt-2 col-auto">
-    <label for="exampleFormControlInput1" class="form-label">النوع</label>
+    <label for="deliveryType" class="form-label">النوع</label>
     <select
       class="form-select"
       formControlName="deliveryTypeID" 
       aria-label="Default select example"
+      id="deliveryType"
     >
       <option value="default" selected>اختار اوبشن</option>
       <option *ngFor="let deliveryType of deliveryTypes" [value]="deliveryType.id">{{ deliveryType.name }}</option>
@@ -23,101 +23,104 @@
       <small *ngIf="orderForm.controls['deliveryTypeID'].errors?.['defaultSelected']">الرجاء اختيار مكان تسليم المنتج</small>
     </div>
   </div>
+
+  <!-- Client Name -->
   <div class="mb-3 mt-2 col-auto">
-    <label for="exampleFormControlInput1" class="form-label">اسم العميل </label>
+    <label for="clientName" class="form-label">اسم العميل</label>
     <input
       type="text"
       class="form-control"
       formControlName="clientName"
-      id="exampleFormControlInput1"
+      id="clientName"
       placeholder="الاسم"
     />
-    <div class="danger" [hidden]="ClientName?.valid || ClientName?.untouched">
-      <small *ngIf="ClientName?.errors?.['required']">الرجاء ادخال اسم العميل </small>
+    <div class="danger" [hidden]="orderForm.controls['clientName'].valid || orderForm.controls['clientName'].untouched">
+      <small *ngIf="orderForm.controls['clientName'].errors?.['required']">الرجاء ادخال اسم العميل</small>
     </div>
   </div>
+
+  <!-- Phone One -->
   <div class="mb-3 mt-2 col-auto">
-    <label for="exampleFormControlInput1" class="form-label">رقم الهاتف</label>
+    <label for="phoneOne" class="form-label">رقم الهاتف</label>
     <input
       type="text"
       class="form-control"
       formControlName="phoneOne"
-      id="exampleFormControlInput1"
+      id="phoneOne"
     />
-    <div class="danger" [hidden]="PhoneOne?.valid || PhoneOne?.untouched">
-      <small *ngIf="PhoneOne?.errors?.['required']">الرجاء ادخال رقم التليفون </small>
+    <div class="danger" [hidden]="orderForm.controls['phoneOne'].valid || orderForm.controls['phoneOne'].untouched">
+      <small *ngIf="orderForm.controls['phoneOne'].errors?.['required']">الرجاء ادخال رقم التليفون</small>
     </div>
   </div>
+
+  <!-- Phone Two -->
   <div class="mb-3 mt-2 col-auto">
-    <label for="exampleFormControlInput1" class="form-label"
-      >رقم الهاتف 2</label
-    >
+    <label for="phoneTwo" class="form-label">رقم الهاتف 2</label>
     <input
       type="text"
       class="form-control"
       formControlName="phoneTwo"
-      id="exampleFormControlInput1"
+      id="phoneTwo"
     />
   </div>
+
+  <!-- Email -->
   <div class="mb-3 mt-2 col-auto">
-    <label for="exampleFormControlInput1" class="form-label"
-      >البريد الالكتروني</label
-    >
+    <label for="email" class="form-label">البريد الالكتروني</label>
     <input
       type="email"
       class="form-control"
       formControlName="email"
-      id="exampleFormControlInput1"
+      id="email"
     />
-    <div class="danger" [hidden]="Email?.valid || Email?.untouched">
-      <small *ngIf="Email?.errors?.['required']">الرجاء ادخال البريد الالكتروني </small>
+    <div class="danger" [hidden]="orderForm.controls['email'].valid || orderForm.controls['email'].untouched">
+      <small *ngIf="orderForm.controls['email'].errors?.['required']">الرجاء ادخال البريد الالكتروني</small>
     </div>
   </div>
 
-  <!-- end email -->
-
-  <!-- start government  -->
-
+  <!-- Government -->
   <div class="mb-3 mt-2 col-auto">
-    <label for="exampleFormControlInput1" class="form-label">المحافظة</label>
+    <label for="governmentID" class="form-label">المحافظة</label>
     <select
       class="form-select"
       formControlName="governmentID"
       aria-label="Default select example"
+      id="governmentID"
     >
-      <option selected>Open this select menu</option>
-      <option *ngFor="let gov of governments" [value]="gov.id">
-        {{ gov.name }}
-      </option>
+      <option value="default" selected>اختار اوبشن</option>
+      <option *ngFor="let gov of governments" [value]="gov.id">{{ gov.name }}</option>
     </select>
-    <div class="danger" [hidden]="GovernmentID?.valid || GovernmentID?.untouched">
-      <small *ngIf="GovernmentID?.errors?.['required']">الرجاء اختيار المحافظة </small>
+    <div class="danger" [hidden]="orderForm.controls['governmentID'].valid || orderForm.controls['governmentID'].untouched">
+      <small *ngIf="orderForm.controls['governmentID'].errors?.['required']">الرجاء اختيار المحافظة</small>
     </div>
   </div>
+
+  <!-- City -->
   <div class="mb-3 mt-2 col-auto">
-    <label for="exampleFormControlInput1" class="form-label">المدينة</label>
-    <select class="form-select" formControlName="cityID" aria-label="Default select example">
+    <label for="cityID" class="form-label">المدينة</label>
+    <select
+      class="form-select"
+      formControlName="cityID"
+      aria-label="Default select example"
+      id="cityID"
+    >
       <option value="default" selected>اختر المدينة</option>
       <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
     </select>
-    <div class="danger" [hidden]="CityID?.valid || CityID?.untouched">
-      <small *ngIf="CityID?.errors?.['required']">الرجاء اختيار المدينة </small>
+    <div class="danger" [hidden]="orderForm.controls['cityID'].valid || orderForm.controls['cityID'].untouched">
+      <small *ngIf="orderForm.controls['cityID'].errors?.['required']">الرجاء اختيار المدينة</small>
     </div>
   </div>
 
-  <!-- end city  -->
-
-  <!-- start street or village  -->
+  <!-- Street or Village -->
   <div class="row">
     <div class="mb-3 mt-2 col-auto">
-      <label for="exampleFormControlInput1" class="form-label"
-        >القرية والشارع</label
-      >
+      <label for="streetAndVillage" class="form-label">القرية والشارع</label>
       <input
         type="text"
         class="form-control"
         formControlName="streetAndVillage"
-        id="exampleFormControlInput1"
+        id="streetAndVillage"
         placeholder="القرية والشارع"
       />
     </div>
@@ -128,59 +131,60 @@
         class="d-block mt-3"
       ></p-inputSwitch>
     </div>
-    <!-- start street or village  -->
 
+    <!-- Shipping Type -->
     <div class="mb-3 mt-2 col-auto">
-      <label for="exampleFormControlInput1" class="form-label"
-        >نوع الشحن
-      </label>
+      <label for="shippingTypeID" class="form-label">نوع الشحن</label>
       <select
         class="form-select"
         formControlName="shippingTypeID"
         aria-label="Default select example"
+        id="shippingTypeID"
       >
         <option value="default" selected>اختر نوع الشحن</option>
-        <option *ngFor="let type of shippingTypes" [value]="type.id">
-          {{ type.name }}
-        </option>
+        <option *ngFor="let type of shippingTypes" [value]="type.id">{{ type.name }}</option>
       </select>
-      <div class="danger" [hidden]="ShippingTypeID?.valid || ShippingTypeID?.untouched">
-        <small *ngIf="ShippingTypeID?.errors?.['required']">الرجاء اختيار نوع الشحن</small>
+      <div class="danger" [hidden]="orderForm.controls['shippingTypeID'].valid || orderForm.controls['shippingTypeID'].untouched">
+        <small *ngIf="orderForm.controls['shippingTypeID'].errors?.['required']">الرجاء اختيار نوع الشحن</small>
       </div>
     </div>
+
+    <!-- Payment Type -->
     <div class="mb-3 col-auto">
-      <label for="exampleFormControlInput1" class="form-label">نوع الدفع</label>
+      <label for="paymentTypeID" class="form-label">نوع الدفع</label>
       <select
         class="form-select"
         formControlName="paymentTypeID"
         aria-label="Default select example"
+        id="paymentTypeID"
       >
         <option value="default" selected>اختر نوع الدفع</option>
-        <option *ngFor="let type of paymentTypes" [value]="type.id">
-          {{ type.name }}
-        </option>
+        <option *ngFor="let type of paymentTypes" [value]="type.id">{{ type.name }}</option>
       </select>
-      <div class="danger" [hidden]="PaymentTypeID?.valid || PaymentTypeID?.untouched">
-        <small *ngIf="PaymentTypeID?.errors?.['required']">الرجاء اختيار نوع الدفع</small>
+      <div class="danger" [hidden]="orderForm.controls['paymentTypeID'].valid || orderForm.controls['paymentTypeID'].untouched">
+        <small *ngIf="orderForm.controls['paymentTypeID'].errors?.['required']">الرجاء اختيار نوع الدفع</small>
       </div>
     </div>
   </div>
+
+  <!-- Branch -->
   <div class="mb-3 col-2">
-    <label for="exampleFormControlInput1" class="form-label">الفرع</label>
+    <label for="branchID" class="form-label">الفرع</label>
     <select
       class="form-select"
       formControlName="branchID"
       aria-label="Default select example"
+      id="branchID"
     >
       <option value="default" selected>القاهرة</option>
-      <option *ngFor="let branch of branches" [value]="branch.id">
-        {{ branch.name }}
-      </option>
+      <option *ngFor="let branch of branches" [value]="branch.id">{{ branch.name }}</option>
     </select>
-    <div class="danger" [hidden]="BranchID?.valid || BranchID?.untouched">
-      <small *ngIf="BranchID?.errors?.['required']">الرجاء اختيار الفرع</small>
+    <div class="danger" [hidden]="orderForm.controls['branchID'].valid || orderForm.controls['branchID'].untouched">
+      <small *ngIf="orderForm.controls['branchID'].errors?.['required']">الرجاء اختيار الفرع</small>
     </div>
   </div>
+
+  <!-- Product Table -->
   <div class="container table-add-product mt-3 text-end">
     <div class="row">
       <div class="col-md-2 d-flex align-items-start buttonAddProduct">
@@ -207,17 +211,17 @@
                   حذف
                 </button>
               </th>
+              <td class="input-name-product">
+                <input formControlName="name" type="text" pInputText class="custom-border input-name-product" />
+              </td>
+              <td class="input-name-product">
+                <input type="text" formControlName="price" pInputText class="custom-border input-name-product" />
+              </td>
               <td class="input-weight">
-                <input formControlName="name" type="text" pInputText class="custom-border input-weight" />
+                <input type="text" formControlName="weight" pInputText class="custom-border input-weight" />
               </td>
               <td class="input-quantity">
-                <input type="text" formControlName="price" pInputText class="custom-border input-quantity" />
-              </td>
-              <td class="input-name-product">
-                <input type="text" formControlName="weight" pInputText class="custom-border input-name-product" />
-              </td>
-              <td class="input-name-product">
-                <input type="text" formControlName="quantity" pInputText class="custom-border input-name-product" />
+                <input type="text" formControlName="quantity" pInputText class="custom-border input-quantity" />
               </td>
             </tr>
           </ng-container>
@@ -226,85 +230,80 @@
       </div>
     </div>
   </div>
+
+  <!-- Total Price -->
   <div class="row mt-5">
     <div class="mb-3 col-auto">
-      <label for="exampleFormControlInput1" class="form-label"
-        >تكلفة الطلب</label
-      >
+      <label for="totalPrice" class="form-label">تكلفة الطلب</label>
       <input
         type="number"
         class="form-control"
         formControlName="totalPrice"
-        id="exampleFormControlInput1"
+        id="totalPrice"
         placeholder="تكلفة الطلب"
       />
-      <div class="danger" [hidden]="TotalPrice?.valid || TotalPrice?.untouched">
-        <small *ngIf="TotalPrice?.errors?.['required']"
-          >Total Price is Required</small
-        >
+      <div class="danger" [hidden]="orderForm.controls['totalPrice'].valid || orderForm.controls['totalPrice'].untouched">
+        <small *ngIf="orderForm.controls['totalPrice'].errors?.['required']">Total Price is Required</small>
       </div>
     </div>
+
+    <!-- Total Weight -->
     <div class="mb-3 col-auto">
-      <label for="exampleFormControlInput1" class="form-label"
-        >إجمالي الوزن(كجم)</label
-      >
+      <label for="totalWeight" class="form-label">إجمالي الوزن(كجم)</label>
       <input
         type="number"
         class="form-control"
         formControlName="totalWeight"
-        id="exampleFormControlInput1"
+        id="totalWeight"
         placeholder="إجمالي الوزن(كجم)"
       />
-      <div
-        class="danger"
-        [hidden]="TotalWeight?.valid || TotalWeight?.untouched"
-      >
-        <small *ngIf="TotalWeight?.errors?.['required']"
-          >Total Weight is Required</small
-        >
+      <div class="danger" [hidden]="orderForm.controls['totalWeight'].valid || orderForm.controls['totalWeight'].untouched">
+        <small *ngIf="orderForm.controls['totalWeight'].errors?.['required']">Total Weight is Required</small>
       </div>
     </div>
+
+    <!-- Notes -->
     <div class="mb-3 col-auto">
-      <label for="exampleFormControlInput1" class="form-label">ملاحظات</label>
+      <label for="notes" class="form-label">ملاحظات</label>
       <div class="form-floating">
         <textarea
           class="form-control"
           formControlName="notes"
           placeholder="Leave a comment here"
-          id="floatingTextarea"
+          id="notes"
         ></textarea>
       </div>
     </div>
+
+    <!-- Merchant Information -->
     <div class="row border border-secondary-subtle rounded">
       <p>بيانات التاجر</p>
       <div class="mb-3 col-auto">
-        <label for="exampleFormControlInput1" class="form-label"
-          >رقم الهاتف
-        </label>
+        <label for="merchantPhone" class="form-label">رقم الهاتف</label>
         <input
           type="text"
           class="form-control"
           formControlName="merchantPhone"
-          id="exampleFormControlInput1"
+          id="merchantPhone"
           placeholder="01025726246"
         />
       </div>
       <div class="mb-3 col-auto">
-        <label for="exampleFormControlInput1" class="form-label">العنوان</label>
+        <label for="merchantAddress" class="form-label">العنوان</label>
         <input
           type="text"
           class="form-control"
           formControlName="merchantAddress"
-          id="exampleFormControlInput1"
+          id="merchantAddress"
           placeholder="حدائق الاهرام"
         />
       </div>
     </div>
   </div>
-  
+
+  <!-- Submit Button -->
   <div class="col-md-1 d-flex align-items-start mt-5">
     <button
-      
       type="submit"
       class="btn btn-primary"
     >
@@ -312,15 +311,20 @@
     </button>
   </div>
 </form>
-<div>
 
-  {{orderForm.value |json}}
-  {{orderForm.errors | json}}
+<!-- Debug Information -->
+<div>
+  {{orderForm.value | json}}
+  {{orderForm.status| json}}
+  {{orderForm.hasValidator| json}}
+  {{orderForm.contains| json}}
+  {{orderForm.disable| json}}
+  {{orderForm.dirty| json}}
+  {{orderForm.getError| json}}
   {{orderForm.validator| json}}
-  {{orderForm.errors | json}}
-  {{orderForm.errors | json}}
-  {{orderForm.errors | json}}
-  {{orderForm.errors | json}}
-  {{orderForm.errors | json}}
-  {{orderForm.errors | json}}
+  {{orderForm.updateValueAndValidity| json}}
+  {{orderForm.hasError| json}}
+  {{orderForm.validator| json}}
+  {{orderForm.validator| json}}
+
 </div>

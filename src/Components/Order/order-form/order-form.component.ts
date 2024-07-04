@@ -14,19 +14,23 @@ import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
 import { InewOrder } from '../../../Models/inew-order';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { OrderRead } from '../../../Models/order-read';
+
 
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
-  styleUrls: ['./order-form.component.css'],standalone: true,
+  styleUrls: ['./order-form.component.css'],
+  standalone: true,
   imports: [
     InputSwitchModule,
     TableModule,
     CommonModule,
     InputTextModule,
     ReactiveFormsModule,
-    CardModule , // Add CardModule here
-    
+    CardModule,
   ]
 })
 export class OrderFormComponent implements OnInit {
@@ -41,14 +45,17 @@ export class OrderFormComponent implements OnInit {
   orderForm: FormGroup;
   totalPriceOfProducts: number = 0;
   totalWeightProducts: number = 0;
-  merchant: any = {}; // Initialize merchant object
-  merchantID: number = 1; // Example merchant ID
-  order!:InewOrder
-
-  constructor(private fb: FormBuilder, private orderService: OrderServiceService, private merchantService: MerchantService) {
+  merchant: any = {};
+  merchantID: number = 1;
+  order!: InewOrder;
+  totalPriceDelivery!:number;
+  totalPriceOrder!:number;
+  countProducts!:number;
+  dataDisplayInAleart!:OrderRead;
+  constructor(private fb: FormBuilder, private orderService: OrderServiceService, private merchantService: MerchantService,private router:Router) {
     this.orderForm = this.fb.group({
-      clientName: ['', ],
-      status: ['', Validators.required],
+      clientName: ['', Validators.required],
+      // status: ['', Validators.required],
       totalPrice: [this.totalPriceOfProducts, Validators.required],
       totalWeight: [this.totalWeightProducts, Validators.required],
       phoneOne: ['', Validators.required],
@@ -56,13 +63,13 @@ export class OrderFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       notes: [''],
       streetAndVillage: ['', Validators.required],
-      merchantID: [this.merchantID, Validators.required], // Example merchant ID
+      merchantID: [this.merchantID, Validators.required],
       shippingTypeID: ["default", [this.defaultSelectionValidator]],
       paymentTypeID: ["default", [this.defaultSelectionValidator]],
       branchID: ["default", [this.defaultSelectionValidator]],
       products: this.fb.array([]),
-      ifVillage: ['', Validators.required],
-      deliveryPlace: ['', Validators.required],
+      // ifVillage: ['', Validators.required],
+      // deliveryPlace: ['', Validators.required],
       governmentID: ["default", [this.defaultSelectionValidator]],
       cityID: ["default", [this.defaultSelectionValidator]],
       deliveryTypeID: ["default", [this.defaultSelectionValidator]],
@@ -91,7 +98,7 @@ export class OrderFormComponent implements OnInit {
 
     this.merchantService.getMerchantAccountById(this.merchantID).subscribe({
       next: (data: any) => {
-        this.merchant = data || {}; // Assign merchant data if available
+        this.merchant = data || {};
         this.updateMerchantData();
       },
       error: (error) => {
@@ -101,7 +108,6 @@ export class OrderFormComponent implements OnInit {
   }
 
   updateMerchantData(): void {
-    // Update form controls with merchant data
     this.orderForm.patchValue({
       merchantPhone: this.merchant.phone || '',
       merchantAddress: this.merchant.address || ''
@@ -144,9 +150,13 @@ export class OrderFormComponent implements OnInit {
         console.log(error);
       }
     });
+
     this.orderService.getAllDeliveryTypes().subscribe({
-      next:(data)=>{
-        this.deliveryTypes=data as IdeliveryType[];
+      next: (data) => {
+        this.deliveryTypes = data as IdeliveryType[];
+      },
+      error: (error) => {
+        console.log(error);
       }
     });
   }
@@ -155,6 +165,7 @@ export class OrderFormComponent implements OnInit {
     this.orderService.getAllCitiesBasedOnGovernments(governmentID).subscribe({
       next: (data: any) => {
         this.cities = data as IcityID[];
+        console.log('cities'+this.cities);
       },
       error: (error) => {
         console.log(error);
@@ -162,7 +173,7 @@ export class OrderFormComponent implements OnInit {
     });
   }
 
-  defaultSelectionValidator(control: any) {
+  defaultSelectionValidator(control: AbstractControl) {
     return control.value === "default" ? { defaultSelected: true } : null;
   }
 
@@ -193,19 +204,16 @@ export class OrderFormComponent implements OnInit {
   updateTotals() {
     this.totalPriceOfProducts = 0;
     this.totalWeightProducts = 0;
-    
-    // Cast Products to FormArray
+
     const productFormArray = this.Products as FormArray;
-  
-    // Iterate through each form group in the FormArray
-    productFormArray.controls.forEach((control: AbstractControl<any>) => {
-      if (control instanceof FormGroup) { // Ensure control is FormGroup
+
+    productFormArray.controls.forEach((control: AbstractControl) => {
+      if (control instanceof FormGroup) {
         this.totalPriceOfProducts += control.get('price')?.value || 0;
         this.totalWeightProducts += control.get('weight')?.value || 0;
       }
     });
-  
-    // Update form with calculated totals
+
     this.orderForm.patchValue({
       totalPrice: this.totalPriceOfProducts,
       totalWeight: this.totalWeightProducts
@@ -229,107 +237,39 @@ export class OrderFormComponent implements OnInit {
     return this.orderForm.get('products') as FormArray;
   }
 
-  get ClientName() {
-    return this.orderForm.get('clientName');
-  }
-
-  get Status() {
-    return this.orderForm.get('status');
-  }
-
-  get TotalPrice() {
-    return this.orderForm.get('totalPrice');
-  }
-
-  get TotalWeight() {
-    return this.orderForm.get('totalWeight');
-  }
-
-  get PhoneOne() {
-    return this.orderForm.get('phoneOne');
-  }
-
-  get PhoneTwo() {
-    return this.orderForm.get('phoneTwo');
-  }
-
-  get Email() {
-    return this.orderForm.get('email');
-  }
-
-  get Notes() {
-    return this.orderForm.get('notes');
-  }
-
-  get StreetAndVillage() {
-    return this.orderForm.get('streetAndVillage');
-  }
-
-  get MerchantID() {
-    return this.orderForm.get('merchantID');
-  }
-
-  get ShippingTypeID() {
-    return this.orderForm.get('shippingTypeID');
-  }
-
-  get PaymentTypeID() {
-    return this.orderForm.get('paymentTypeID');
-  }
-
-  get BranchID() {
-    return this.orderForm.get('branchID');
-  }
-
-  get DeliveryTypeID() {
-    return this.orderForm.get('deliveryTypeID');
-  }
-
-  get IfVillage() {
-    return this.orderForm.get('ifVillage');
-  }
-
-  get DeliveryPlace() {
-    return this.orderForm.get('deliveryPlace');
-  }
-
-  get GovernmentID() {
-    return this.orderForm.get('governmentID');
-  }
-
-  get CityID() {
-    return this.orderForm.get('cityID');
-  }
-
-  get MerchantPhone() {
-    return this.orderForm.get('merchantPhone');
-  }
-
-  get MerchantAddress() {
-    return this.orderForm.get('merchantAddress');
-  }
-
   AddNewOrder() {
-     // Mark all fields as touched to trigger validation messages
-  this.orderForm.markAllAsTouched();
-  this.order = this.orderForm.value as InewOrder;
-  this.orderService.createOrder(this.order).subscribe({
-    next:(data)=>{
-      console.log(data);
-    },error:(err)=>{
-      console.log(err)
+    this.orderForm.markAllAsTouched();
+
+    if (this.orderForm.valid) {
+      this.order = this.orderForm.value as InewOrder;
+      console.log(this.order);
+      this.orderService.createOrder(this.order).subscribe({
+        next: (data) => {
+          this.dataDisplayInAleart = data as OrderRead;
+          this.totalPriceDelivery=this.dataDisplayInAleart.deliveryPrice;
+          this.totalPriceOrder=this.dataDisplayInAleart.paiedMoney;
+          console.log(data);
+          this.sweetaleart()
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    } else {
+      console.log('Form has validation errors:', this.orderForm);
     }
-  })
-  // Check if the form is valid
-  if (this.orderForm.valid) {
-    console.log('Form is valid');
-    
-    
-    console.log(this.orderForm.value);
-    
-    // Proceed with form submission logic
-  } else {
-    console.log('Form has validation errors:', this.orderForm);
   }
+
+  sweetaleart(){
+    Swal.fire({
+      title: 'Order Added Successfull',
+      text: `your price of order is ${this.totalPriceOrder} and price Delivery is ${this.totalPriceDelivery} `,
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+    }).then((result) => {
+      this.router.navigateByUrl('/orders');
+    });
+    
   }
 }
