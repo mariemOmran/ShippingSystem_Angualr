@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TableSharedModule } from '../../shared/TableShared.module';
 import { Table } from 'primeng/table';
 import { OrderServiceService } from '../../Services/order-service.service';
 import { RouterLink } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { DialogComponent } from './dialog/dialog.component';
+import { PdfGeneratorService } from '../../Services/pdf-generator.service';
 
 
 @Component({
@@ -20,9 +21,14 @@ export class OrdersComponent implements OnInit {
   Orders:any=[];
   loading: boolean = true;
   @ViewChild('dt2') dt2!: Table;
+  @ViewChild('tableRow', { static: false }) tableRow!: ElementRef;
   searchValue: string | undefined;
   orderId:number = 0;
-  constructor(private orderService:OrderServiceService,private messageService:MessageService) {
+ 
+ 
+
+  statuses: { label: string; value: string }[] = [];
+  constructor(private orderService:OrderServiceService,private messageService:MessageService,private pdfService: PdfGeneratorService) {
     
   }
 
@@ -32,8 +38,29 @@ export class OrdersComponent implements OnInit {
       error:(err)=>console.log(err),
       complete: ()=>this.loading=false
     })
-  }
 
+    this.orderService.getAllOrderStatuses().subscribe({
+      next:(data:any)=>{
+        
+      
+        this.statuses = data.map((status:any) => ({
+          label: status,
+          value: status.toLowerCase().replace(/\s+/g, '')
+        }));
+      
+   
+      
+      },
+      error:(err)=>console.log(err),
+    })
+
+
+
+  }
+  printTableRowAsPdf() {
+    const rowElement = this.tableRow.nativeElement;
+    this.pdfService.generatePdfFromTableRow(rowElement);
+  }
 
 
   changeIdStatus(id:number){
@@ -41,7 +68,7 @@ export class OrdersComponent implements OnInit {
   }
 
 
-
+ 
 
   clear(table: Table) {
     table.clear();
