@@ -16,6 +16,8 @@
   [rowsPerPageOptions]="[10, 25, 50]"
   [paginator]="true"
   [loading]="loading"
+  [responsive]="true"
+  [exportHeader]="'customExportHeader'"
   [globalFilterFields]="['id', 'status']"
   [tableStyle]="{ 'min-width': '75rem' }"
 >
@@ -52,6 +54,10 @@
         </ng-template>
       </p-columnFilter>
     </div>
+
+    <button class="btn btn-primary p-2 my-2" (click)="PrintPagePDF()">
+      PDF
+    </button>
   </ng-template>
 
   <ng-template pTemplate="header">
