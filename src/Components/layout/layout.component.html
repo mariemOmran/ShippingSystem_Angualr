@@ -33,7 +33,7 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: false }"
           >
-            <i class="bi bi-shield-check fs-4"></i>
+            <span> <i class="bi bi-shield-check fs-4"></i></span>
             <h3>الصلاحيات</h3>
           </a>
           <a
@@ -50,8 +50,9 @@
             [routerLink]="['/Branches']"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: false }"
-          >
-            <i class="bi bi-bank fs-4"></i>
+            ><span>
+              <i class="bi bi-bank fs-4"></i>
+            </span>
             <h3>الفروع</h3>
           </a>
           <a
@@ -60,7 +61,9 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: false }"
           >
-            <i class="bi bi-truck fs-4"></i>
+            <span>
+              <i class="bi bi-truck fs-4"></i>
+            </span>
             <h3>الطلبات</h3>
           </a>
 
@@ -75,13 +78,17 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: false }"
           >
-            <i class="bi bi-person-walking fs-4"></i>
+            <span>
+              <i class="bi bi-person-walking fs-4"></i>
+            </span>
             <h3>المندوب</h3>
           </a>
 
           <!-- Link To Display Merchant Accounts  -->
           <a [routerLink]="['/MerchantAccounts']" routerLinkActive="active">
-            <i class="bi bi-shop fs-4"></i>
+            <span>
+              <i class="bi bi-shop fs-4"></i>
+            </span>
             <h3>التاجر</h3>
           </a>
 

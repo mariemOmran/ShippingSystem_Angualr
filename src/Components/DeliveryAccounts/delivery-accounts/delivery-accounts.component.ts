@@ -101,7 +101,7 @@ export class DeliveryAccountsComponent implements OnInit {
 
 
   onEditAccount(id: number): void {
-    this._Router.navigate(['/UpdateDeliveryAccount', id]);
+    this._Router.navigate(['DeliveryAccounts/UpdateDeliveryAccount', id]);
   }
   onInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;

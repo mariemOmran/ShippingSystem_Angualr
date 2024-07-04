@@ -51,6 +51,7 @@ export class UpdateMerchantAccountComponent implements OnInit {
     this.loadBranches();
     this.loadCities();
     this.loadGovernments();
+    this.merchantForm.get('password')?.disable();
   }
 
   loadMerchantData(): void {
@@ -158,6 +159,17 @@ export class UpdateMerchantAccountComponent implements OnInit {
     }, 1000); 
   }
 
+
+  EnablePassword(event:any){
+    console.log(event.target.checked)
+    if(event.target.checked){
+      this.merchantForm.get('password')?.enable();
+    }else{
+      this.merchantForm.get('password')?.disable();
+
+    }
+    
+  }
   onSubmit(): void {
     if (this.merchantForm.valid) {
       this.merchantService.updateMerchantAccount(this.merchantId, this.merchantForm.value).subscribe({

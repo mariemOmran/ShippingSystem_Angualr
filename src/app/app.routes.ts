@@ -37,10 +37,10 @@ export const routes: Routes = [
         {path:'MerchantAccounts',component:MerchantAccountsComponent},
         {path:'DeliveryAccounts/AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
         {path:'Branches' ,component:BranchesComponent},
-        {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent},
+        {path:'MerchantAccounts/AddMerchantAccount' ,component:AddMerchantAccountComponent},
 
-        { path: 'UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent },
-        { path: 'UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent }
+        { path: 'DeliveryAccounts/UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent },
+        { path: 'MerchantAccounts/UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent }
 
   
 

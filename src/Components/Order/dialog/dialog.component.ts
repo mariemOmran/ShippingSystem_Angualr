@@ -38,7 +38,7 @@ export class DialogComponent implements OnInit  {
 
   StatusControl() {
     console.log(this.status.name)
-      this.orderservice.updateOrderStatus(this.id,this.status.name).subscribe({
+      this.orderservice.updateOrderStatus(this.id,this.status).subscribe({
        next:(data)=>{console.log(data);
         this.statusChanged.emit();
         this.closeModal();

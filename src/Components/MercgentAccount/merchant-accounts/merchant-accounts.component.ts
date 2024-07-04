@@ -99,7 +99,7 @@ export class MerchantAccountsComponent implements OnInit {
   }
 
   onEditAccount(id: number): void {
-    this._Router.navigate(['/UpdateMerchantAccount', id]);
+    this._Router.navigate(['MerchantAccounts/UpdateMerchantAccount', id]);
   }
 
   get filteredMerchantAccounts() {
