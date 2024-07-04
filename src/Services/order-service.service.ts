@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthServiceService } from './auth-service.service';
 import { environment } from '../environments/environment.development';
+import { InewOrder } from '../Models/inew-order';
 
 @Injectable({
   providedIn: 'root'
@@ -34,22 +35,28 @@ token :any = '';
   }
 
   getAllOrders(){
-   return this.http.get("https://localhost:7270/api/Orders");
+   return this.http.get(`${environment.apiUrl}Orders`);
   }
 
   deleteOrder(id:number){
-    return this.http.delete(`https://localhost:7270/api/orders/${id}`);
+    return this.http.delete(`${environment.apiUrl}orders/${id}`);
   }
 
   getExistedOrderStatuses(){
-    return this.http.get("https://localhost:7270/api/Orders/OrdersCount?merchantId=0");
+    return this.http.get(`${environment.apiUrl}Orders/OrdersCount?merchantId=0`);
   }
   getAllOrderStatuses(){
-    return this.http.get("https://localhost:7270/api/Orders/OrderStatuses");
+    return this.http.get(`${environment.apiUrl}Orders/OrderStatuses`);
   }
   
   updateOrderStatus(id:number, status:string){
  
-    return this.http.put(`https://localhost:7270/api/Orders/UpdateStatus/${id}?status=${status}`,null);
+    return this.http.put(`${environment.apiUrl}Orders/UpdateStatus/${id}?status=${status}`,null);
+  }
+  createOrder(order:InewOrder){
+    return this.http.post(`https://localhost:7270/api/Orders`,order);
+  }
+  getAllDeliveryTypes():Observable<any>{
+    return this.http.get(`${environment.apiUrl}DeliveryType`);
   }
 }
