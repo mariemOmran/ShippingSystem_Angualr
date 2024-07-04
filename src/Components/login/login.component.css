@@ -201,4 +201,13 @@ html,
       color: #fff;
       width:300px;
       background-color: rgb(0 91 165);
+	  height: 360px;
     }
+
+
+	/******************************/
+
+	.error{
+		font-size: 18px;
+		color: gold;
+	}
