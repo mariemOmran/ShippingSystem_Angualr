@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
-import { IBranch } from '../../Models/i-branch';
 
 @Component({
   selector: 'app-branches',
@@ -21,7 +20,7 @@ import { IBranch } from '../../Models/i-branch';
 })
 export class BranchesComponent {
 
-  Branches!: IBranch[];
+  Branches: any = [];
   DialogId = 0;
   loading = true;
   @ViewChild('dt2') dt2!: Table;
@@ -33,6 +32,7 @@ export class BranchesComponent {
     this.GetAll();
   }
   changeIdVal(id:number){
+    console.log(id);
     this.DialogId=id;
   }
   clear(table: Table) {
@@ -51,11 +51,10 @@ export class BranchesComponent {
     this.branchesService.GetAllBranches().subscribe({
       next: (data) => {
         
-        this.Branches = data as IBranch[];
+        this.Branches = data;
         this.loading=false;
       },
-      error: (err) => this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'لا يوجد فروع' })
-
+      error: (err) => console.log(err)
     });
   }
 
@@ -75,8 +74,7 @@ export class BranchesComponent {
   this.branchesService.GetAllBranches().subscribe({
     next: (data) => {
       
-      this.Branches = data as IBranch[];
-      this.DialogId=0;
+      this.Branches = data;
     },
     error: (err) => console.log(err)
   });

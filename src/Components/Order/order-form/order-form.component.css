@@ -32,24 +32,3 @@ tr,
 table {
   text-align: center;
 }
-.buttonAddProduct{
-  justify-content: flex-start;
-}
-/* .input-weight ,.input-quantity{
-  max-width: 70px;
-  min-width: 50px;
-}
-
-.input-name-product{
-  max-width: 150px;
-  min-width: 100px;
-} */
-
-.container.table-add-product{
-  display: block;
-}
-.container.table-add-product input{
-  max-width: 180px;
-  max-height: 40px;
-  min-width: 150px;
-}
