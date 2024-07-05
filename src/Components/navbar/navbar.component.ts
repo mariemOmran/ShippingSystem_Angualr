@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { GlobalService } from '../../Services/global.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,5 +10,11 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
- 
+ Globalvar:any=''
+
+
+  
+ constructor(private globalService:GlobalService) {
+  this.Globalvar=this.globalService.globalVariable;
+ }
 }

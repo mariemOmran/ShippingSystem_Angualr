@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { AuthServiceService } from '../../Services/auth-service.service';
  
 
 @Component({
@@ -17,6 +18,13 @@ export class LayoutComponent {
   toggleSidebar() {
     console.log("ok")
     this.isSidebarVisible = !this.isSidebarVisible;
+  }
+
+  /**
+   *
+   */
+  constructor(private authService:AuthServiceService) {
+    
   }
 
   // @HostListener('window:resize', ['$event'])

@@ -70,9 +70,7 @@ export class LoginComponent implements AfterViewInit {
           else{  //email and password are correct
             const jsonObject = JSON.parse(res);
             localStorage.setItem('token', jsonObject.readLoginDTO.token);
-            localStorage.setItem('deliveryid', jsonObject.readLoginDTO.id);
-            localStorage.setItem('deliveryName', jsonObject.readLoginDTO.name);
-            localStorage.setItem('deliveryRole', jsonObject.readLoginDTO.role);
+          
 
 
             this.router.navigate(['/']);
@@ -99,9 +97,7 @@ export class LoginComponent implements AfterViewInit {
           else{  //email and password are correct
             const jsonObject = JSON.parse(res);
             localStorage.setItem('token', jsonObject.readLoginDTO.token);
-            localStorage.setItem('empid', jsonObject.readLoginDTO.id);
-            localStorage.setItem('empName', jsonObject.readLoginDTO.name);
-            localStorage.setItem('empRole', jsonObject.readLoginDTO.role);
+          
 
 
             this.router.navigate(['/']);
@@ -128,9 +124,7 @@ export class LoginComponent implements AfterViewInit {
           else{  //email and password are correct
             const jsonObject = JSON.parse(res);
             localStorage.setItem('token', jsonObject.readLoginDTO.token);
-            localStorage.setItem('merchantid', jsonObject.readLoginDTO.id);
-            localStorage.setItem('merchantName', jsonObject.readLoginDTO.name);
-            localStorage.setItem('merchantRole', jsonObject.readLoginDTO.role);
+      
 
 
             this.router.navigate(['/']);
