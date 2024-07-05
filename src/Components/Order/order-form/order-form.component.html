@@ -1,3 +1,4 @@
+
 <p-card class="card mt-5 mb-3 text-end">
   <span class="fs-3 fw-bold"> إضافة طلب</span>
 </p-card>
@@ -6,6 +7,10 @@
   [formGroup]="orderForm"
   (ngSubmit)="AddNewOrder()"
 >
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of b45438c (add_order)
   <!--Start type Delivery -->
   <div class="mb-3 mt-2 col-auto">
     <label for="exampleFormControlInput1" class="form-label">النوع</label>
@@ -20,9 +25,12 @@
       <option value="3">Three</option>
     </select>
   </div>
+<<<<<<< HEAD
   <!--end type Delivery -->
 
   <!--start Clinte name  -->
+=======
+>>>>>>> parent of b45438c (add_order)
   <div class="mb-3 mt-2 col-auto">
     <label for="exampleFormControlInput1" class="form-label">اسم العميل </label>
     <input
@@ -33,6 +41,7 @@
       placeholder="الاسم"
     />
     <div class="danger" [hidden]="ClientName?.valid || ClientName?.untouched">
+<<<<<<< HEAD
       <small *ngIf="ClientName?.errors?.['required']"
         >Client Name is Required</small
       >
@@ -42,6 +51,11 @@
 
   <!--start Phone  -->
 
+=======
+      <small *ngIf="ClientName?.errors?.['required']">الرجاء ادخال اسم العميل </small>
+    </div>
+  </div>
+>>>>>>> parent of b45438c (add_order)
   <div class="mb-3 mt-2 col-auto">
     <label for="exampleFormControlInput1" class="form-label">رقم الهاتف</label>
     <input
@@ -51,9 +65,13 @@
       id="exampleFormControlInput1"
     />
     <div class="danger" [hidden]="PhoneOne?.valid || PhoneOne?.untouched">
+<<<<<<< HEAD
       <small *ngIf="PhoneOne?.errors?.['required']"
         >Phone One is Required</small
       >
+=======
+      <small *ngIf="PhoneOne?.errors?.['required']">الرجاء ادخال رقم التليفون </small>
+>>>>>>> parent of b45438c (add_order)
     </div>
   </div>
   <div class="mb-3 mt-2 col-auto">
@@ -67,10 +85,13 @@
       id="exampleFormControlInput1"
     />
   </div>
+<<<<<<< HEAD
 
   <!-- end Phone -->
 
   <!-- start Email  -->
+=======
+>>>>>>> parent of b45438c (add_order)
   <div class="mb-3 mt-2 col-auto">
     <label for="exampleFormControlInput1" class="form-label"
       >البريد الالكتروني</label
@@ -82,7 +103,11 @@
       id="exampleFormControlInput1"
     />
     <div class="danger" [hidden]="Email?.valid || Email?.untouched">
+<<<<<<< HEAD
       <small *ngIf="Email?.errors?.['required']">Email is Required</small>
+=======
+      <small *ngIf="Email?.errors?.['required']">الرجاء ادخال البريد الالكتروني </small>
+>>>>>>> parent of b45438c (add_order)
     </div>
   </div>
 
@@ -102,6 +127,7 @@
         {{ gov.name }}
       </option>
     </select>
+<<<<<<< HEAD
   </div>
 
   <!-- end government   -->
@@ -120,6 +146,21 @@
         {{ city.name }}
       </option>
     </select>
+=======
+    <div class="danger" [hidden]="GovernmentID?.valid || GovernmentID?.untouched">
+      <small *ngIf="GovernmentID?.errors?.['required']">الرجاء اختيار المحافظة </small>
+    </div>
+  </div>
+  <div class="mb-3 mt-2 col-auto">
+    <label for="exampleFormControlInput1" class="form-label">المدينة</label>
+    <select class="form-select" formControlName="cityID" aria-label="Default select example">
+      <option value="default" selected>اختر المدينة</option>
+      <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+    </select>
+    <div class="danger" [hidden]="CityID?.valid || CityID?.untouched">
+      <small *ngIf="CityID?.errors?.['required']">الرجاء اختيار المدينة </small>
+    </div>
+>>>>>>> parent of b45438c (add_order)
   </div>
 
   <!-- end city  -->
@@ -157,11 +198,21 @@
         formControlName="shippingTypeID"
         aria-label="Default select example"
       >
+<<<<<<< HEAD
         <option selected>اختر نوع الشحن</option>
+=======
+        <option value="default" selected>اختر نوع الشحن</option>
+>>>>>>> parent of b45438c (add_order)
         <option *ngFor="let type of shippingTypes" [value]="type.id">
           {{ type.name }}
         </option>
       </select>
+<<<<<<< HEAD
+=======
+      <div class="danger" [hidden]="ShippingTypeID?.valid || ShippingTypeID?.untouched">
+        <small *ngIf="ShippingTypeID?.errors?.['required']">الرجاء اختيار نوع الشحن</small>
+      </div>
+>>>>>>> parent of b45438c (add_order)
     </div>
     <div class="mb-3 col-auto">
       <label for="exampleFormControlInput1" class="form-label">نوع الدفع</label>
@@ -170,11 +221,21 @@
         formControlName="paymentTypeID"
         aria-label="Default select example"
       >
+<<<<<<< HEAD
         <option selected>اختر نوع الدفع</option>
+=======
+        <option value="default" selected>اختر نوع الدفع</option>
+>>>>>>> parent of b45438c (add_order)
         <option *ngFor="let type of paymentTypes" [value]="type.id">
           {{ type.name }}
         </option>
       </select>
+<<<<<<< HEAD
+=======
+      <div class="danger" [hidden]="PaymentTypeID?.valid || PaymentTypeID?.untouched">
+        <small *ngIf="PaymentTypeID?.errors?.['required']">الرجاء اختيار نوع الدفع</small>
+      </div>
+>>>>>>> parent of b45438c (add_order)
     </div>
   </div>
   <div class="mb-3 col-2">
@@ -184,13 +245,25 @@
       formControlName="branchID"
       aria-label="Default select example"
     >
+<<<<<<< HEAD
       <option selected>القاهرة</option>
+=======
+      <option value="default" selected>القاهرة</option>
+>>>>>>> parent of b45438c (add_order)
       <option *ngFor="let branch of branches" [value]="branch.id">
         {{ branch.name }}
       </option>
     </select>
+<<<<<<< HEAD
   </div>
   <div class="container mt-3 text-end">
+=======
+    <div class="danger" [hidden]="BranchID?.valid || BranchID?.untouched">
+      <small *ngIf="BranchID?.errors?.['required']">الرجاء اختيار الفرع</small>
+    </div>
+  </div>
+  <div class="container table-add-product mt-3 text-end">
+>>>>>>> parent of b45438c (add_order)
     <div class="row">
       <div class="col-md-2 d-flex align-items-start justify-content-end">
         <button type="button" class="btn btn-secondary" (click)="addRow()">
@@ -218,9 +291,24 @@
                   حذف
                 </button>
               </th>
+<<<<<<< HEAD
               <td><input type="text" pInputText class="custom-border" /></td>
               <td><input type="text" pInputText class="custom-border" /></td>
               <td><input type="text" pInputText class="custom-border" /></td>
+=======
+              <td class="input-weight">
+                <input formControlName="name" type="text" pInputText class="custom-border input-weight" />
+              </td>
+              <td class="input-quantity">
+                <input type="text" formControlName="price" pInputText class="custom-border input-quantity" />
+              </td>
+              <td class="input-name-product">
+                <input type="text" formControlName="weight" pInputText class="custom-border input-name-product" />
+              </td>
+              <td class="input-name-product">
+                <input type="text" formControlName="quantity" pInputText class="custom-border input-name-product" />
+              </td>
+>>>>>>> parent of b45438c (add_order)
             </tr>
           </tbody>
         </table>
@@ -302,9 +390,16 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
   <div class="col-md-1 d-flex align-items-start mt-5">
     <button
       [disabled]="orderForm.invalid"
+=======
+  
+  <div class="col-md-1 d-flex align-items-start mt-5">
+    <button
+      
+>>>>>>> parent of b45438c (add_order)
       type="submit"
       class="btn btn-primary"
     >
@@ -312,3 +407,18 @@
     </button>
   </div>
 </form>
+<<<<<<< HEAD
+=======
+<div>
+
+  {{orderForm.value |json}}
+  {{orderForm.errors | json}}
+  {{orderForm.validator| json}}
+  {{orderForm.errors | json}}
+  {{orderForm.errors | json}}
+  {{orderForm.errors | json}}
+  {{orderForm.errors | json}}
+  {{orderForm.errors | json}}
+  {{orderForm.errors | json}}
+</div>
+>>>>>>> parent of b45438c (add_order)

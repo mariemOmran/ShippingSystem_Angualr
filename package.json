@@ -24,6 +24,10 @@
     "jspdf": "^2.5.1",
     "primeng": "^17.18.2",
     "rxjs": "~7.8.0",
+<<<<<<< HEAD
+=======
+    "swiper": "^11.1.4",
+>>>>>>> parent of b45438c (add_order)
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
