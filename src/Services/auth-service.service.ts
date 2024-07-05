@@ -11,22 +11,16 @@ export class AuthServiceService {
 
   constructor(private http:HttpClient) { }
 
-  userData: any = null;
+ 
   
   login(createLoginDTO:ILogin,role:string): Observable<string> {
     return this.http.post<string>(`https://localhost:7270/api/Login/${role}`,createLoginDTO, { responseType: 'text' as 'json' });
   }
-  decodeUserData() {
-    const encodedToken = localStorage.getItem('token');
-    if (encodedToken) {
-      const decodedToken: any = jwtDecode(encodedToken); // Correct usage
-      console.log(decodedToken);
-      this.userData = decodedToken;
-    }
-  }
+  
+ 
 
   getDecodedToken() {
-    const encodedToken = localStorage.getItem('userToken');
+    const encodedToken = localStorage.getItem('token');
     if (encodedToken) {
       return jwtDecode(encodedToken); // Correct usage
     }

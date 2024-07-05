@@ -55,8 +55,7 @@ export const routes: Routes = [
         
         {path:'Branches' ,component:BranchesComponent},
         {path:'Governments' ,component:GovernmentsComponent},
-        // {path:'Governments' ,component:GovernmentsComponent,canActivate:[adminGuard]},
-        // {path:'Cities' ,component:CitiesComponent,canActivate:[adminGuard]},
+      
         {path:'Cities' ,component:CitiesComponent},
     ]},
     {path:'**',component:NotFoundComponent}
