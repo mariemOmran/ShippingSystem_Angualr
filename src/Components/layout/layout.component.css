@@ -134,7 +134,16 @@ aside .toggle {
   justify-content: space-between;
   margin-top: 1.4rem;
 }
-
+.logo {
+  align-items: center;
+}
+.logo img {
+  width: 55px !important;
+  height: 55px !important;
+}
+.logo h2 {
+  color: #3c75aa;
+}
 aside .toggle .logo {
   display: flex;
   gap: 0.5rem;
@@ -748,4 +757,8 @@ main .recent-orders a {
   }
 }
 
-/* check box  */
+/* @media screen and (min-width:769px){
+  .left-side{
+    width: 950px;
+  }
+} */

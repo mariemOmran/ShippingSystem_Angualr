@@ -1,5 +1,6 @@
 export interface IBranch {
     name:string,
     status:boolean,
-    governmentID:number
+    governmentID:number,
+    governmentName?:string
 }
