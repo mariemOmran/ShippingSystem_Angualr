@@ -10,3 +10,14 @@ tr,
 table {
   text-align: center;
 }
+
+@media print {
+  input,
+  button,
+  .p-dropdown,
+  .btn,
+  .p-component,
+  .p-column-filter-row {
+    display: none;
+  }
+}

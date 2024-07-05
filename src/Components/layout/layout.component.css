@@ -134,16 +134,7 @@ aside .toggle {
   justify-content: space-between;
   margin-top: 1.4rem;
 }
-.logo{
-  align-items: center;
-}
-.logo img{
-  width:55px !important;
-  height: 55px !important;
-}
-.logo h2{
-  color: #3c75aa;
-}
+
 aside .toggle .logo {
   display: flex;
   gap: 0.5rem;
@@ -172,6 +163,20 @@ aside .sidebar {
   position: relative;
   top: 1.5rem;
   transition: all 0.3s ease;
+}
+
+/* Menu button styling */
+.menu-btn {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 
 aside .sidebar:hover {
@@ -603,7 +608,15 @@ main .recent-orders a {
     display: none;
   }
 }
+@media (min-width: 769px) {
+  aside {
+    display: block;
+  }
 
+  .menu-btn {
+    display: none;
+  }
+}
 @media screen and (max-width: 768px) {
   .container {
     width: 100%;
@@ -612,19 +625,28 @@ main .recent-orders a {
   }
 
   aside {
+    display: none;
+    height: 100vh;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  aside.active {
+    display: block;
     position: fixed;
     background-color: var(--color-white);
 
     z-index: 10;
     box-shadow: 1rem 3rem 4rem var(--color-light);
-    /* height: 100vh; */
+
     top: 0;
     width: 70vw;
     left: -100%;
-    display: none;
+
     animation: showMenu 0.4s ease forwards;
   }
-
   @keyframes showMenu {
     to {
       left: 0;
@@ -726,9 +748,4 @@ main .recent-orders a {
   }
 }
 
-
-@media screen and (min-width:769px){
-  .left-side{
-    width: 950px;
-  }
-}
+/* check box  */
