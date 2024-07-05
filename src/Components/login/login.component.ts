@@ -75,7 +75,7 @@ export class LoginComponent implements AfterViewInit {
             localStorage.setItem('deliveryRole', jsonObject.readLoginDTO.role);
 
 
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/']);
           }
         },
         error: (error) => {
@@ -104,7 +104,7 @@ export class LoginComponent implements AfterViewInit {
             localStorage.setItem('empRole', jsonObject.readLoginDTO.role);
 
 
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/']);
           }
         },
         error: (error) => {
@@ -133,7 +133,7 @@ export class LoginComponent implements AfterViewInit {
             localStorage.setItem('merchantRole', jsonObject.readLoginDTO.role);
 
 
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/']);
           }
         },
         error: (error) => {

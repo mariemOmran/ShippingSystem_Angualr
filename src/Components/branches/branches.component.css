@@ -4,3 +4,11 @@
   font-weight: 700;
   font-style: normal;
 }
+
+.btn-re-design{
+  display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 33px;
+    width: 40px;
+}

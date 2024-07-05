@@ -1,21 +1,24 @@
 export interface InewOrder {
-    clientName:string,
-    status:string,
-    totalPrice:number,
-    totalWeight:number,
-    phoneOne:string,
-    phoneTwo:string,
-    email:string,
-    notes:string,
-    streetAndVillage:string,
+    clientName:string,//1
+    status:string,//2
+    totalPrice:number,//3
+    totalWeight:number,//4
+    phoneOne:string,//5
+    phoneTwo:string,//6
+    email:string,//7
+    notes:string,//8
+    streetAndVillage:string,//9
     ifVillage:boolean,
-    merchantID:number,
-    shippingTypeID:number,
-    paymentTypeID:number,
-    products:[{
-        name:string,
-        price:number,
-        wight:number,
-        quantity:number
-    }]
+    merchantID:number,//10
+    shippingTypeID:number,//11
+    paymentTypeID:number,//12
+    governmentId:number,//13
+    deliveryTypeID:number,//14
+    cityID:number,
+    products: Array<{//15
+        name: string;
+        price: number;
+        weight: number;
+        quantity: number;
+      }>
 }
