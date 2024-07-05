@@ -7,7 +7,7 @@
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
     >
-      <i class="bi bi-plus-square"></i>
+      <i class="bi bi-shield-plus"></i>
       إضافة صلاحية
     </button>
     <span class="fs-3 fw-bold text-end">الصلاحيات</span>
@@ -19,7 +19,7 @@
   [value]="Roles"
   dataKey="id"
   [rows]="10"
-  [rowsPerPageOptions]="[10, 25, 50]"
+  [rowsPerPageOptions]="[5, 10, 50]"
   [paginator]="true"
   [loading]="loading"
   [globalFilterFields]="['name']"
@@ -47,7 +47,6 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th></th>
       <th>الإعدادات</th>
 
       <th>تاريخ الإضافة</th>
@@ -56,15 +55,13 @@
   </ng-template>
   <ng-template pTemplate="body" let-role>
     <tr>
-      <td></td>
       <td>
         <button
-          class="btn btn-secondary mx-1"
           type="button"
           class="btn btn-primary"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
-          (click)="changeIdVal(role)"
+          (click)="changeIdVal(role.id)"
         >
           <i class="bi bi-pen"></i>
         </button>
@@ -95,3 +92,6 @@
 </p-table>
 
 <app-dialog [id]="DialogId" (roleAdded)="onRoleAdded()"></app-dialog>
+<div class="card flex justify-content-center">
+  <p-toast />
+</div>

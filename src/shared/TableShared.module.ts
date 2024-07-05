@@ -14,6 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
+import { DeliveryService } from '../Services/delivery.service';
 
 @NgModule({
   declarations: [],
@@ -52,4 +53,9 @@ import { ToastModule } from 'primeng/toast';
     InputSwitchModule
   ]
 })
-export class TableSharedModule { }
+export class TableSharedModule {
+ 
+ 
+
+  
+ }

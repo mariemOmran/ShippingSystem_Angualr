@@ -1,11 +1,14 @@
 import { Table } from 'primeng/table';
-import { EmployeeService } from '../../AbdallahServices/employee.service';
+import { EmployeeService } from '../../Services/employee.service';
 import { TableSharedModule } from '../../shared/TableShared.module';
 import { Component, ViewChild } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { RouterLink } from '@angular/router';
+ 
 @Component({
   selector: 'app-employees',
   standalone: true,
-  imports: [TableSharedModule],
+  imports: [TableSharedModule,RouterLink],
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.css'
 })
@@ -23,7 +26,7 @@ export class EmployeesComponent {
 
 
 
- constructor(public EmpService:EmployeeService) {
+ constructor(public EmpService:EmployeeService,private messageService:MessageService) {
   
  }
   ngOnInit() {
@@ -51,8 +54,34 @@ export class EmployeesComponent {
   }
 
 
-  onSwitchChange(event: any) {
+  onSwitchChange(event: any,id:number) {
     console.log('Switch state:', event.checked);
+    this.EmpService.updateEmployeeStatus(id).subscribe({
+      next:(data)=>{
+        console.log(data);
+        this.messageService.add({ severity: 'info', summary: 'تم الحفظ', detail: 'تم تعديل الحالة ' });
+      },
+      error:(err)=>{console.log(err)
+        this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء التعديل' });
+
+      }
+    })
+  }
+
+  Delete(id:number){
+    this.EmpService.deleteEmployee(id).subscribe({
+      next:(data)=>console.log(data),
+      error:(err)=>{console.log(err);
+        this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحذف' });
+
+      },
+      complete: ()=>{
+        this.Employees=this.Employees.filter((e:any)=>e.id!=id)
+        this.messageService.add({ severity: 'info', summary: 'تم الحفظ', detail: 'تم حذف الموظف ' });
+
+      }
+        
+    })
   }
 
  
