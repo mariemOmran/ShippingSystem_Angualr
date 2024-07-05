@@ -5,7 +5,7 @@ export const merchantGuard: CanActivateFn = (route, state) => {
   const role = localStorage.getItem('role');
   const token = localStorage.getItem('token');
   const router = inject(Router);
-  if (role == "merchant") {
+  if (role?.toLowerCase() == ("Merchant").toLowerCase()) {
         return true;
   } 
   else {

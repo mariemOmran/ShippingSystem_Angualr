@@ -6,7 +6,7 @@ export const employeeGuard: CanActivateFn = (route, state) => {
   const token = localStorage.getItem('token');
 
   const router = inject(Router);
-  if (role == "employee") {
+  if (role?.toLowerCase() == ("Employee").toLowerCase()) {
         return true;
   } else {
     if(token){

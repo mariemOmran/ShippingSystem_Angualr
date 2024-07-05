@@ -5,7 +5,7 @@ export const deliveryGuard: CanActivateFn = (route, state) => {
   const role = localStorage.getItem('role');
   const token = localStorage.getItem('token');
   const router = inject(Router);
-  if (role == "delivery") {
+  if (role?.toLowerCase() == ("Delivery").toLowerCase()) {
         return true;
   } else {
     if(token){
