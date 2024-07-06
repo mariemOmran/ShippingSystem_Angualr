@@ -293,7 +293,7 @@ export class OrderFormComponent implements OnInit {
       icon: 'success',
       showCancelButton: false,
       confirmButtonText: 'OK',
-    }).then((result) => {
+    }).then(() => {
       this.router.navigateByUrl('/orders');
     });
     
