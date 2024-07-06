@@ -46,7 +46,7 @@ RoleName :string =''
  
               this.RoleName=this.globalService.globalVariable.roleName;
               this.globalService.rolePermissions$.subscribe((permissions) => {
-               this.permissions = permissions.filter((permission: any) => permission.entityName == "Orders");
+               this.permissions = permissions.filter((permission: any) => permission.entityName == "الطلبات");
              });
 
   }
@@ -58,7 +58,7 @@ this.GetAll();
  
 
 
-console.log(this.permissions)
+console.log(this.permissions.canCreate)
    
   }
 
@@ -72,7 +72,7 @@ GetAll(){
   // }) 
   this.orderService.getAllOrdersForMercahnt(Number(this.globalService.globalVariable.id)).subscribe({
     next:(data)=>{this.Orders=data ;},
-    error:(err)=>console.log(err),
+    error:(err)=>{console.log(err); this.loading=false},
     complete: ()=>this.loading=false
   })
 

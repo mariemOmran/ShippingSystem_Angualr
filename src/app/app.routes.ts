@@ -35,8 +35,8 @@ export const routes: Routes = [
     {path:'',component:LayoutComponent,  canActivate: [isLoginGuard],children:[
         {path:'',component:MainDashboardComponent}, //,canActivate:[employeeGuard,adminGuard,merchantGuard,deliveryGuard]
         
-        {path:'orders',component:OrdersComponent,canActivate:[adminGuard,deliveryGuard]},  //,canActivate:[adminGuard,deliveryGuard]
-        {path:'orders/addorder',component:OrderFormComponent,canActivate:[merchantGuard]},  //,canActivate:[merchantGuard]
+        {path:'orders',component:OrdersComponent},  //,canActivate:[adminGuard,deliveryGuard]
+        {path:'orders/addorder',component:OrderFormComponent},  //,canActivate:[merchantGuard]
         {path:'report',component:ReportsComponent},
         
         {path:'role',component:RolesComponent,canActivate: [adminGuard]},
@@ -48,8 +48,8 @@ export const routes: Routes = [
         
         {path:'DeliveryAccounts/UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent ,canActivate: [adminGuard]},
         {path:'DeliveryAccounts/AddDeliveryAccount' ,component:AddDeliveryAcountComponent,canActivate: [adminGuard]},
-        {path:'MerchantAccounts/AddMerchantAccount' ,component:AddMerchantAccountComponent,canActivate: [adminGuard,merchantGuard]},
-        {path:'MerchantAccounts/UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent ,canActivate: [adminGuard,merchantGuard]},
+        {path:'MerchantAccounts/AddMerchantAccount' ,component:AddMerchantAccountComponent,canActivate: [adminGuard]},
+        {path:'MerchantAccounts/UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent ,canActivate: [adminGuard]},
         
         {path:'employee/:id',component:EmployeeFormComponent},
         {path:'Branches' ,component:BranchesComponent},

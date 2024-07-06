@@ -10,7 +10,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">
-          {{ id == 0 ? "Add Role " : "Edit Role" }}
+          {{ id == 0 ? "إضافة صلاحية " : "تعديل صلاحية" }}
         </h1>
         <button
           type="button"
@@ -23,7 +23,7 @@
         <form>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label"
-              >Role Name:</label
+              >إسم الصلاحية :</label
             >
             <input
               type="text"
@@ -37,11 +37,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
+          إغلاق
         </button>
 
         <button type="button" class="btn btn-primary" (click)="RoleControl()">
-          {{ id == 0 ? "Add Role " : "Edit Role" }}
+          {{ id == 0 ? "إضافة صلاحية " : "تعديل صلاحية" }}
         </button>
       </div>
     </div>

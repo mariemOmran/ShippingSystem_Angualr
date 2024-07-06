@@ -11,7 +11,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">
-          {{ id == 0 ? "Add Government " : "Edit Government" }}
+          {{ id == 0 ? "إضافة محافظة " : "تعديل محافظة " }}
         </h1>
         <button
           type="button"
@@ -24,7 +24,7 @@
         <form>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label"
-              >Government Name:</label
+              >إسم المحافظة :</label
             >
             <input
               type="text"
@@ -39,11 +39,15 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
+          إغلاق
         </button>
 
-        <button type="button" class="btn btn-primary" (click)="governmentControl()">
-          {{ id == 0 ? "Add Government" : "Edit Government" }}
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="governmentControl()"
+        >
+          {{ id == 0 ? "إضافة محافظة " : "تعديل محافظة " }}
         </button>
       </div>
     </div>

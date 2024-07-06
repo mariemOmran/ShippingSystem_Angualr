@@ -69,7 +69,7 @@ this.GetallStatuses();
         this.filteredOrders=data;
         
         console.log(data)},
-      error:(err)=>console.log(err),
+      error:(err)=>{console.log(err);this.loading=false},
       complete: ()=>this.loading=false
     })
   }
