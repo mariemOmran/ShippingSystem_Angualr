@@ -44,12 +44,11 @@ RoleName :string =''
               private activeRoute:ActivatedRoute
             ) {
  
- 
-this.RoleName=this.globalService.globalVariable.roleName;
- this.globalService.rolePermissions$.subscribe((permissions) => {
-  this.permissions = permissions.filter((permission: any) => permission.entityName == "Orders");
-  console.log(this.permissions);
-});
+              this.RoleName=this.globalService.globalVariable.roleName;
+              this.globalService.rolePermissions$.subscribe((permissions) => {
+               this.permissions = permissions.filter((permission: any) => permission.entityName == "Orders");
+             });
+
   }
 
   ngOnInit(): void {
@@ -57,6 +56,9 @@ this.GetAll();
   
     this.getStatuses();
  
+
+
+console.log(this.permissions)
    
   }
 
@@ -69,7 +71,7 @@ GetAll(){
   //   complete: ()=>this.loading=false
   // }) 
   this.orderService.getAllOrdersForMercahnt(Number(this.globalService.globalVariable.id)).subscribe({
-    next:(data)=>{this.Orders=data ; console.log(data)},
+    next:(data)=>{this.Orders=data ;},
     error:(err)=>console.log(err),
     complete: ()=>this.loading=false
   })

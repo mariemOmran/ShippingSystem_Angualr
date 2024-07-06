@@ -52,7 +52,6 @@ export const routes: Routes = [
         {path:'MerchantAccounts/UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent ,canActivate: [adminGuard,merchantGuard]},
         
         {path:'employee/:id',component:EmployeeFormComponent},
-        
         {path:'Branches' ,component:BranchesComponent},
         {path:'Governments' ,component:GovernmentsComponent},
       
