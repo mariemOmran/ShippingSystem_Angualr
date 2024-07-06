@@ -11,10 +11,11 @@ export class GlobalService {
   public globalVariable: any = 'Initial Value';
   private rolePermissionsSubject = new BehaviorSubject<any[]>([]);
   public rolePermissions$ = this.rolePermissionsSubject.asObservable();
+  idForAccount!:number;
   constructor(private authService:AuthServiceService ,private roleService:RolesService) {
     this.globalVariable=this.authService.getDecodedToken();
 
-    
+    this.idForAccount= this.globalVariable.id;
     this.roleService.GetPermissions(Number(this.globalVariable.roleId)).subscribe({
       next: (data) => {
         this.rolePermissionsSubject.next(data);
@@ -25,6 +26,8 @@ export class GlobalService {
  
    }
  
-
+get getIDAccount():number{
+  return this.idForAccount;
+}
     
 }

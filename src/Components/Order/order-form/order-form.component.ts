@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { OrderServiceService } from '../../../Services/order-service.service';
 import { MerchantService } from '../../../Services/merchant.service';
@@ -17,6 +17,8 @@ import { InewOrder } from '../../../Models/inew-order';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { OrderRead } from '../../../Models/order-read';
+import { GlobalService } from '../../../Services/global.service';
+import { Imerchant } from '../../../Models/imerchant';
 
 
 @Component({
@@ -45,19 +47,20 @@ export class OrderFormComponent implements OnInit {
   orderForm: FormGroup;
   totalPriceOfProducts: number = 0;
   totalWeightProducts: number = 0;
-  merchant: any = {};
-  merchantID: number = 1;
+  merchant!: Imerchant ;
+  merchantID!: number ;
   order!: InewOrder;
   totalPriceDelivery!:number;
   totalPriceOrder!:number;
   countProducts!:number;
   dataDisplayInAleart!:OrderRead;
-  constructor(private fb: FormBuilder, private orderService: OrderServiceService, private merchantService: MerchantService,private router:Router) {
+  constructor(private fb: FormBuilder, private orderService: OrderServiceService, private merchantService: MerchantService,private router:Router,private globalService:GlobalService) {
     this.orderForm = this.fb.group({
       clientName: ['', Validators.required],
-      // status: ['', Validators.required],
-      totalPrice: [this.totalPriceOfProducts, Validators.required],
-      totalWeight: [this.totalWeightProducts, Validators.required],
+      // totalPrice: [this.totalPriceOfProducts, Validators.required],
+      // totalWeight: [this.totalWeightProducts, Validators.required],
+      totalPrice: [{value: this.totalPriceOfProducts, disabled: true}, Validators.required],//===================
+      totalWeight: [{value: this.totalWeightProducts, disabled: true}, Validators.required],
       phoneOne: ['', Validators.required],
       phoneTwo: [''],
       email: ['', [Validators.required, Validators.email]],
@@ -68,14 +71,20 @@ export class OrderFormComponent implements OnInit {
       paymentTypeID: ["default", [this.defaultSelectionValidator]],
       branchID: ["default", [this.defaultSelectionValidator]],
       products: this.fb.array([]),
-      // ifVillage: ['', Validators.required],
-      // deliveryPlace: ['', Validators.required],
       governmentID: ["default", [this.defaultSelectionValidator]],
       cityID: ["default", [this.defaultSelectionValidator]],
       deliveryTypeID: ["default", [this.defaultSelectionValidator]],
-      merchantPhone: [''],
-      merchantAddress: ['']
+      // merchantPhone: [''],
+      // merchantAddress: ['']
+      merchantPhone: [{value:'', disabled: true}, Validators.required],
+      merchantAddress: [{value: '', disabled: true}, Validators.required],
     });
+
+    this.merchantID=globalService.getIDAccount;
+    this.orderForm.patchValue({
+     merchantID:this.merchantID,
+    });
+    console.log("merchant ID"+this.merchantID);
 
     this.loadInitialData();
   }
@@ -95,9 +104,11 @@ export class OrderFormComponent implements OnInit {
         console.log(error);
       }
     });
-
+    console.log('try to get data for merchant ');
+//===================================================================================================//
     this.merchantService.getMerchantAccountById(this.merchantID).subscribe({
       next: (data: any) => {
+        console.log(data);
         this.merchant = data || {};
         this.updateMerchantData();
       },
@@ -107,9 +118,17 @@ export class OrderFormComponent implements OnInit {
     });
   }
 
+  @HostListener('mouseover', ['$event.target'])
+  onMouseOver(target: EventTarget) {
+    if ((target as HTMLElement).tagName === 'INPUT') {
+      this.updateTotals();
+    }
+  }
+
+
   updateMerchantData(): void {
     this.orderForm.patchValue({
-      merchantPhone: this.merchant.phone || '',
+      merchantPhone: this.merchant.phoneNumber || '',
       merchantAddress: this.merchant.address || ''
     });
   }
@@ -208,10 +227,13 @@ export class OrderFormComponent implements OnInit {
     const productFormArray = this.Products as FormArray;
 
     productFormArray.controls.forEach((control: AbstractControl) => {
-      if (control instanceof FormGroup) {
-        this.totalPriceOfProducts += control.get('price')?.value || 0;
-        this.totalWeightProducts += control.get('weight')?.value || 0;
-      }
+     
+      const price = (parseInt(control.get('price')?.value) || 0) * (parseInt(control.get('quantity')?.value) || 0) ;
+      const weight = parseInt(control.get('weight')?.value, 10) || 0;
+      this.totalPriceOfProducts += price;
+      this.totalWeightProducts += weight;
+      console.log( this.totalPriceOfProducts)
+      console.log( this.totalWeightProducts)
     });
 
     this.orderForm.patchValue({
@@ -239,7 +261,11 @@ export class OrderFormComponent implements OnInit {
 
   AddNewOrder() {
     this.orderForm.markAllAsTouched();
+   
 
+     // Temporarily enable the controls before reading the form values
+  this.orderForm.get('totalPrice')?.enable();
+  this.orderForm.get('totalWeight')?.enable();
     if (this.orderForm.valid) {
       this.order = this.orderForm.value as InewOrder;
       console.log(this.order);
@@ -265,7 +291,7 @@ export class OrderFormComponent implements OnInit {
       title: 'Order Added Successfull',
       text: `your price of order is ${this.totalPriceOrder} and price Delivery is ${this.totalPriceDelivery} `,
       icon: 'success',
-      showCancelButton: true,
+      showCancelButton: false,
       confirmButtonText: 'OK',
     }).then((result) => {
       this.router.navigateByUrl('/orders');
