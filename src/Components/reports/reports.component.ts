@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
+import { GlobalService } from '../../Services/global.service';
 
 @Component({
   selector: 'app-reports',
@@ -23,8 +24,13 @@ export class ReportsComponent implements OnInit {
   rangeDates: Date[] | undefined;
   date: string ='';
   statuses: { label: string; value: string }[] = [];
-  constructor(private orderService:OrderServiceService,private messageService:MessageService) {
+  permissions:any =[];
+  constructor(private orderService:OrderServiceService,private messageService:MessageService,    private globalService:GlobalService) {
     
+    this.globalService.rolePermissions$.subscribe((permissions) => {
+      this.permissions = permissions.filter((permission: any) => permission.entityName == "Reports");
+      console.log(this.permissions);
+    });
   }
 
   ngOnInit(): void {

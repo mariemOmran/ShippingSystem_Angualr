@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-
+import { GlobalService } from '../Services/global.service';
 export const adminGuard: CanActivateFn = (route, state) => {
-  const role = localStorage.getItem('role');
-  const token = localStorage.getItem('token');
 
+  const token = localStorage.getItem('token');
+ 
   const router = inject(Router);
-  if (role == "admin") {
+  if (inject(GlobalService).globalVariable.roleName =='Admin') {
         return true;
   } else {
     if(token){

@@ -39,19 +39,19 @@ export const routes: Routes = [
         {path:'orders/addorder',component:OrderFormComponent},  //,canActivate:[merchantGuard]
         {path:'report',component:ReportsComponent},
         
-        {path:'role',component:RolesComponent},
-        {path:'role/permissions/:id',component:PermissionsComponent},
+        {path:'role',component:RolesComponent,canActivate: [adminGuard]},
+        {path:'role/permissions/:id',component:PermissionsComponent,canActivate: [adminGuard]},
 
         {path:'employee',component:EmployeesComponent , canActivate: [adminGuard]},
         {path:'MerchantAccounts',component:MerchantAccountsComponent, canActivate: [adminGuard]},
         {path:'DeliveryAccounts',component:DeliveryAccountsComponent , canActivate: [adminGuard]},
+        
+        {path:'DeliveryAccounts/UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent ,canActivate: [adminGuard]},
+        {path:'DeliveryAccounts/AddDeliveryAccount' ,component:AddDeliveryAcountComponent,canActivate: [adminGuard]},
+        {path:'MerchantAccounts/AddMerchantAccount' ,component:AddMerchantAccountComponent,canActivate: [adminGuard,merchantGuard]},
+        {path:'MerchantAccounts/UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent ,canActivate: [adminGuard,merchantGuard]},
+        
         {path:'employee/:id',component:EmployeeFormComponent},
-
-        {path:'DeliveryAccounts/UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent },
-        {path:'DeliveryAccounts/AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
-
-        {path:'MerchantAccounts/AddMerchantAccount' ,component:AddMerchantAccountComponent},
-        {path:'MerchantAccounts/UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent },
         
         {path:'Branches' ,component:BranchesComponent},
         {path:'Governments' ,component:GovernmentsComponent},

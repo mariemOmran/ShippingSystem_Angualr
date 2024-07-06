@@ -16,5 +16,6 @@ export class NavbarComponent {
   
  constructor(private globalService:GlobalService) {
   this.Globalvar=this.globalService.globalVariable;
+  console.log(this.Globalvar);
  }
 }

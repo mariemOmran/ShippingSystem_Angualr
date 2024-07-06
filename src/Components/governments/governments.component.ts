@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 import { IGovernment } from '../../Models/i-government';
+import { GlobalService } from '../../Services/global.service';
 
 @Component({
   selector: 'app-governments',
@@ -27,7 +28,14 @@ export class GovernmentsComponent {
   @ViewChild('dt2') dt2!: Table;
   searchValue: string | undefined;
 
-  constructor(public governmentsService: GovernmentsService,private messageService: MessageService) {}
+  permissions:any =[];
+  constructor(public governmentsService: GovernmentsService,private messageService: MessageService,    private globalService:GlobalService) {
+
+    this.globalService.rolePermissions$.subscribe((permissions) => {
+      this.permissions = permissions.filter((permission: any) => permission.entityName == "Governments");
+      console.log(this.permissions);
+    });
+  }
 
   ngOnInit() {
     this.GetAll();

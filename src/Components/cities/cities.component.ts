@@ -10,6 +10,7 @@ import { Table } from 'primeng/table';
   import { MessageService } from 'primeng/api';
 import { IcityID } from '../../Models/icity-id';
 import { CityService } from '../../Services/city.service';
+import { GlobalService } from '../../Services/global.service';
   
 
 @Component({
@@ -27,8 +28,14 @@ export class CitiesComponent {
     loading = true;
     @ViewChild('dt2') dt2!: Table;
     searchValue: string | undefined;
-  
-    constructor(public cityService: CityService,private messageService: MessageService) {}
+    permissions:any =[];
+    constructor(public cityService: CityService,private messageService: MessageService,    private globalService:GlobalService) {
+
+      this.globalService.rolePermissions$.subscribe((permissions) => {
+        this.permissions = permissions.filter((permission: any) => permission.entityName == "Citites");
+        console.log(this.permissions);
+      });
+    }
   
     ngOnInit() {
       this.GetAll();

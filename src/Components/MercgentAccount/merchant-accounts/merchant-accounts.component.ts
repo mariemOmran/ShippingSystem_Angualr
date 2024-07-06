@@ -9,6 +9,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { MerchantService } from '../../../Services/merchant.service';
 import { TableSharedModule } from '../../../shared/TableShared.module';
+import { GlobalService } from '../../../Services/global.service';
 
 
 @Component({
@@ -39,7 +40,14 @@ export class MerchantAccountsComponent implements OnInit {
   searchValue: string = '';
 
   @ViewChild('dt2') dt2!: Table;
-  constructor(private _MerchantService: MerchantService, private _Router: Router) {}
+  permissions:any =[];
+  constructor(private _MerchantService: MerchantService, private _Router: Router,    private globalService:GlobalService
+  ) {
+    this.globalService.rolePermissions$.subscribe((permissions) => {
+      this.permissions = permissions.filter((permission: any) => permission.entityName == "Merchants");
+      console.log(this.permissions);
+    });
+  }
 
   ngOnInit(): void {
     this.loadMerchantAccounts();

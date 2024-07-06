@@ -38,6 +38,9 @@ token :any = '';
    return this.http.get(`${environment.apiUrl}Orders`);
   }
 
+  getAllOrdersForMercahnt(id:number){
+    return this.http.get(`${environment.apiUrl}Orders/AllOrdersForMerchant?MerchantId=${id}`);
+   }
   deleteOrder(id:number){
     return this.http.delete(`${environment.apiUrl}orders/${id}`);
   }

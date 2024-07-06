@@ -4,6 +4,7 @@ import { TableSharedModule } from '../../shared/TableShared.module';
 import { Component, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { RouterLink } from '@angular/router';
+import { GlobalService } from '../../Services/global.service';
  
 @Component({
   selector: 'app-employees',
@@ -25,9 +26,12 @@ export class EmployeesComponent {
 
 
 
-
- constructor(public EmpService:EmployeeService,private messageService:MessageService) {
-  
+  permissions:any =[];
+ constructor(public EmpService:EmployeeService,private messageService:MessageService,    private globalService:GlobalService) {
+  this.globalService.rolePermissions$.subscribe((permissions) => {
+    this.permissions = permissions.filter((permission: any) => permission.entityName == "Employees");
+    console.log(this.permissions);
+  });
  }
   ngOnInit() {
   this.GetAll();

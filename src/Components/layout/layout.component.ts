@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { AuthServiceService } from '../../Services/auth-service.service';
+import { GlobalService } from '../../Services/global.service';
  
 
 @Component({
@@ -14,7 +15,7 @@ import { AuthServiceService } from '../../Services/auth-service.service';
 })
 export class LayoutComponent {
   isSidebarVisible = false;
-
+roleName=''
   toggleSidebar() {
     console.log("ok")
     this.isSidebarVisible = !this.isSidebarVisible;
@@ -23,8 +24,8 @@ export class LayoutComponent {
   /**
    *
    */
-  constructor(private authService:AuthServiceService) {
-    
+  constructor(private globalService:GlobalService) {
+    this.roleName=this.globalService.globalVariable.roleName;
   }
 
   // @HostListener('window:resize', ['$event'])

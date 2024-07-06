@@ -9,6 +9,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { DeliveryService } from '../../../Services/delivery.service';
 import { TableSharedModule } from '../../../shared/TableShared.module';
+import { GlobalService } from '../../../Services/global.service';
 
 @Component({
   selector: 'app-delivery-accounts',
@@ -35,8 +36,14 @@ export class DeliveryAccountsComponent implements OnInit {
  
   @ViewChild('dt2') dt2!: Table;
  
+  permissions:any =[];
+  constructor(private _DeliveryService: DeliveryService, private _Router :Router,    private globalService:GlobalService) {
 
-  constructor(private _DeliveryService: DeliveryService, private _Router :Router) {}
+    this.globalService.rolePermissions$.subscribe((permissions) => {
+      this.permissions = permissions.filter((permission: any) => permission.entityName == "Delivers");
+      console.log(this.permissions);
+    });
+  }
 
   ngOnInit(): void {
     this.loadDeliveryAccounts();

@@ -1,6 +1,10 @@
-<p-card class="card mt-5 mb-3">
-  <div class="d-flex justify-content-between">
-    <button class="btn btn-primary rounded fs-5" [routerLink]="['addorder']">
+<p-card class="card mt-5 mb-3 text-end">
+  <div class="d-flex justify-content-between text-end">
+    <button
+      class="btn btn-primary rounded fs-5"
+      [routerLink]="['addorder']"
+      *ngIf="RoleName == 'Merchant'"
+    >
       <i class="bi bi-plus-circle"></i>
       إضافة طلب
     </button>
@@ -16,7 +20,7 @@
   [rowsPerPageOptions]="[10, 25, 50]"
   [paginator]="true"
   [loading]="loading"
-  [responsive]="true"
+  [scrollable]="true"
   [exportHeader]="'customExportHeader'"
   [globalFilterFields]="['id', 'status']"
   [tableStyle]="{ 'min-width': '75rem' }"
@@ -63,9 +67,10 @@
   <ng-template pTemplate="header">
     <tr>
       <th>طباعة</th>
+
       <th>الإعدادات</th>
-      <th>تغيير الحالة</th>
-      <th>status</th>
+      <th *ngIf="permissions.cancanUpdate">تغيير الحالة</th>
+      <th>الحالة</th>
       <th>تكلفة الطلب</th>
       <th>المدينه></th>
       <th>المحافظة</th>
@@ -74,6 +79,7 @@
       <th>الرقم التسلسلى</th>
     </tr>
   </ng-template>
+
   <ng-template pTemplate="body" let-order>
     <tr #tableRow>
       <td>
@@ -82,11 +88,18 @@
         </button>
       </td>
       <td>
-        <button class="btn btn-primary mx-3">
+        <button
+          class="btn btn-primary mx-3"
+          [disabled]="!permissions.cancanUpdate"
+        >
           <!-- [routerLink]="['/employee/', emp.id]" -->
           <i class="bi bi-pen"></i>
         </button>
-        <button class="btn btn-danger" (click)="Delete(order.id)">
+        <button
+          class="btn btn-danger"
+          (click)="Delete(order.id)"
+          [disabled]="!permissions.cancanDelete"
+        >
           <i class="bi bi-trash2"></i>
         </button>
       </td>
@@ -96,6 +109,7 @@
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           (click)="changeIdStatus(order.id)"
+          [disabled]="!permissions.cancanUpdate"
         >
           تغيير الحالة
         </button>

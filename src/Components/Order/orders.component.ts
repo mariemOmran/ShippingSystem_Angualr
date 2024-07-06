@@ -1,22 +1,17 @@
+ 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TableSharedModule } from '../../shared/TableShared.module';
 import { Table } from 'primeng/table';
 import { OrderServiceService } from '../../Services/order-service.service';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { DialogComponent } from './dialog/dialog.component';
 import { PdfGeneratorService } from '../../Services/pdf-generator.service';
+import { GlobalService } from '../../Services/global.service';
+ 
 
 
-interface Column {
-  field: string;
-  header: string;
-  customExportHeader?: string;
-}
-interface ExportColumn {
-  title: string;
-  dataKey: string;
-}
+ 
 @Component({
   selector: 'app-orders',
   standalone: true,
@@ -34,46 +29,70 @@ export class OrdersComponent implements OnInit {
   @ViewChild('tableRow', { static: false }) tableRow!: ElementRef;
   searchValue: string | undefined;
   orderId:number = 0;
-  cols!: Column[];
+ 
 
-  exportColumns!: ExportColumn[];
+  permissions:any =[];
+RoleName :string =''
+ 
  
 
   statuses: { label: string; value: string }[] = [];
-  constructor(private orderService:OrderServiceService,private messageService:MessageService,private pdfService: PdfGeneratorService) {
-    
+  constructor(private orderService:OrderServiceService,
+              private messageService:MessageService,
+              private globalService:GlobalService,
+              private pdfService: PdfGeneratorService,
+              private activeRoute:ActivatedRoute
+            ) {
+ 
+ 
+this.RoleName=this.globalService.globalVariable.roleName;
+ this.globalService.rolePermissions$.subscribe((permissions) => {
+  this.permissions = permissions.filter((permission: any) => permission.entityName == "Orders");
+  console.log(this.permissions);
+});
   }
 
   ngOnInit(): void {
-    this.orderService.getAllOrders().subscribe({
-      next:(data)=>{this.Orders=data ; console.log(data)},
-      error:(err)=>console.log(err),
-      complete: ()=>this.loading=false
-    })
-
-    this.orderService.getAllOrderStatuses().subscribe({
-      next:(data:any)=>{
-        
-      
-        this.statuses = data.map((status:any) => ({
-          label: status,
-          value: status.toLowerCase().replace(/\s+/g, '')
-        }));
-      
-   
-      
-      },
-      error:(err)=>console.log(err),
-    })
-    this.cols = [
-      { field: 'id', header: 'id', customExportHeader: 'Product Code' },
-      { field: 'clientName', header: 'clientName' },
+this.GetAll();
   
-  ];
-
-    this.exportColumns = this.cols.map((col) => ({ title: col.header, dataKey: col.field }));
-
+    this.getStatuses();
+ 
+   
   }
+
+
+
+GetAll(){
+  // this.orderService.getAllOrders().subscribe({
+  //   next:(data)=>{this.Orders=data ; console.log(data)},
+  //   error:(err)=>console.log(err),
+  //   complete: ()=>this.loading=false
+  // }) 
+  this.orderService.getAllOrdersForMercahnt(Number(this.globalService.globalVariable.id)).subscribe({
+    next:(data)=>{this.Orders=data ; console.log(data)},
+    error:(err)=>console.log(err),
+    complete: ()=>this.loading=false
+  })
+
+}
+
+getStatuses(){
+  this.orderService.getAllOrderStatuses().subscribe({
+    next:(data:any)=>{
+      
+    
+      this.statuses = data.map((status:any) => ({
+        label: status,
+        value: status.toLowerCase().replace(/\s+/g, '')
+      }));
+    
+ 
+    },
+    error:(err)=>console.log(err),
+  })
+}
+
+
   printTableRowAsPdf() {
     const rowElement = this.tableRow.nativeElement;
     this.pdfService.generatePdfFromTableRow(rowElement);

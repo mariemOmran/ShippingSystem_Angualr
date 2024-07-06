@@ -29,7 +29,7 @@ export class DialogComponent implements OnInit  {
   ngOnInit() {
     this.orderservice.getAllOrderStatuses().subscribe({
       next:(data)=>{
-        console.log(data)
+    
         this.OrderStatuses=data},
       error:(error)=>console.log(error)
     })

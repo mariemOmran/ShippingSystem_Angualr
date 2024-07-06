@@ -29,54 +29,76 @@
             <span class="material-icons-sharp"> dashboard </span>
             <h3>Dashboard</h3>
           </a>
-          <a
-            href="#"
-            [routerLink]="['/role']"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: false }"
-          >
-            <span> <i class="bi bi-shield-check fs-4"></i></span>
-            <h3>الصلاحيات</h3>
-          </a>
-          <a
-            href="#"
-            [routerLink]="['/employee']"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: false }"
-          >
-            <span class="material-icons-sharp"> person_outline </span>
-            <h3>الموظفين</h3>
-          </a>
-          <a
-            href="#"
-            [routerLink]="['/Branches']"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: false }"
-            ><span>
-              <i class="bi bi-bank fs-4"></i>
-            </span>
-            <h3>الفروع</h3>
-          </a> 
-          <a
-          href="#"
-          [routerLink]="['/Governments']"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: false }"
-          ><span>
-            <i class="bi bi-bank fs-4"></i>
-          </span>
-          <h3>المحافظات</h3>
-        </a>
+          <ng-container *ngIf="roleName == 'Admin'">
             <a
-            href="#"
-            [routerLink]="['/Cities']"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: false }"
-            ><span>
-              <i class="bi bi-bank fs-4"></i>
-            </span>
-            <h3>المدن</h3>
-          </a>
+              href="#"
+              [routerLink]="['/role']"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+            >
+              <span> <i class="bi bi-shield-check fs-4"></i></span>
+              <h3>الصلاحيات</h3>
+            </a>
+            <a
+              href="#"
+              [routerLink]="['/employee']"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+            >
+              <span class="material-icons-sharp"> person_outline </span>
+              <h3>الموظفين</h3>
+            </a>
+            <!-- Link To Display Delivery Accounts  -->
+            <a
+              [routerLink]="['/DeliveryAccounts']"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+            >
+              <span>
+                <i class="bi bi-person-walking fs-4"></i>
+              </span>
+              <h3>المندوب</h3>
+            </a>
+
+            <!-- Link To Display Merchant Accounts  -->
+            <a [routerLink]="['/MerchantAccounts']" routerLinkActive="active">
+              <span>
+                <i class="bi bi-shop fs-4"></i>
+              </span>
+              <h3>التاجر</h3>
+            </a>
+            <a
+              href="#"
+              [routerLink]="['/Branches']"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+              ><span>
+                <i class="bi bi-bank fs-4"></i>
+              </span>
+              <h3>الفروع</h3>
+            </a>
+            <a
+              href="#"
+              [routerLink]="['/Governments']"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+              ><span>
+                <i class="bi bi-bank fs-4"></i>
+              </span>
+              <h3>المحافظات</h3>
+            </a>
+            <a
+              href="#"
+              [routerLink]="['/Cities']"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+              ><span>
+                <i class="bi bi-bank fs-4"></i>
+              </span>
+              <h3>المدن</h3>
+            </a>
+          </ng-container>
+
           <a
             href="#"
             [routerLink]="['/orders']"
@@ -89,34 +111,19 @@
             <h3>الطلبات</h3>
           </a>
 
-          <!-- Link To Display Delivery Accounts  -->
           <a
-            [routerLink]="['/DeliveryAccounts']"
+            href="#"
+            [routerLink]="['/report']"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: false }"
+            *ngIf="roleName == 'Admin'"
           >
-            <span>
-              <i class="bi bi-person-walking fs-4"></i>
-            </span>
-            <h3>المندوب</h3>
-          </a>
-
-          <!-- Link To Display Merchant Accounts  -->
-          <a [routerLink]="['/MerchantAccounts']" routerLinkActive="active">
-            <span>
-              <i class="bi bi-shop fs-4"></i>
-            </span>
-            <h3>التاجر</h3>
-          </a>
-
-          <a href="#" [routerLink]="['/report']" routerLinkActive="active">
             <span class="material-icons-sharp"> report_gmailerrorred </span>
-            <h3>Reports</h3>
+            <h3>التقارير</h3>
           </a>
-          <a href="#">
+          <!-- <a href="#">
             <span class="material-icons-sharp"> settings </span>
             <h3>Settings</h3>
-          </a>
+          </a> -->
 
           <a href="#">
             <span class="material-icons-sharp"> logout </span>

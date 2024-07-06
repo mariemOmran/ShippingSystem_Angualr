@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
+import { GlobalService } from '../../Services/global.service';
  
 @Component({
   selector: 'app-roles',
@@ -25,8 +26,13 @@ export class RolesComponent {
   loading = true;
   @ViewChild('dt2') dt2!: Table;
   searchValue: string | undefined;
-
-  constructor(public roleService: RolesService,private messageService: MessageService) {}
+  permissions:any =[];
+  constructor(public roleService: RolesService,private messageService: MessageService,    private globalService:GlobalService) {
+    this.globalService.rolePermissions$.subscribe((permissions) => {
+      this.permissions = permissions.filter((permission: any) => permission.entityName == "Roles");
+      console.log(this.permissions);
+    });
+  }
 
   ngOnInit() {
     this.GetAll();
