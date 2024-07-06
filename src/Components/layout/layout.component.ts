@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { AuthServiceService } from '../../Services/auth-service.service';
@@ -24,7 +24,7 @@ roleName=''
   /**
    *
    */
-  constructor(private globalService:GlobalService) {
+  constructor(private globalService:GlobalService,private router:Router) {
     this.roleName=this.globalService.globalVariable.roleName;
   }
 
@@ -36,4 +36,8 @@ roleName=''
   //     this.isSidebarVisible = false;
   //   }
   // }
+  logOut(){
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('login');
+  }
 }

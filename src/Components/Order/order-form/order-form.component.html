@@ -212,16 +212,16 @@
                 </button>
               </th>
               <td class="input-name-product">
-                <input formControlName="name" type="text" pInputText class="custom-border input-name-product" />
+                <input formControlName="name" type="text" pInputText (mouseover)="updateTotals()" class="custom-border input-name-product" />
               </td>
               <td class="input-name-product">
-                <input type="text" formControlName="price" pInputText class="custom-border input-name-product" />
+                <input type="text" formControlName="price" (mouseover)="updateTotals()" pInputText class="custom-border input-name-product" />
               </td>
               <td class="input-weight">
-                <input type="text" formControlName="weight" pInputText class="custom-border input-weight" />
+                <input type="text" formControlName="weight" (mouseover)="updateTotals()" pInputText class="custom-border input-weight" />
               </td>
               <td class="input-quantity">
-                <input type="text" formControlName="quantity" pInputText class="custom-border input-quantity" />
+                <input type="text" formControlName="quantity" (mouseover)="updateTotals()" pInputText class="custom-border input-quantity" />
               </td>
             </tr>
           </ng-container>
@@ -312,19 +312,5 @@
   </div>
 </form>
 
-<!-- Debug Information -->
-<div>
-  {{orderForm.value | json}}
-  {{orderForm.status| json}}
-  {{orderForm.hasValidator| json}}
-  {{orderForm.contains| json}}
-  {{orderForm.disable| json}}
-  {{orderForm.dirty| json}}
-  {{orderForm.getError| json}}
-  {{orderForm.validator| json}}
-  {{orderForm.updateValueAndValidity| json}}
-  {{orderForm.hasError| json}}
-  {{orderForm.validator| json}}
-  {{orderForm.validator| json}}
 
-</div>
+

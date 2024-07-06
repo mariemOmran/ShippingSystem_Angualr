@@ -13,13 +13,13 @@ import { Router } from '@angular/router';
 declare function initializeSwiper(): void;
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login',  
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  encapsulation: ViewEncapsulation.None // Use None to allow global styles to be applied
-})
+  encapsulation: ViewEncapsulation.None // Use None to allow global styles to be applied -> i used it because global style override this compnent style
+}) 
 
 export class LoginComponent implements AfterViewInit {
   accObj?:ILogin;

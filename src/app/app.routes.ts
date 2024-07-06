@@ -35,8 +35,8 @@ export const routes: Routes = [
     {path:'',component:LayoutComponent,  canActivate: [isLoginGuard],children:[
         {path:'',component:MainDashboardComponent}, //,canActivate:[employeeGuard,adminGuard,merchantGuard,deliveryGuard]
         
-        {path:'orders',component:OrdersComponent},  //,canActivate:[adminGuard,deliveryGuard]
-        {path:'orders/addorder',component:OrderFormComponent},  //,canActivate:[merchantGuard]
+        {path:'orders',component:OrdersComponent,canActivate:[adminGuard,deliveryGuard]},  //,canActivate:[adminGuard,deliveryGuard]
+        {path:'orders/addorder',component:OrderFormComponent,canActivate:[merchantGuard]},  //,canActivate:[merchantGuard]
         {path:'report',component:ReportsComponent},
         
         {path:'role',component:RolesComponent,canActivate: [adminGuard]},
