@@ -7,16 +7,16 @@
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
     >
-      <i class="bi bi-shield-plus"></i>
-      إضافة صلاحية
+      <i class="bi bi-plus-circle"></i>
+      إضافة فرع
     </button>
-    <span class="fs-3 fw-bold text-end">الصلاحيات</span>
+    <span class="fs-3 fw-bold text-end">الفروع</span>
   </div>
 </p-card>
 
 <p-table
   #dt2
-  [value]="Roles"
+  [value]="Branches"
   dataKey="id"
   [rows]="10"
   [rowsPerPageOptions]="[5, 10, 50]"
@@ -50,11 +50,12 @@
       <th></th>
       <th>الإعدادات</th>
 
+      <th>الحالة</th>
       <th>تاريخ الإضافة</th>
-      <th>إسم الصلاحية</th>
+      <th>إسم الفرع</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-role>
+  <ng-template pTemplate="body" let-branch>
     <tr>
       <td></td>
       <td>
@@ -64,37 +65,43 @@
           class="btn btn-primary"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
-          (click)="changeIdVal(role.id)"
+          (click)="changeIdVal(branch.id)"
         >
           <i class="bi bi-pen"></i>
         </button>
-        <button class="btn btn-danger mx-1" (click)="Delete(role.id)">
+        <button class="btn btn-danger mx-1" (click)="Delete(branch.id)">
           <i class="bi bi-trash2"></i>
         </button>
-        <button
-          class="btn btn-warning mx-1"
-          [routerLink]="['permissions', role.id]"
-        >
-          <i class="bi bi-sliders"></i>
-        </button>
+        <!-- <button
+            class="btn btn-warning mx-1"
+            [routerLink]="['permissions', branch.id]"
+          >
+            <i class="bi bi-sliders"></i>
+          </button> -->
       </td>
 
       <td>
-        {{ role.createdDate }}
+        <p-inputSwitch
+          [(ngModel)]="branch.status"
+          (onChange)="onSwitchChange($event, branch.id)"
+        />
       </td>
       <td>
-        {{ role.name }}
+        {{ branch.createdDate }}
+      </td>
+      <td>
+        {{ branch.name }}
       </td>
     </tr>
   </ng-template>
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td class="text-center" colspan="7">لم يتم إيجاد الصلاحية</td>
+      <td class="text-center" colspan="7">لم يتم إيجاد الفرع</td>
     </tr>
   </ng-template>
 </p-table>
 
-<app-dialog [id]="DialogId" (roleAdded)="onRoleAdded()"></app-dialog>
+<app-dialog [id]="DialogId" (branchAdded)="onBranchAdded()"></app-dialog>
 <div class="card flex justify-content-center">
   <p-toast />
 </div>

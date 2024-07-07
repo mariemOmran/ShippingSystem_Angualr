@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild,ElementRef, OnChanges, SimpleChanges  } from '@angular/core';
 import { TableSharedModule } from '../../../shared/TableShared.module';
-import { RolesService } from '../../../AbdallahServices/roles.service';
+import { RolesService } from '../../../Services/roles.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 declare var bootstrap: any;
