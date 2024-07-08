@@ -41,8 +41,10 @@ export class LoginComponent implements AfterViewInit {
   deliveryLoginForm: FormGroup = new FormGroup({
     Email: new FormControl('', [Validators.required, Validators.email]),
     Password: new FormControl('', [Validators.required])
-  }, 
-  { asyncValidators: emailPasswordValidator(this.authService,'Delivery') });
+  });
+
+  
+  // { asyncValidators: emailPasswordValidator(this.authService,'Delivery') }
   
   merchantLoginForm: FormGroup = new FormGroup({
     Email: new FormControl('', [Validators.required, Validators.email]),

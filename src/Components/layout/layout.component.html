@@ -29,86 +29,85 @@
             <span class="material-icons-sharp"> dashboard </span>
             <h3>Dashboard</h3>
           </a>
-          <ng-container *ngIf="roleName == 'Admin'">
-            <a
-              href="#"
-              [routerLink]="['/role']"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: false }"
-              *ngIf="permissions['الإعدادات']"
-            >
-              <span> <i class="bi bi-shield-check fs-4"></i></span>
-              <h3>الصلاحيات</h3>
-            </a>
-            <a
-              href="#"
-              [routerLink]="['/employee']"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: false }"
-              *ngIf="permissions['الموظفين']"
-            >
-              <span class="material-icons-sharp"> person_outline </span>
-              <h3>الموظفين</h3>
-            </a>
-            <!-- Link To Display Delivery Accounts  -->
-            <a
-              [routerLink]="['/DeliveryAccounts']"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: false }"
-              *ngIf="permissions['المندوبين']"
-            >
-              <span>
-                <i class="bi bi-person-walking fs-4"></i>
-              </span>
-              <h3>المندوب</h3>
-            </a>
 
-            <!-- Link To Display Merchant Accounts  -->
-            <a
-              [routerLink]="['/MerchantAccounts']"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: false }"
-              *ngIf="permissions['التجار']"
-            >
-              <span>
-                <i class="bi bi-shop fs-4"></i>
-              </span>
-              <h3>التاجر</h3>
-            </a>
-            <a
-              href="#"
-              [routerLink]="['/Branches']"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: false }"
-              *ngIf="permissions['الفروع']"
-              ><span>
-                <i class="bi bi-bank fs-4"></i>
-              </span>
-              <h3>الفروع</h3>
-            </a>
-            <a
-              href="#"
-              [routerLink]="['/Governments']"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: false }"
-              *ngIf="permissions['المحافظات']"
-              ><span>
-                <i class="bi bi-bank fs-4"></i>
-              </span>
-              <h3>المحافظات</h3>
-            </a>
-            <a
-              href="#"
-              [routerLink]="['/Cities']"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: false }"
-              *ngIf="permissions['المدن']"
-              ><span>
-                <i class="bi bi-bank fs-4"></i>
-              </span>
-              <h3>المدن</h3>
-            </a>
-          </ng-container>
+          <a
+            href="#"
+            [routerLink]="['/role']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            *ngIf="permissions['الإعدادات']"
+          >
+            <span> <i class="bi bi-shield-check fs-4"></i></span>
+            <h3>الصلاحيات</h3>
+          </a>
+          <a
+            href="#"
+            [routerLink]="['/employee']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            *ngIf="permissions['الموظفين']"
+          >
+            <span class="material-icons-sharp"> person_outline </span>
+            <h3>الموظفين</h3>
+          </a>
+          <!-- Link To Display Delivery Accounts  -->
+          <a
+            [routerLink]="['/DeliveryAccounts']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            *ngIf="permissions['المندوبين']"
+          >
+            <span>
+              <i class="bi bi-person-walking fs-4"></i>
+            </span>
+            <h3>المندوب</h3>
+          </a>
+
+          <!-- Link To Display Merchant Accounts  -->
+          <a
+            [routerLink]="['/MerchantAccounts']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            *ngIf="permissions['التجار']"
+          >
+            <span>
+              <i class="bi bi-shop fs-4"></i>
+            </span>
+            <h3>التاجر</h3>
+          </a>
+          <a
+            href="#"
+            [routerLink]="['/Branches']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            *ngIf="permissions['الفروع']"
+            ><span>
+              <i class="bi bi-bank fs-4"></i>
+            </span>
+            <h3>الفروع</h3>
+          </a>
+          <a
+            href="#"
+            [routerLink]="['/Governments']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            *ngIf="permissions['المحافظات']"
+            ><span>
+              <i class="bi bi-bank fs-4"></i>
+            </span>
+            <h3>المحافظات</h3>
+          </a>
+          <a
+            href="#"
+            [routerLink]="['/Cities']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            *ngIf="permissions['المدن']"
+            ><span>
+              <i class="bi bi-bank fs-4"></i>
+            </span>
+            <h3>المدن</h3>
+          </a>
 
           <a
             href="#"
