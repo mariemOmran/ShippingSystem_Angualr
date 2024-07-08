@@ -50,9 +50,9 @@ export class LoginComponent implements AfterViewInit {
     Email: new FormControl('', [Validators.required, Validators.email]),
     Password: new FormControl('', [Validators.required])
   }, 
-  { asyncValidators: emailPasswordValidator(this.authService,'Merchant') });
-
-
+  
+);
+// { asyncValidators: emailPasswordValidator(this.authService,'Merchant') }
 
 
   handleLogin(role:string) {
@@ -73,6 +73,9 @@ export class LoginComponent implements AfterViewInit {
           else{  //email and password are correct
             const jsonObject = JSON.parse(res);
             localStorage.setItem('token', jsonObject.readLoginDTO.token);
+            this.globalService.loadGlobalData().then(() => {
+              this.router.navigate(['/']);
+            });
           
 
 
@@ -130,6 +133,9 @@ export class LoginComponent implements AfterViewInit {
           else{  //email and password are correct
             const jsonObject = JSON.parse(res);
             localStorage.setItem('token', jsonObject.readLoginDTO.token);
+            this.globalService.loadGlobalData().then(() => {
+              this.router.navigate(['/']);
+            });
       
 
 
