@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild,ElementRef, OnChanges, SimpleChanges  } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild,ElementRef, OnChanges, SimpleChanges, OnDestroy, input  } from '@angular/core';
 import { TableSharedModule } from '../../../shared/TableShared.module';
 import { BranchesService } from '../../../Services/branches.service';
 import { Router } from '@angular/router';
@@ -21,24 +21,28 @@ export class DialogComponent implements OnInit ,OnChanges {
   @Output() branchAdded: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild('exampleModal') exampleModal!: ElementRef;
-  branchObj:IBranch={name:"",status:true,governmentID:1};
-  governments!:IGovernment[];
+  branchObj:IBranch={name:"",status:true,governmentID:0};
+  @Input() governments!:IGovernment[];
 
   isValid:boolean=true;
 
-  constructor(private branchService: BranchesService, private governmentService:GovernmentsService, public router:Router,private messageService: MessageService) {
+  constructor(
+      private branchService: BranchesService,
+      private governmentService:GovernmentsService,
+      public router:Router,
+      private messageService: MessageService
+    ) {
   
   }
   ngOnChanges(changes: SimpleChanges): void {
     if(this.id != 0){
       this.branchService.GetByID(this.id).subscribe({
         next: (data) => {
+          console.log(data);
           this.branchObj=data;
-          console.log(this.branchObj.governmentID);
           
         },
         error: (err) => {
-          console.log(err);
           this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ ، حاول مره اخرى' });
 
         }
@@ -47,18 +51,35 @@ export class DialogComponent implements OnInit ,OnChanges {
   }
   
 
-  
-  ngOnInit() {
+  LoadGovernatorsNoBranches(){
+    this.governmentService.GetAllGovernmentsNoBranches().subscribe({
+      next: (data) => {
+        this.governments = data as IGovernment[];
+      },
+      error: (err) => {
+        this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'لا يوجد محافظات' });
+
+      }
+    });
+  }
+  LoadALLGovernators(){
     this.governmentService.GetAllGovernments().subscribe({
       next: (data) => {
         this.governments = data as IGovernment[];
       },
       error: (err) => {
-        console.log(err);
         this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'لا يوجد محافظات' });
 
       }
     });
+  }
+  ngOnInit() {
+    if(this.id!=0){
+      this.LoadALLGovernators();
+    }else{
+      this.LoadGovernatorsNoBranches();
+
+    }
   }
 
   branchControl() {
@@ -72,14 +93,12 @@ export class DialogComponent implements OnInit ,OnChanges {
       if (this.id == 0) {
         this.branchService.AddBranch(this.branchObj).subscribe({
           next: (data) => {
-            console.log('branch added:', data);
             this.branchAdded.emit();
             this.messageService.add({ severity: 'success', summary: 'تم الحفظ', detail: 'تم إضافة الفرع ' });
   
             this.closeModal();
           },
           error: (err) => {
-            console.log(err);
             this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحفظ' });
             
           },     complete:()=>{this.id=0,this.branchObj.name="",this.branchObj.governmentID=1}
@@ -88,7 +107,6 @@ export class DialogComponent implements OnInit ,OnChanges {
         this.branchService.UpdateBranch(this.id, this.branchObj).subscribe({
           
           next: (data) => {
-            console.log('branch Updated:', data);
           
             this.branchAdded.emit();
             this.messageService.add({ severity: 'success', summary: 'تم الحفظ', detail: 'تم تعديل الفرع ' });
@@ -98,7 +116,6 @@ export class DialogComponent implements OnInit ,OnChanges {
           error: (err) => {
             this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحفظ' });
   
-            console.log(err);
           },
           complete:()=>{this.id=0,this.branchObj.name="",this.branchObj.governmentID=1}
         });
@@ -113,15 +130,21 @@ export class DialogComponent implements OnInit ,OnChanges {
     this.branchObj = {
       name: '',
       status:true,
-      governmentID: 1
+      governmentID: 0
     };
+    if(this.id!=0){
+      this.LoadALLGovernators();
+    }else{
+
+      this.LoadGovernatorsNoBranches();
+    }
   }
   closeModal() {
     const modalElement = this.exampleModal.nativeElement;
     const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
    
-    console.log(this.id)
     modal.hide();
   }
+
 }
 ;
