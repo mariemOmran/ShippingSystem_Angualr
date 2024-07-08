@@ -3,6 +3,7 @@
     <button
       class="btn btn-primary rounded fs-5"
       [routerLink]="['AddDeliveryAccount']"
+      [disabled]="!permissions[0].canCreate"
     >
       <i class="bi bi-person-plus"></i>
       إضافة مندوب
@@ -56,21 +57,28 @@
   <ng-template pTemplate="body" let-account>
     <tr>
       <td>
-        <i
-          class="bi bi-pencil-square success m-2"
+        <button
+          class="btn btn-primary mx-2"
+          [disabled]="!permissions[0].canWrite"
           (click)="onEditAccount(account.id)"
-        ></i>
+        >
+          <i class="bi bi-pencil-square m-2"></i>
+        </button>
 
-        <i
-          class="bi bi-trash danger m-2"
+        <button
+          class="btn btn-danger"
+          [disabled]="!permissions[0].canDelete"
           (click)="onDeleteAccount(account.id)"
-        ></i>
+        >
+          <i class="bi bi-trash m-2"></i>
+        </button>
       </td>
       <td>{{ account.discountType }}<span>%</span></td>
       <td>
         <p-inputSwitch
           [(ngModel)]="account.status"
           (onChange)="onSwitchChange($event)"
+          [disabled]="!permissions[0].canWrite"
         ></p-inputSwitch>
       </td>
       <td>{{ account.branch }}</td>

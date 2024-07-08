@@ -6,6 +6,7 @@
       class="btn btn-primary"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
+      [disabled]="!permissions[0].canCreate"
     >
       <i class="bi bi-plus-square"></i>
       إضافة محافظة
@@ -58,7 +59,11 @@
     <tr>
       <td></td>
       <td>
-        <button class="btn btn-danger mx-1" (click)="Delete(government.id)">
+        <button
+          class="btn btn-danger mx-1"
+          (click)="Delete(government.id)"
+          [disabled]="!permissions[0].canDelete"
+        >
           <i class="bi bi-trash"></i>
         </button>
         <button
@@ -68,6 +73,7 @@
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           (click)="changeIdVal(government.id)"
+          [disabled]="!permissions[0].canWrite"
         >
           <i class="bi bi-pen"></i>
         </button>
@@ -77,6 +83,7 @@
         <p-inputSwitch
           [(ngModel)]="government.status"
           (onChange)="onSwitchChange($event, government.id)"
+          [disabled]="!permissions[0].canWrite"
         />
       </td>
       <td>

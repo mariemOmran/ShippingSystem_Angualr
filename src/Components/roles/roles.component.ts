@@ -28,14 +28,14 @@ export class RolesComponent {
   searchValue: string | undefined;
   permissions:any =[];
   constructor(public roleService: RolesService,private messageService: MessageService,    private globalService:GlobalService) {
-    this.globalService.rolePermissions$.subscribe((permissions) => {
-      this.permissions = permissions.filter((permission: any) => permission.entityName == "Roles");
-      console.log(this.permissions);
-    });
+  
   }
 
   ngOnInit() {
     this.GetAll();
+    
+    this.permissions = this.globalService.getEntitiesPermissions("الإعدادات");
+console.log(this.permissions)
   }
   changeIdVal(id:number){
     

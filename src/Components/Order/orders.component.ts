@@ -1,5 +1,5 @@
  
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TableSharedModule } from '../../shared/TableShared.module';
 import { Table } from 'primeng/table';
 import { OrderServiceService } from '../../Services/order-service.service';
@@ -20,7 +20,7 @@ import { GlobalService } from '../../Services/global.service';
   styleUrl: './orders.component.css'
 })
 
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit  {
 
 
   Orders:any=[];
@@ -31,7 +31,7 @@ export class OrdersComponent implements OnInit {
   orderId:number = 0;
  
 
-  permissions:any =[];
+  permissions:any ;
 RoleName :string =''
  
  
@@ -44,21 +44,21 @@ RoleName :string =''
               private activeRoute:ActivatedRoute
             ) {
  
-              this.RoleName=this.globalService.globalVariable.roleName;
-              this.globalService.rolePermissions$.subscribe((permissions) => {
-               this.permissions = permissions.filter((permission: any) => permission.entityName == "الطلبات");
-             });
+         
+       
 
   }
+  
 
   ngOnInit(): void {
 this.GetAll();
   
     this.getStatuses();
  
-
-
-console.log(this.permissions.canCreate)
+  
+    this.RoleName=this.globalService.globalVariable.roleName;
+    this.permissions = this.globalService.getEntitiesPermissions("الطلبات");
+console.log(this.permissions)
    
   }
 
@@ -70,7 +70,8 @@ GetAll(){
   //   error:(err)=>console.log(err),
   //   complete: ()=>this.loading=false
   // }) 
-  this.orderService.getAllOrdersForMercahnt(Number(this.globalService.globalVariable.id)).subscribe({
+  // Number(this.globalService.globalVariable.id)
+  this.orderService.getAllOrdersForMercahnt(1).subscribe({
     next:(data)=>{this.Orders=data ;},
     error:(err)=>{console.log(err); this.loading=false},
     complete: ()=>this.loading=false

@@ -1,6 +1,10 @@
 <p-card class="card mt-5 mb-3 text-end">
   <div class="d-flex justify-content-between text-end">
-    <button class="btn btn-primary rounded fs-5" [routerLink]="['addorder']">
+    <button
+      class="btn btn-primary rounded fs-5"
+      [routerLink]="['addorder']"
+      *ngIf="permissions[0].canCreate"
+    >
       <i class="bi bi-plus-circle"></i>
       إضافة طلب
     </button>
@@ -86,7 +90,7 @@
       <td>
         <button
           class="btn btn-primary mx-3"
-          [disabled]="!permissions.cancanUpdate"
+          [disabled]="!permissions[0].canWrite"
         >
           <!-- [routerLink]="['/employee/', emp.id]" -->
           <i class="bi bi-pen"></i>
@@ -94,7 +98,7 @@
         <button
           class="btn btn-danger"
           (click)="Delete(order.id)"
-          [disabled]="!permissions.cancanDelete"
+          [disabled]="!permissions[0].canDelete"
         >
           <i class="bi bi-trash2"></i>
         </button>
@@ -105,7 +109,7 @@
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           (click)="changeIdStatus(order.id)"
-          [disabled]="!permissions.cancanUpdate"
+          [disabled]="!permissions[0].canWrite"
         >
           تغيير الحالة
         </button>

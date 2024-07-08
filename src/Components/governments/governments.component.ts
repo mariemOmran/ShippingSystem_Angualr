@@ -31,14 +31,13 @@ export class GovernmentsComponent {
   permissions:any =[];
   constructor(public governmentsService: GovernmentsService,private messageService: MessageService,    private globalService:GlobalService) {
 
-    this.globalService.rolePermissions$.subscribe((permissions) => {
-      this.permissions = permissions.filter((permission: any) => permission.entityName == "Governments");
-      console.log(this.permissions);
-    });
+ 
   }
 
   ngOnInit() {
     this.GetAll();
+    this.permissions = this.globalService.getEntitiesPermissions("المحافظات");
+    console.log(this.permissions)
   }
   changeIdVal(id:number){
     this.DialogId=id;

@@ -28,13 +28,13 @@ export class EmployeesComponent {
 
   permissions:any =[];
  constructor(public EmpService:EmployeeService,private messageService:MessageService,    private globalService:GlobalService) {
-  this.globalService.rolePermissions$.subscribe((permissions) => {
-    this.permissions = permissions.filter((permission: any) => permission.entityName == "Employees");
-    console.log(this.permissions);
-  });
+ 
  }
   ngOnInit() {
   this.GetAll();
+  this.permissions = this.globalService.getEntitiesPermissions("الموظفين");
+console.log(this.permissions)
+
   }
 
   clear(table: Table) {
