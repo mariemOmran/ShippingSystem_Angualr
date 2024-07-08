@@ -39,14 +39,13 @@ export class DeliveryAccountsComponent implements OnInit {
   permissions:any =[];
   constructor(private _DeliveryService: DeliveryService, private _Router :Router,    private globalService:GlobalService) {
 
-    this.globalService.rolePermissions$.subscribe((permissions) => {
-      this.permissions = permissions.filter((permission: any) => permission.entityName == "Delivers");
-      console.log(this.permissions);
-    });
+    
   }
 
   ngOnInit(): void {
     this.loadDeliveryAccounts();
+    this.permissions = this.globalService.getEntitiesPermissions("المندوبين");
+    console.log(this.permissions)
   }
 
   loadDeliveryAccounts(): void {

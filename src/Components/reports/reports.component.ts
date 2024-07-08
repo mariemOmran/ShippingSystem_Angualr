@@ -27,17 +27,16 @@ export class ReportsComponent implements OnInit {
   permissions:any =[];
   constructor(private orderService:OrderServiceService,private messageService:MessageService,    private globalService:GlobalService) {
     
-    this.globalService.rolePermissions$.subscribe((permissions) => {
-      this.permissions = permissions.filter((permission: any) => permission.entityName == "Reports");
-      console.log(this.permissions);
-    });
+    
   }
 
   ngOnInit(): void {
 
 this.GetAllOrders();
 this.GetallStatuses();
-
+ 
+this.permissions = this.globalService.getEntitiesPermissions("التقارير");
+console.log(this.permissions)
   }
  
 

@@ -3,6 +3,7 @@
     <button
       class="btn btn-primary rounded fs-5"
       [routerLink]="['AddMerchantAccount']"
+      [disabled]="!permissions[0].canCreate"
     >
       <i class="bi bi-person-plus"></i>
       إضافة تاجر
@@ -60,16 +61,22 @@
         <button
           class="btn btn-primary mx-3"
           (click)="onEditAccount(account.id)"
+          [disabled]="!permissions[0].canWrite"
         >
           <i class="bi bi-pen"></i>
         </button>
-        <button class="btn btn-danger" (click)="onDeleteAccount(account.id)">
+        <button
+          [disabled]="!permissions[0].canDelete"
+          class="btn btn-danger"
+          (click)="onDeleteAccount(account.id)"
+        >
           <i class="bi bi-trash2"></i>
         </button>
       </td>
       <td>
         <p-inputSwitch
           [(ngModel)]="account.status"
+          [disabled]="!permissions[0].canWrite"
           (onChange)="onSwitchChange($event, account.id)"
         />
       </td>

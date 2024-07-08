@@ -43,14 +43,13 @@ export class MerchantAccountsComponent implements OnInit {
   permissions:any =[];
   constructor(private _MerchantService: MerchantService, private _Router: Router,    private globalService:GlobalService
   ) {
-    this.globalService.rolePermissions$.subscribe((permissions) => {
-      this.permissions = permissions.filter((permission: any) => permission.entityName == "Merchants");
-      console.log(this.permissions);
-    });
+ 
   }
 
   ngOnInit(): void {
     this.loadMerchantAccounts();
+    this.permissions = this.globalService.getEntitiesPermissions("التجار");
+    console.log(this.permissions)
   }
 
   loadMerchantAccounts(): void {

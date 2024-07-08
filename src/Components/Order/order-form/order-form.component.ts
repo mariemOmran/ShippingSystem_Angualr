@@ -80,9 +80,9 @@ export class OrderFormComponent implements OnInit {
       merchantAddress: [{value: '', disabled: true}, Validators.required],
     });
 
-    this.merchantID=globalService.getIDAccount;
+    this.merchantID=globalService.globalVariable.id;
     this.orderForm.patchValue({
-     merchantID:this.merchantID,
+     merchantID:1,
     });
     console.log("merchant ID"+this.merchantID);
 

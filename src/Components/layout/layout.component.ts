@@ -16,6 +16,9 @@ import { GlobalService } from '../../Services/global.service';
 export class LayoutComponent {
   isSidebarVisible = false;
 roleName=''
+
+permissions: { [key: string]: boolean } = {};
+permissionsKeys: string[] = [];
   toggleSidebar() {
     console.log("ok")
     this.isSidebarVisible = !this.isSidebarVisible;
@@ -26,16 +29,13 @@ roleName=''
    */
   constructor(private globalService:GlobalService,private router:Router) {
     this.roleName=this.globalService.globalVariable.roleName;
+    this.permissions = this.globalService.AllReadPermissons();
+    this.permissionsKeys = Object.keys(this.permissions);
+    console.log(this.permissions);
+    
   }
 
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event: any) {
-  //   if (event.target.innerWidth > 768) {
-  //     this.isSidebarVisible = true;
-  //   } else {
-  //     this.isSidebarVisible = false;
-  //   }
-  // }
+ 
   logOut(){
     localStorage.removeItem('token');
     this.router.navigateByUrl('login');

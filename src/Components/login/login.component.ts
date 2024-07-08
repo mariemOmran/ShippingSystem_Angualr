@@ -6,6 +6,7 @@ import { AuthServiceService } from '../../Services/auth-service.service';
 import { emailPasswordValidator } from '../../Validators/emailPasswordValidator';
 import { ILogin } from '../../Models/i-login';
 import { Router } from '@angular/router';
+import { GlobalService } from '../../Services/global.service';
 // import Swiper, { EffectCards, Keyboard, Pagination } from 'swiper';
 // import 'swiper/swiper-bundle.css';
 
@@ -24,7 +25,7 @@ declare function initializeSwiper(): void;
 export class LoginComponent implements AfterViewInit {
   accObj?:ILogin;
   
-  constructor(private authService:AuthServiceService,private router:Router){
+  constructor(private authService:AuthServiceService,private router:Router,private globalService:GlobalService){
 
   }
   ngAfterViewInit() {
@@ -97,10 +98,13 @@ export class LoginComponent implements AfterViewInit {
           else{  //email and password are correct
             const jsonObject = JSON.parse(res);
             localStorage.setItem('token', jsonObject.readLoginDTO.token);
+            this.globalService.loadGlobalData().then(() => {
+              this.router.navigate(['/']);
+            });
           
 
 
-            this.router.navigate(['/']);
+            // this.router.navigate(['/']);
           }
         },
         error: (error) => {

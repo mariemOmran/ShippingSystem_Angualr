@@ -29,14 +29,13 @@ export class BranchesComponent {
   searchValue: string | undefined;
   permissions:any =[];
   constructor(public branchesService: BranchesService,private messageService: MessageService,    private globalService:GlobalService) {
-    this.globalService.rolePermissions$.subscribe((permissions) => {
-      this.permissions = permissions.filter((permission: any) => permission.entityName == "Orders");
-      console.log(this.permissions);
-    });
+ 
   }
 
   ngOnInit() {
     this.GetAll();
+    this.permissions = this.globalService.getEntitiesPermissions("الفروع");
+    console.log(this.permissions)
   }
   changeIdVal(id:number){
     this.DialogId=id;

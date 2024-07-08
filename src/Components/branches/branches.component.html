@@ -6,6 +6,7 @@
       class="btn btn-primary"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
+      [disabled]="!permissions[0].canCreate"
     >
       <i class="bi bi-plus-circle"></i>
       إضافة فرع
@@ -59,7 +60,11 @@
     <tr>
       <td></td>
       <td>
-        <button class="btn btn-danger mx-1" (click)="Delete(branch.id)">
+        <button
+          class="btn btn-danger mx-1"
+          [disabled]="!permissions[0].canDelete"
+          (click)="Delete(branch.id)"
+        >
           <i class="bi bi-trash"></i>
         </button>
         <button
@@ -68,6 +73,7 @@
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           (click)="changeIdVal(branch.id)"
+          [disabled]="!permissions[0].canWrite"
         >
           <i class="bi bi-pen"></i>
         </button>
@@ -75,6 +81,7 @@
       <td>
         <p-inputSwitch
           [(ngModel)]="branch.status"
+          [disabled]="!permissions[0].canWrite"
           (onChange)="onSwitchChange($event, branch.id)"
         ></p-inputSwitch>
       </td>
@@ -90,9 +97,7 @@
   </ng-template>
 </p-table>
 
-  
-  <app-dialog [id]="DialogId" (branchAdded)="onBranchAdded()"></app-dialog>
-  <div class="card flex justify-content-center">
-    <p-toast />
-  </div>
-  
+<app-dialog [id]="DialogId" (branchAdded)="onBranchAdded()"></app-dialog>
+<div class="card flex justify-content-center">
+  <p-toast />
+</div>
