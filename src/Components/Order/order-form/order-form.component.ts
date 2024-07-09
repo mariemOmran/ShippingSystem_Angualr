@@ -82,7 +82,7 @@ export class OrderFormComponent implements OnInit {
 
     this.merchantID=globalService.globalVariable.id;
     this.orderForm.patchValue({
-     merchantID:1,
+     merchantID:this.merchantID, //here i want to sure this work 
     });
     console.log("merchant ID"+this.merchantID);
 
@@ -108,6 +108,7 @@ export class OrderFormComponent implements OnInit {
 //===================================================================================================//
     this.merchantService.getMerchantAccountById(this.merchantID).subscribe({
       next: (data: any) => {
+        console.log("print data merchant")
         console.log(data);
         this.merchant = data || {};
         this.updateMerchantData();
@@ -261,7 +262,7 @@ export class OrderFormComponent implements OnInit {
 
   AddNewOrder() {
     this.orderForm.markAllAsTouched();
-   
+   console.log(this.orderForm)
 
      // Temporarily enable the controls before reading the form values
   this.orderForm.get('totalPrice')?.enable();
@@ -274,6 +275,7 @@ export class OrderFormComponent implements OnInit {
           this.dataDisplayInAleart = data as OrderRead;
           this.totalPriceDelivery=this.dataDisplayInAleart.deliveryPrice;
           this.totalPriceOrder=this.dataDisplayInAleart.paiedMoney;
+          console.log("data when ");
           console.log(data);
           this.sweetaleart()
         },
