@@ -16,6 +16,7 @@ import { BranchesComponent } from '../Components/branches/branches.component';
 import { EmployeeFormComponent } from '../Components/employees/employee-form/employee-form.component';
 import { OrdersComponent } from '../Components/Order/orders.component';
 import { ReportsComponent } from '../Components/reports/reports.component';
+import { UpdateMerchantAccountComponent } from '../Components/MercgentAccount/update-merchant-account/update-merchant-account.component';
 
 export const routes: Routes = [
 
@@ -32,11 +33,12 @@ export const routes: Routes = [
 
         {path:'DeliveryAccounts',component:DeliveryAccountsComponent },
         {path:'MerchantAccounts',component:MerchantAccountsComponent},
-        {path:'DeliveryAccounts/AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
+        {path:'AddDeliveryAccount' ,component:AddDeliveryAcountComponent},
         {path:'Branches' ,component:BranchesComponent},
         {path:'AddMerchantAccount' ,component:AddMerchantAccountComponent},
-        { path: 'UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent }
+        { path: 'UpdateDeliveryAccount/:id', component:UpdateDeliveryAccountComponent },
   
+        { path: 'UpdateMerchantAccount/:id', component:UpdateMerchantAccountComponent }
 
     ]}
 ];

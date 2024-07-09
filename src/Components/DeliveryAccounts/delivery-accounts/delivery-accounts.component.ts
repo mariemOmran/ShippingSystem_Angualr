@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FormsModule } from '@angular/forms';
-import { Table, TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { DeliveryService } from '../../../Services/delivery.service';
-import { TableSharedModule } from '../../../shared/TableShared.module';
 
 @Component({
   selector: 'app-delivery-accounts',
@@ -17,7 +16,11 @@ import { TableSharedModule } from '../../../shared/TableShared.module';
     CommonModule,
     RouterLink,
     RouterLinkActive,
-   TableSharedModule
+    InputSwitchModule,
+    FormsModule,
+    TableModule,
+    PaginatorModule,
+    InputTextModule
   ],
   templateUrl: './delivery-accounts.component.html',
   styleUrls: ['./delivery-accounts.component.css']
@@ -29,12 +32,6 @@ export class DeliveryAccountsComponent implements OnInit {
   first: number = 0;
   rows: number = 10;
   searchValue: string = '';
-
-  
-
- 
-  @ViewChild('dt2') dt2!: Table;
- 
 
   constructor(private _DeliveryService: DeliveryService, private _Router :Router) {}
 
@@ -103,14 +100,4 @@ export class DeliveryAccountsComponent implements OnInit {
   onEditAccount(id: number): void {
     this._Router.navigate(['/UpdateDeliveryAccount', id]);
   }
-  onInput(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    if (this.dt2) {
-      this.dt2.filterGlobal(inputElement.value, 'contains');
-    }
-  }
-  clear(table: Table) {
-    table.clear();
-    this.searchValue="";
-}
 }
