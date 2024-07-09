@@ -24,7 +24,6 @@ export class ReportsComponent implements OnInit {
   rangeDates: Date[] | undefined;
   date: string ='';
   statuses: { label: string; value: string }[] = [];
-  permissions:any =[];
   constructor(private orderService:OrderServiceService,private messageService:MessageService,    private globalService:GlobalService) {
     
     
@@ -35,9 +34,17 @@ export class ReportsComponent implements OnInit {
 this.GetAllOrders();
 this.GetallStatuses();
  
-this.permissions = this.globalService.getEntitiesPermissions("التقارير");
-console.log(this.permissions)
+
+this.globalService.loadGlobalData().then((permissions) => {
+  this.permissions = this.globalService.getEntitiesPermissions(permissions,"التقارير");
+  console.log(this.permissions)
+      
+    }).catch((error) => {
+      console.error('Error loading permissions:', error);
+    });
+ 
   }
+  permissions:any =[];
  
 
   startDate: string = '';

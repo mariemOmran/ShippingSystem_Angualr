@@ -6,7 +6,7 @@
       class="btn btn-primary"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
-      [disabled]="!permissions[0].canCreate"
+      [disabled]="!permissions.length || !permissions[0].canCreate"
     >
       <i class="bi bi-shield-plus"></i>
       إضافة صلاحية
@@ -63,12 +63,12 @@
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           (click)="changeIdVal(role.id)"
-          [disabled]="!permissions[0].canWrite"
+          [disabled]="!permissions.length || !permissions[0].canWrite"
         >
           <i class="bi bi-pen"></i>
         </button>
         <button
-          [disabled]="!permissions[0].canDelete"
+          [disabled]="!permissions.length || !permissions[0].canDelete"
           class="btn btn-danger mx-1"
           (click)="Delete(role.id)"
         >

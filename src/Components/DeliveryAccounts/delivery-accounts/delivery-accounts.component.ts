@@ -44,8 +44,14 @@ export class DeliveryAccountsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadDeliveryAccounts();
-    this.permissions = this.globalService.getEntitiesPermissions("المندوبين");
-    console.log(this.permissions)
+    this.globalService.loadGlobalData().then((permissions) => {
+      this.permissions = this.globalService.getEntitiesPermissions(permissions,"المندوبين");
+      console.log(this.permissions)
+          
+        }).catch((error) => {
+          console.error('Error loading permissions:', error);
+        });
+  
   }
 
   loadDeliveryAccounts(): void {

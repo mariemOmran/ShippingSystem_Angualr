@@ -73,12 +73,8 @@ export class LoginComponent implements AfterViewInit {
           else{  //email and password are correct
             const jsonObject = JSON.parse(res);
             localStorage.setItem('token', jsonObject.readLoginDTO.token);
-            this.globalService.loadGlobalData().then(() => {
-              this.router.navigate(['/']);
-            });
-          
-
-
+            this.globalService.loadGlobalData();
+             
             this.router.navigate(['/']);
           }
         },
@@ -103,10 +99,9 @@ export class LoginComponent implements AfterViewInit {
           else{  //email and password are correct
             const jsonObject = JSON.parse(res);
             localStorage.setItem('token', jsonObject.readLoginDTO.token);
-            this.globalService.loadGlobalData().then(() => {
-              this.router.navigate(['/']);
-            });
-          
+            this.globalService.loadGlobalData();
+             
+            this.router.navigate(['/']);
 
 
             // this.router.navigate(['/']);
@@ -133,13 +128,14 @@ export class LoginComponent implements AfterViewInit {
           else{  //email and password are correct
             const jsonObject = JSON.parse(res);
             localStorage.setItem('token', jsonObject.readLoginDTO.token);
-            this.globalService.loadGlobalData().then(() => {
+            this.globalService.loadGlobalData();
+             
               this.router.navigate(['/']);
-            });
+       
       
 
 
-            this.router.navigate(['/']);
+         
           }
         },
         error: (error) => {

@@ -36,8 +36,14 @@ export class GovernmentsComponent {
 
   ngOnInit() {
     this.GetAll();
-    this.permissions = this.globalService.getEntitiesPermissions("المحافظات");
-    console.log(this.permissions)
+    this.globalService.loadGlobalData().then((permissions) => {
+      this.permissions = this.globalService.getEntitiesPermissions(permissions,"المحافظات");
+      console.log(this.permissions)
+          
+        }).catch((error) => {
+          console.error('Error loading permissions:', error);
+        });
+  
   }
   changeIdVal(id:number){
     this.DialogId=id;

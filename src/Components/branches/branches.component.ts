@@ -39,20 +39,17 @@ export class BranchesComponent {
 
   ngOnInit() {
     this.GetAll();
-    this.permissions = this.globalService.getEntitiesPermissions("الفروع");
-    console.log(this.permissions)
+    this.globalService.loadGlobalData().then((permissions) => {
+      this.permissions = this.globalService.getEntitiesPermissions(permissions,"الفروع");
+      console.log(this.permissions)
+          
+        }).catch((error) => {
+          console.error('Error loading permissions:', error);
+        });
+  
   }
   changeIdVal(id:number){
     this.DialogId=id;
-    this.governmentService.GetAllGovernments().subscribe({
-      next: (data) => {
-        this.governments = data as IGovernment[];
-      },
-      error: (err) => {
-        this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'لا يوجد محافظات' });
-
-      }
-    });
   }
   clear(table: Table) {
     table.clear();
@@ -83,19 +80,10 @@ export class BranchesComponent {
       next: (data: any) => {
         this.Branches = this.Branches.filter((i: any) => i.id !== id);
         this.messageService.add({ severity: 'error', summary: 'تم الحذف', detail: 'تم حذف الفرع ' });
-        this.governmentService.GetAllGovernmentsNoBranches().subscribe({
-          next: (data) => {
-            this.governments = data as IGovernment[];
-          },
-          error: (err) => {
-            this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'لا يوجد محافظات' });
-    
-          }
-        });
+
       },
       error: (err) => console.log(err)
     });
-    
   }
 
  async onBranchAdded() {

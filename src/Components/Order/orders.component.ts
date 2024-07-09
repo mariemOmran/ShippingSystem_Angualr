@@ -55,23 +55,26 @@ this.GetAll();
   
     this.getStatuses();
  
-  
+
+    this.globalService.loadGlobalData().then((permissions) => {
+      this.permissions = this.globalService.getEntitiesPermissions(permissions,"الطلبات");
     this.RoleName=this.globalService.globalVariable.roleName;
-    this.permissions = this.globalService.getEntitiesPermissions("الطلبات");
-console.log(this.permissions)
+
+  
+        }).catch((error) => {
+          console.error('Error loading permissions:', error);
+        });
+  
+ 
    
   }
 
 
 
 GetAll(){
-  // this.orderService.getAllOrders().subscribe({
-  //   next:(data)=>{this.Orders=data ; console.log(data)},
-  //   error:(err)=>console.log(err),
-  //   complete: ()=>this.loading=false
-  // }) 
-  // Number(this.globalService.globalVariable.id)
-  this.orderService.getAllOrdersForMercahnt(1).subscribe({
+   
+  Number(this.globalService.globalVariable.id)
+  this.orderService.getAllOrdersForMercahnt( Number(this.globalService.globalVariable.id)).subscribe({
     next:(data)=>{this.Orders=data ;},
     error:(err)=>{console.log(err); this.loading=false},
     complete: ()=>this.loading=false

@@ -30,10 +30,18 @@ export class EmployeesComponent {
  constructor(public EmpService:EmployeeService,private messageService:MessageService,    private globalService:GlobalService) {
  
  }
+ 
   ngOnInit() {
   this.GetAll();
-  this.permissions = this.globalService.getEntitiesPermissions("الموظفين");
-console.log(this.permissions)
+  this.globalService.loadGlobalData().then((permissions) => {
+    this.permissions = this.globalService.getEntitiesPermissions(permissions,"الموظفين");
+    console.log(this.permissions)
+        
+      }).catch((error) => {
+        console.error('Error loading permissions:', error);
+      });
+ 
+ 
 
   }
 

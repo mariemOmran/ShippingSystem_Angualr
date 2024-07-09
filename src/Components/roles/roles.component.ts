@@ -27,16 +27,25 @@ export class RolesComponent {
   @ViewChild('dt2') dt2!: Table;
   searchValue: string | undefined;
   permissions:any =[];
+
   constructor(public roleService: RolesService,private messageService: MessageService,    private globalService:GlobalService) {
   
   }
 
   ngOnInit() {
     this.GetAll();
+   
+      // Usage example
+      this.globalService.loadGlobalData().then((permissions) => {
+    this.permissions =  this.globalService.getEntitiesPermissions(permissions,"الإعدادات");
+    console.log(this.permissions)
+        
+      }).catch((error) => {
+        console.error('Error loading permissions:', error);
+      });
     
-    this.permissions = this.globalService.getEntitiesPermissions("الإعدادات");
-console.log(this.permissions)
   }
+
   changeIdVal(id:number){
     
     this.DialogId=id;
