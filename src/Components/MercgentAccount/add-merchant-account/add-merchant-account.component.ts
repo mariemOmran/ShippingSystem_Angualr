@@ -25,11 +25,11 @@ export class AddMerchantAccountComponent implements OnInit {
   ) {
     this.mainForm = this.fb.group({
       merchantForm: this.fb.group({
-        password: ['', Validators.required],
+        password: ['',[ Validators.required , , Validators.minLength(8)]],
         email: ['', [Validators.required, Validators.email]],
-        name: ['', Validators.required],
+        name: ['',[ Validators.required , Validators.minLength(3)]],
         address: ['', Validators.required],
-        phone: ['', Validators.required],
+        phone: ['',[ Validators.required , Validators.pattern(/^01[0125][0-9]{8}$/)]],
         branchId: ['', Validators.required],
         city: ['', Validators.required],
         government: ['', Validators.required],
