@@ -30,7 +30,7 @@
                     <p
                       *ngIf="
                         deliveryLoginForm.get('Email')?.getError('required')
-                      "
+                        "
                       class="error no-margin"
                     >
                       الحساب مطلوب
@@ -43,7 +43,7 @@
                     </p>
                   </div>
                   <div
-                    *ngIf="deliveryLoginForm.errors?.['invalidEmailLogin']"
+                    *ngIf="deliveryLoginForm.get('Email')?.errors?.['invalidEmailLogin']"
                     class="error"
                   >
                     هذا الحساب غير موجود ، من فضلك اعد المحاولة
@@ -68,14 +68,14 @@
                     <p
                       *ngIf="
                         deliveryLoginForm.get('Password')?.getError('required')
-                      "
+                        "
                       class="error no-margin"
                     >
                       كلمة السر مطلوبة
                     </p>
                   </div>
                   <div
-                    *ngIf="deliveryLoginForm.errors?.['invalidPasswordLogin']"
+                    *ngIf="deliveryLoginForm.get('Email')?.errors?.['invalidPasswordLogin']"
                     class="error"
                   >
                     كلمة السر خاطئة، من فضلك اعد المحاولة
@@ -87,8 +87,8 @@
             <!-- Custom Validator Error Message -->
             <div class="Validator-block">
               <div
-                *ngIf="deliveryLoginForm.errors?.['somethingWrong']"
-                class="error"
+              *ngIf="deliveryLoginForm.get('Email')?.errors?.['somethingWrong']"
+              class="error"
               >
                 حدث خطأ اثناء تسجيل الدخول ، أعد المحاولة
               </div>
@@ -96,7 +96,6 @@
 
             <button
               type="submit"
-              [disabled]="deliveryLoginForm.invalid"
               class="btn-login"
             >
               تسجيل الدخول
@@ -196,7 +195,6 @@
 
             <button
               type="submit"
-              [disabled]="empLoginForm.invalid"
               class="btn-login"
             >
               تسجيل الدخول
@@ -300,7 +298,6 @@
 
             <button
               type="submit"
-              [disabled]="merchantLoginForm.invalid"
               class="btn-login"
             >
               تسجيل الدخول
