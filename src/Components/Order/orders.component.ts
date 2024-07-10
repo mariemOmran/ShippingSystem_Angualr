@@ -31,7 +31,7 @@ export class OrdersComponent implements OnInit  {
   orderId:number = 0;
  
 
-  permissions:any ;
+  permissions:any =[];
 RoleName :string =''
  
  
